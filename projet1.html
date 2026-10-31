@@ -1,1 +1,83 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projet 1 — Alyssia Mattioni</title>
+<link rel="icon" type="image/png" href="img/logo perso.png">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
+  body {
+    background: #fff;
+    color: #000;
+    font-family: 'Montserrat', sans-serif;
+    padding: 34px 44px 60px;
+  }
+
+  /* bouton retour */
+  .retour {
+    display: inline-block;
+    border: 1px solid #000;
+    border-radius: 999px;
+    padding: 8px 18px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #000;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+  }
+  .retour:hover { background: #000; color: #fff; }
+
+  h1 {
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    font-weight: 600;
+    margin: 50px 0 50px;
+  }
+
+  /* photo à gauche, texte à droite */
+  .contenu {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+
+  .contenu img {
+    width: 100%;
+    display: block;
+  }
+
+  .texte p {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    text-align: justify;
+    hyphens: auto;
+  }
+
+  @media (max-width: 820px) {
+    body { padding: 26px 22px 40px; }
+    h1 { margin: 40px 0 30px; }
+    .contenu { grid-template-columns: 1fr; gap: 30px; }
+  }
+</style>
+</head>
+<body>
+
+  <a class="retour" href="index.html">← Retour</a>
+
+  <h1>Titre du projet</h1>
+
+  <div class="contenu">
+    <img src="img/projet1.png" alt="Titre du projet">
+
+    <div class="texte">
+      <p>Écris ici la description de ton projet : le contexte, ta démarche, les outils utilisés.</p>
+      <p>Tu peux ajouter autant de paragraphes que tu veux en copiant cette ligne.</p>
+    </div>
+  </div>
+
+</body>
+</html>
