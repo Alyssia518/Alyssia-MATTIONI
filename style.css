@@ -89,3 +89,23 @@ footer a {
     color: black;
     text-decoration: none;
 }
+
+/* ---------- Les bulles qui flottent ---------- */
+.bulle {
+    position: fixed;                /* restent en place quand on scrolle */
+    width: 100px;
+    height: 100px;
+    background-color: black;
+    border-radius: 50%;             /* rond */
+    clip-path: polygon(50% 50%, 100% 0%, 100% 100%, 0% 100%, 0% 0%); /* découpe la bouche façon Pac-Man */
+    z-index: -1;                    /* derrière tout le reste */
+    pointer-events: none;           /* non cliquables : on clique à travers */
+    animation: flotte 8s ease-in-out infinite;
+}
+
+/* Le mouvement : monte de 30px puis redescend */
+@keyframes flotte {
+    0%   { transform: translateY(0); }
+    50%  { transform: translateY(-30px); }
+    100% { transform: translateY(0); }
+}
