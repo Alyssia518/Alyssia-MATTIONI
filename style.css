@@ -93,13 +93,13 @@ main {
     pointer-events: none;               /* on clique à travers la boîte... */
 }
 
-/* LA TAILLE DES IMAGES : 11.5% du tableau (avant 9.115%) = environ 220px sur un écran 1920 de large */
+/* LA TAILLE DES IMAGES : 10% du tableau = environ 175px sur ton écran (avant 9.115% = 161px) */
 .carte {
     position: absolute;
     translate: -50% -50%;               /* left et top = le centre de l'image */
     pointer-events: auto;               /* ...mais les images restent cliquables */
     cursor: pointer;
-    width: 11.5%;
+    width: 10%;
     aspect-ratio: 1 / 1;
     background-color: lightgray;        /* visible si l'image est introuvable */
 }
