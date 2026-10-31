@@ -36,8 +36,23 @@
     margin: 60px 0 70px;
   }
 
-  /* lignes d'infos */
-  .lignes { max-width: 800px; }
+  /* deux colonnes : infos à gauche, texte à droite */
+  .contenu {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  /* texte de présentation */
+  .texte p {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    text-align: justify;
+    hyphens: auto;                  /* coupe proprement les mots pour éviter les gros trous */
+  }
+  .texte p:last-child { margin-bottom: 0; }
 
   .ligne {
     display: flex;
@@ -64,6 +79,7 @@
   @media (max-width: 820px) {
     body { padding: 26px 22px 40px; }
     h1 { font-size: 2.2rem; margin: 40px 0 40px; }
+    .contenu { grid-template-columns: 1fr; gap: 40px; }
   }
 </style>
 </head>
@@ -73,6 +89,9 @@
 
   <h1>Contact</h1>
 
+  <div class="contenu">
+
+  <div class="infos">
   <div class="lignes">
     <a class="ligne" href="img/cv.pdf" download>
       <b>CV</b><span>TÉLÉCHARGER</span>
@@ -88,6 +107,14 @@
   <div class="reseaux">
     <a href="https://www.behance.net/alyssia1" target="_blank" rel="noopener">/ BEHANCE</a>
     <a href="mailto:alyssia.mattioni@gmail.com">/ EMAIL</a>
+  </div>
+  </div>
+
+  <div class="texte">
+    <p>Bonjour, je suis Alyssia MATTIONI, actuellement étudiante en DSAA. Ma pratique se situe à l’intersection du graphisme et du numérique : motion design, 3D, illustration vectorielle et découverte de l’UX/UI. Je porte un intérêt particulier aux usages de l’image dans les environnements numériques, avec l’envie d’orienter davantage ma pratique vers le design care.</p>
+    <p>Dans le cadre de ma recherche d’alternance pour septembre 2027, je souhaite effectuer un stage d’un mois afin de découvrir votre structure, ses méthodes de travail et de vous permettre également de découvrir mon profil.</p>
+  </div>
+
   </div>
 
 <script>
