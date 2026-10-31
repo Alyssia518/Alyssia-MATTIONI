@@ -76,22 +76,22 @@ h1 {
 /* ---------- Le milieu ---------- */
 main {
     flex: 1;
-    width: 100%;
 }
 
-/* ---------- LE TABLEAU : une boîte 16:9 dans la page, qui contient fond + images ---------- */
+/* ---------- LE TABLEAU : une boîte 16:9, centrée, qui contient fond + images ---------- */
 .tableau {
-    position: relative;                 /* reste dans la page, sous le titre */
-    width: min(75%, calc((100vh - 260px) * 1.7778));
-                                        /* 75% = TAILLE DU FOND : baisse pour réduire (ex 65%), monte pour agrandir */
-                                        /* le calc empêche d'être plus haut que l'écran (260px = header + titre + footer) */
-    max-width: 1920px;                  /* jamais plus grand que ton dessin */
-    margin: 0 auto;                     /* centré */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;               /* centrée dans la fenêtre */
+    width: min(100vw, 177.78vh);        /* la plus grande boîte 16:9 qui tient dans la fenêtre */
     aspect-ratio: 16 / 9;
 
-    background-image: url("img/fond.png");  /* ton dessin 1920 x 1080 */
-    background-size: 100% 100%;         /* le dessin remplit exactement la boîte */
+    background-image: url("img/fond.png");  /* ton dessin 1920 x 1080, SANS le guide */
     background-repeat: no-repeat;
+    background-position: center;
+    background-size: 75% auto;          /* TAILLE DU FOND SEULEMENT : 75% = plus petit, 100% = comme avant */
+    pointer-events: none;               /* on clique à travers la boîte... */
 }
 
 /* LA TAILLE DES IMAGES : 9.115% du tableau = 175px sur un écran 1920 de large */
