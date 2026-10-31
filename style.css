@@ -85,20 +85,21 @@ main {
     left: 50%;
     translate: -50% -50%;               /* centrée dans la fenêtre */
     width: min(100vw, 177.78vh);        /* la plus grande boîte 16:9 qui tient dans la fenêtre */
-    aspect-ratio: 16 / 9;               /* la hauteur suit automatiquement */
+    aspect-ratio: 16 / 9;
 
     background-image: url("img/fond.png");  /* ton dessin 1920 x 1080 */
-    background-size: 100% 100%;             /* il remplit exactement la boîte, sans recadrage */
+    background-size: 100% 100%;
     pointer-events: none;               /* on clique à travers la boîte... */
 }
 
-/* LES IMAGES PROJET : 9.115% de la boîte = 175px sur un écran 1920 de large */
+/* LA TAILLE DES IMAGES PROJET : 6.8% du tableau = environ 130px sur un écran 1920 de large */
+/* Plus petit : 5.5%   /   Plus grand : 8% */
 .carte {
     position: absolute;
     translate: -50% -50%;               /* left et top = le centre de l'image */
     pointer-events: auto;               /* ...mais les images restent cliquables */
     cursor: pointer;
-    width: 9.115%;
+    width: 6.8%;
     aspect-ratio: 1 / 1;
     background-color: lightgray;        /* visible si l'image est introuvable */
 }
