@@ -4,16 +4,25 @@ body {
     font-family: Arial, sans-serif;
 }
 
+/* Le menu en haut */
+nav a {
+    color: black;
+}
+
+/* La grille */
 .grille {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 10px;
 }
 
+/* Les cases */
 .grille a {
     background-color: lightgray;
     color: black;
-    padding: 40px;
-    text-align: center;
     text-decoration: none;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
