@@ -36,11 +36,6 @@ body {
     max-height: 80vh;
 }
 
-/* intro déjà vue pendant cette visite : on ne l'affiche plus */
-.deja-vu #intro {
-    display: none;
-}
-
 @keyframes disparition {
     to {
         opacity: 0;
