@@ -82,8 +82,9 @@ main {
 /* ---------- LE TABLEAU : une boîte 16:9 dans la page, qui contient fond + images ---------- */
 .tableau {
     position: relative;                 /* reste dans la page, sous le titre */
-    width: min(100%, calc((100vh - 220px) * 1.7778));
-                                        /* jamais plus haut que l'écran (220px = header + titre + footer, à ajuster) */
+    width: min(75%, calc((100vh - 260px) * 1.7778));
+                                        /* 75% = TAILLE DU FOND : baisse pour réduire (ex 65%), monte pour agrandir */
+                                        /* le calc empêche d'être plus haut que l'écran (260px = header + titre + footer) */
     max-width: 1920px;                  /* jamais plus grand que ton dessin */
     margin: 0 auto;                     /* centré */
     aspect-ratio: 16 / 9;
