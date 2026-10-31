@@ -9,8 +9,7 @@ body {
     background-color: white;
     color: black;
     font-family: Arial, sans-serif;
-    position: relative;
-    min-height: max(100vh, 56.25vw);    /* au moins aussi haut que le dessin 16:9 */
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
 }
@@ -79,30 +78,28 @@ main {
     flex: 1;
 }
 
-/* ---------- LE TABLEAU : une boîte 16:9 aussi large que la fenêtre, qui contient fond + images ---------- */
+/* ---------- LE TABLEAU : une boîte 16:9, centrée, qui contient fond + images ---------- */
 .tableau {
-    position: absolute;
-    top: 0;
+    position: fixed;
+    top: 50%;
     left: 50%;
-    translate: -50% 0;                  /* centrée */
-    width: 100%;                        /* = largeur de la fenêtre, donc images à 175px sur un écran 1920 */
-    max-width: 1920px;                  /* jamais plus grand que ton dessin */
-    aspect-ratio: 16 / 9;               /* la hauteur suit : 1920 x 1080 */
+    translate: -50% -50%;               /* centrée dans la fenêtre */
+    width: min(100vw, 177.78vh);        /* la plus grande boîte 16:9 qui tient dans la fenêtre */
+    aspect-ratio: 16 / 9;
 
     background-image: url("img/fond.png");  /* ton dessin 1920 x 1080, SANS le guide */
-    background-size: 100% 100%;         /* le fond remplit exactement la boîte */
+    background-size: 100% 100%;
     background-repeat: no-repeat;
     pointer-events: none;               /* on clique à travers la boîte... */
 }
 
-/* LA TAILLE DES IMAGES : 9.115% du tableau = 175px sur un écran 1920 de large */
-/* C'est la taille du guide : si tu la changes, tes traits ne tomberont plus sur les images */
+/* LA TAILLE DES IMAGES : 11.5% du tableau (avant 9.115%) = environ 220px sur un écran 1920 de large */
 .carte {
     position: absolute;
     translate: -50% -50%;               /* left et top = le centre de l'image */
     pointer-events: auto;               /* ...mais les images restent cliquables */
     cursor: pointer;
-    width: 9.115%;
+    width: 11.5%;
     aspect-ratio: 1 / 1;
     background-color: lightgray;        /* visible si l'image est introuvable */
 }
