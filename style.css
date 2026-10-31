@@ -92,7 +92,7 @@ main {
     pointer-events: none;           /* on clique à travers le calque... */
 }
 
-/* LA TAILLE DES IMAGES PROJET : change 110px (deux fois : width et height) */
+/* LA TAILLE DES IMAGES PROJET : change 150px (deux fois : width et height) */
 .carte {
     position: absolute;
     translate: -50% -50%;           /* left et top = le centre de l'image */
@@ -100,8 +100,8 @@ main {
     z-index: 1;
     cursor: pointer;
 
-    width: 110px !important;        /* taille des images projet */
-    height: 110px !important;
+    width: 150px !important;        /* taille des images projet */
+    height: 150px !important;
     background-color: lightgray;    /* carré gris visible si l'image est introuvable */
 }
 
