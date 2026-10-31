@@ -6,11 +6,7 @@
 }
 
 body {
-    background-color: white;                /* affiché si fond.png n'existe pas encore */
-    background-image: url("img/fond.png");  /* ton dessin avec les traits */
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
+    background-color: white;
     color: black;
     font-family: Arial, sans-serif;
     min-height: 100vh;
@@ -82,38 +78,40 @@ main {
     flex: 1;
 }
 
-/* ---------- Les projets : un calque qui couvre tout l'écran ---------- */
+/* ---------- LE TABLEAU : une boîte 16:9, centrée, qui contient fond + images ---------- */
 .tableau {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;           /* on clique à travers le calque... */
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;               /* centrée dans la fenêtre */
+    width: min(100vw, 177.78vh);        /* la plus grande boîte 16:9 qui tient dans la fenêtre */
+    aspect-ratio: 16 / 9;               /* la hauteur suit automatiquement */
+
+    background-image: url("img/fond.png");  /* ton dessin 1920 x 1080 */
+    background-size: 100% 100%;             /* il remplit exactement la boîte, sans recadrage */
+    pointer-events: none;               /* on clique à travers la boîte... */
 }
 
-/* LA TAILLE DES IMAGES PROJET : change 175px (deux fois : width et height) */
+/* LES IMAGES PROJET : 9.115% de la boîte = 175px sur un écran 1920 de large */
 .carte {
     position: absolute;
-    translate: -50% -50%;           /* left et top = le centre de l'image */
-    pointer-events: auto;           /* ...mais les images restent cliquables */
-    z-index: 1;
+    translate: -50% -50%;               /* left et top = le centre de l'image */
+    pointer-events: auto;               /* ...mais les images restent cliquables */
     cursor: pointer;
-
-    width: 175px !important;        /* taille des images projet */
-    height: 175px !important;
-    background-color: lightgray;    /* carré gris visible si l'image est introuvable */
+    width: 9.115%;
+    aspect-ratio: 1 / 1;
+    background-color: lightgray;        /* visible si l'image est introuvable */
 }
 
 .carte:hover {
-    scale: 1.1;                     /* grossit un peu au survol */
+    scale: 1.1;
 }
 
 /* L'image remplit le carré, recadrée si besoin */
 .carte img {
     display: block;
-    width: 100% !important;
-    height: 100% !important;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
 }
 
