@@ -7,6 +7,11 @@
 </head>
 <body>
 
+    <!-- L'animation du début : couvre tout l'écran, puis disparaît -->
+    <div id="intro">
+        <video id="video-intro" src="img/carte-visite-ar.mp4" autoplay muted playsinline></video>
+    </div>
+
     <!-- Le haut de la page : logo à gauche, menu à droite -->
     <header>
         <img src="img/logo.png" alt="Logo" class="logo">
@@ -49,6 +54,27 @@
     <div class="bulle" style="top: 50%; left: 20%; rotate: 150deg; animation-delay: 2s;"></div>
     <div class="bulle" style="top: 65%; left: 80%; rotate: 210deg; animation-delay: 3s;"></div>
     <div class="bulle" style="top: 85%; left: 40%; rotate: 270deg; animation-delay: 1.5s;"></div>
+
+    <!-- Le petit script qui cache l'animation quand elle est finie -->
+    <script>
+        const intro = document.getElementById("intro");
+        const video = document.getElementById("video-intro");
+
+        // Cache l'animation et retient qu'elle a été vue
+        function fermerIntro() {
+            intro.style.display = "none";
+            sessionStorage.setItem("introVue", "oui");
+        }
+
+        // Si elle a déjà été vue pendant cette visite, on ne la rejoue pas
+        if (sessionStorage.getItem("introVue") === "oui") {
+            intro.style.display = "none";
+        }
+
+        video.addEventListener("ended", fermerIntro); // quand la vidéo se termine
+        video.addEventListener("error", fermerIntro); // si le fichier est introuvable
+        setTimeout(fermerIntro, 8000);                // sécurité : après 8 secondes, on ferme
+    </script>
 
 </body>
 </html>
