@@ -7,9 +7,9 @@
 </head>
 <body>
 
-    <!-- L'animation du début : couvre tout l'écran, puis disparaît -->
+    <!-- L'animation du début : disparaît toute seule (voir le CSS) -->
     <div id="intro">
-        <video id="video-intro" src="img/carte-visite-ar.mp4" autoplay muted playsinline></video>
+        <video src="img/carte-visite-ar.mp4" autoplay muted playsinline></video>
     </div>
 
     <!-- Le haut de la page : logo à gauche, menu à droite -->
@@ -25,17 +25,34 @@
     <!-- Le titre, sous le header -->
     <h1>HEY !</h1>
 
-    <!-- Le milieu : la grille, centrée -->
+    <!-- Le tableau : couvre tout l'écran, par-dessus ton dessin de fond -->
     <main>
-        <div class="grille">
-            <a href="#">Projet 1</a>
-            <a href="#">Projet 2</a>
-            <a href="#">Projet 3</a>
-            <a href="#">Projet 4</a>
-            <a href="#">Projet 5</a>
-            <a href="#">Projet 6</a>
-            <a href="#">Projet 7</a>
-            <a href="#">Projet 8</a>
+        <div class="tableau">
+
+            <!-- Les ficelles : chaque ligne relie deux punaises -->
+            <!-- Si ton dessin a déjà des ficelles, supprime tout ce bloc svg -->
+            <svg viewBox="0 0 100 100" preserveAspectRatio="none">
+                <line x1="12" y1="28" x2="35" y2="40" />
+                <line x1="35" y1="40" x2="60" y2="24" />
+                <line x1="60" y1="24" x2="85" y2="38" />
+                <line x1="85" y1="38" x2="88" y2="70" />
+                <line x1="88" y1="70" x2="72" y2="62" />
+                <line x1="72" y1="62" x2="45" y2="66" />
+                <line x1="45" y1="66" x2="18" y2="62" />
+                <line x1="18" y1="62" x2="12" y2="28" />
+                <line x1="35" y1="40" x2="45" y2="66" />
+            </svg>
+
+            <!-- Les cartes : left = horizontal, top = vertical (en % de l'écran) -->
+            <a class="carte" href="#" style="left: 12%; top: 28%; rotate: -4deg;">Projet 1</a>
+            <a class="carte" href="#" style="left: 35%; top: 40%; rotate: 3deg;">Projet 2</a>
+            <a class="carte" href="#" style="left: 60%; top: 24%; rotate: -2deg;">Projet 3</a>
+            <a class="carte" href="#" style="left: 85%; top: 38%; rotate: 5deg;">Projet 4</a>
+            <a class="carte" href="#" style="left: 18%; top: 62%; rotate: 2deg;">Projet 5</a>
+            <a class="carte" href="#" style="left: 45%; top: 66%; rotate: -5deg;">Projet 6</a>
+            <a class="carte" href="#" style="left: 72%; top: 62%; rotate: 4deg;">Projet 7</a>
+            <a class="carte" href="#" style="left: 88%; top: 70%; rotate: -3deg;">Projet 8</a>
+
         </div>
     </main>
 
@@ -51,26 +68,6 @@
     <div class="bulle" style="top: 50%; left: 20%; rotate: 150deg; animation-delay: 2s;"></div>
     <div class="bulle" style="top: 65%; left: 80%; rotate: 210deg; animation-delay: 3s;"></div>
     <div class="bulle" style="top: 85%; left: 40%; rotate: 270deg; animation-delay: 1.5s;"></div>
-
-    <!-- Le petit script qui cache l'animation quand elle est finie -->
-    <script>
-        const intro = document.getElementById("intro");
-        const video = document.getElementById("video-intro");
-
-        function fermerIntro() {
-            intro.style.display = "none";
-            sessionStorage.setItem("introVue", "oui");
-        }
-
-        // Si elle a déjà été vue pendant cette visite, on ne la rejoue pas
-        if (sessionStorage.getItem("introVue") === "oui") {
-            intro.style.display = "none";
-        }
-
-        video.addEventListener("ended", fermerIntro); // quand la vidéo se termine
-        video.addEventListener("error", fermerIntro); // si le fichier est introuvable
-        setTimeout(fermerIntro, 8000);                // sécurité : après 8 secondes
-    </script>
 
 </body>
 </html>
