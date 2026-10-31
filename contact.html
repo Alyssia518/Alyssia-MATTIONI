@@ -1,18 +1,107 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <title>Contact — Alyssia Mattioni</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Alyssia Mattioni</title>
+<link rel="icon" type="image/png" href="img/logo perso.png">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #fff;
+    color: #000;
+    font-family: 'Montserrat', sans-serif;
+    padding: 34px 44px 60px;
+  }
+
+  /* bouton retour */
+  .retour {
+    display: inline-block;
+    border: 1px solid #000;
+    border-radius: 999px;
+    padding: 8px 18px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #000;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+  }
+  .retour:hover { background: #000; color: #fff; }
+
+  h1 {
+    font-size: clamp(2.8rem, 6vw, 4.4rem);
+    font-weight: 600;
+    margin: 60px 0 70px;
+  }
+
+  /* lignes d'infos */
+  .lignes { max-width: 800px; }
+
+  .ligne {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px 0;
+    border-bottom: 1px solid #000;
+    color: #000;
+    text-decoration: none;
+  }
+  .ligne:first-child { border-top: 1px solid #000; }
+
+  .ligne b { font-size: 0.82rem; font-weight: 600; letter-spacing: 0.08em; }
+  .ligne span { font-size: 0.95rem; text-align: right; }
+  .ligne:hover span { opacity: 0.5; }
+
+  #mail { cursor: pointer; }
+
+  /* réseaux */
+  .reseaux { margin-top: 50px; display: flex; gap: 40px; }
+  .reseaux a { color: #000; text-decoration: none; font-size: 0.95rem; }
+  .reseaux a:hover { text-decoration: underline; }
+
+  @media (max-width: 820px) {
+    body { padding: 26px 22px 40px; }
+    h1 { font-size: 2.2rem; margin: 40px 0 40px; }
+  }
+</style>
 </head>
 <body>
 
-    <nav>
-        <a href="index.html">Accueil</a>
-    </nav>
+  <a class="retour" href="index.html">← Retour</a>
 
-    <h1>Contact</h1>
-    <p>Tu peux m'écrire à : alyssia.mattioni@gmail.com</p>
+  <h1>Contact</h1>
 
+  <div class="lignes">
+    <a class="ligne" href="img/cv.pdf" download>
+      <b>CV</b><span>TÉLÉCHARGER</span>
+    </a>
+    <a class="ligne" href="img/portfolio.pdf" download>
+      <b>PORTFOLIO</b><span>TÉLÉCHARGER</span>
+    </a>
+    <div class="ligne" id="mail">
+      <b>MAIL</b><span id="mailTexte">alyssia.mattioni@gmail.com</span>
+    </div>
+  </div>
+
+  <div class="reseaux">
+    <a href="https://www.behance.net/alyssia1" target="_blank" rel="noopener">/ BEHANCE</a>
+    <a href="mailto:alyssia.mattioni@gmail.com">/ EMAIL</a>
+  </div>
+
+<script>
+  // clic sur la ligne MAIL : copie l'adresse
+  const mail = document.getElementById('mail');
+  const texte = document.getElementById('mailTexte');
+  const adresse = 'alyssia.mattioni@gmail.com';
+
+  mail.addEventListener('click', () => {
+    navigator.clipboard.writeText(adresse).then(() => {
+      texte.textContent = 'COPIÉ !';
+      setTimeout(() => { texte.textContent = adresse; }, 1500);
+    });
+  });
+</script>
 </body>
 </html>
