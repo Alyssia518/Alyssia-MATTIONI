@@ -15,10 +15,10 @@
     <!-- Intro déjà vue pendant cette visite ? Alors on la supprime tout de suite -->
     <script>
         try {
-            if (sessionStorage.getItem('introVue')) {
+            if (sessionStorage.getItem('introVue2')) {
                 document.getElementById('intro').remove();
             } else {
-                sessionStorage.setItem('introVue', '1');
+                sessionStorage.setItem('introVue2', '1');
             }
         } catch (e) {}
     </script>
