@@ -7,7 +7,7 @@
 
 body {
     background-color: white;                /* affiché si l'image est introuvable */
-    background-image: url("img/fond.png");  /* ton dessin */
+    background-image: url("img/fond.png");  /* ton dessin avec les traits */
     background-size: cover;                 /* remplit tout l'écran */
     background-position: center;
     background-attachment: fixed;
@@ -50,7 +50,7 @@ body {
 /* ---------- Le haut de la page ---------- */
 header {
     position: relative;
-    z-index: 2;                     /* au-dessus du tableau, pour rester cliquable */
+    z-index: 2;                     /* au-dessus des projets, pour rester cliquable */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -82,60 +82,30 @@ main {
     flex: 1;
 }
 
-/* ---------- Le tableau : couvre tout l'écran ---------- */
+/* ---------- Les projets : un calque qui couvre tout l'écran ---------- */
 .tableau {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-}
-
-.tableau svg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;           /* on clique à travers */
-}
-
-.tableau line {
-    stroke: red;
-    stroke-width: 2;
-    vector-effect: non-scaling-stroke;
+    pointer-events: none;           /* on clique à travers le calque... */
 }
 
 .carte {
     position: absolute;             /* placée avec left et top (dans le HTML) */
-    translate: -50% 0;              /* centre la carte sous sa punaise */
-    width: 110px;
-    height: 110px;
-    background-color: lightgray;
-    color: black;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.3);
+    translate: -50% -50%;           /* left et top = le centre de l'image */
+    pointer-events: auto;           /* ...mais les images restent cliquables */
     z-index: 1;
 }
 
-.carte:hover {
-    scale: 1.1;
+/* L'image garde sa taille d'origine (on ne met ni width ni height) */
+.carte img {
+    display: block;
 }
 
-/* La punaise */
-.carte::before {
-    content: "";
-    position: absolute;
-    top: -7px;
-    left: 50%;
-    translate: -50% 0;
-    width: 14px;
-    height: 14px;
-    background-color: red;
-    border-radius: 50%;
+.carte:hover {
+    scale: 1.05;                    /* grossit un peu au survol */
 }
 
 /* ---------- Le bas de la page ---------- */
