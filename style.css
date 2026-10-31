@@ -6,12 +6,16 @@
 }
 
 body {
-    background-color: white;
+    background-color: white;                /* affiché si l'image est introuvable */
+    background-image: url("img/fond.png");  /* ton dessin */
+    background-size: cover;                 /* remplit tout l'écran */
+    background-position: center;
+    background-attachment: fixed;
     color: black;
     font-family: Arial, sans-serif;
-    min-height: 100vh;              /* au moins la hauteur de l'écran */
+    min-height: 100vh;
     display: flex;
-    flex-direction: column;         /* header, titre, main, footer l'un sous l'autre */
+    flex-direction: column;
 }
 
 /* ---------- L'animation du début ---------- */
@@ -22,10 +26,12 @@ body {
     width: 100%;
     height: 100%;
     background-color: white;
-    z-index: 1000;                  /* par-dessus tout le reste */
+    z-index: 1000;
     display: flex;
     justify-content: center;
     align-items: center;
+    /* nom | durée du fondu | délai avant de disparaître | reste caché */
+    animation: disparition 1s ease 6s forwards;
 }
 
 #intro video {
@@ -34,10 +40,19 @@ body {
     max-height: 80vh;
 }
 
+@keyframes disparition {
+    to {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
 /* ---------- Le haut de la page ---------- */
 header {
+    position: relative;
+    z-index: 2;                     /* au-dessus du tableau, pour rester cliquable */
     display: flex;
-    justify-content: space-between; /* logo à gauche, menu à droite */
+    justify-content: space-between;
     align-items: center;
     padding: 20px 40px;
 }
@@ -54,42 +69,80 @@ nav a {
 
 /* ---------- Le titre ---------- */
 h1 {
+    position: relative;
+    z-index: 2;
     text-align: center;
     font-size: 3.2rem;
     letter-spacing: 2px;
     margin-top: 20px;
 }
 
-/* ---------- Le milieu : la grille au centre ---------- */
+/* ---------- Le milieu ---------- */
 main {
-    flex: 1;                        /* prend toute la place entre le titre et le footer */
-    display: flex;
-    justify-content: center;        /* centrée horizontalement */
-    align-items: center;            /* centrée verticalement */
-    padding: 0 20px;
+    flex: 1;
 }
 
-.grille {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 colonnes */
-    gap: 10px;
+/* ---------- Le tableau : couvre tout l'écran ---------- */
+.tableau {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-    max-width: 600px;
+    height: 100%;
 }
 
-.grille a {
+.tableau svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;           /* on clique à travers */
+}
+
+.tableau line {
+    stroke: red;
+    stroke-width: 2;
+    vector-effect: non-scaling-stroke;
+}
+
+.carte {
+    position: absolute;             /* placée avec left et top (dans le HTML) */
+    translate: -50% 0;              /* centre la carte sous sa punaise */
+    width: 110px;
+    height: 110px;
     background-color: lightgray;
     color: black;
     text-decoration: none;
-    aspect-ratio: 1 / 1;            /* cases carrées */
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.3);
+    z-index: 1;
+}
+
+.carte:hover {
+    scale: 1.1;
+}
+
+/* La punaise */
+.carte::before {
+    content: "";
+    position: absolute;
+    top: -7px;
+    left: 50%;
+    translate: -50% 0;
+    width: 14px;
+    height: 14px;
+    background-color: red;
+    border-radius: 50%;
 }
 
 /* ---------- Le bas de la page ---------- */
 footer {
-    margin-top: auto;               /* pousse le footer tout en bas */
+    position: relative;
+    z-index: 2;
+    margin-top: auto;
     text-align: center;
     padding: 20px 0;
     font-size: 0.9rem;
@@ -108,8 +161,8 @@ footer a {
     background-color: black;
     border-radius: 50%;
     clip-path: polygon(50% 50%, 100% 0%, 100% 100%, 0% 100%, 0% 0%);
-    z-index: -1;                    /* derrière tout le reste */
-    pointer-events: none;           /* non cliquables */
+    z-index: -1;
+    pointer-events: none;
     animation: flotte 8s ease-in-out infinite;
 }
 
