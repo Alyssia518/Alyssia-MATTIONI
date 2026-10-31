@@ -103,9 +103,9 @@ main {
 /* LA TAILLE DES IMAGES : change ce chiffre pour les agrandir ou rapetisser */
 .carte img {
     display: block;
-    width: 18vw;                    /* 18% de la largeur de l'écran */
-    min-width: 140px;               /* jamais plus petite que ça */
-    max-width: 320px;               /* jamais plus grande que ça */
+    width: 22vw;                    /* 22% de la largeur de l'écran */
+    min-width: 200px;               /* jamais plus petite que ça */
+    max-width: 450px;               /* jamais plus grande que ça */
     height: auto;                   /* garde les bonnes proportions */
 }
 
