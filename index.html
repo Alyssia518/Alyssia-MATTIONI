@@ -22,14 +22,10 @@
         </nav>
     </header>
 
-    <!-- Premier écran : HEY ! au milieu -->
-    <section class="accueil">
+    <!-- Le milieu : HEY ! puis la grille -->
+    <main>
         <h1>HEY !</h1>
-        <p class="fleche">↓</p>
-    </section>
 
-    <!-- Deuxième écran : la grille -->
-    <section class="section-grille">
         <div class="grille">
             <a href="#">Projet 1</a>
             <a href="#">Projet 2</a>
@@ -40,11 +36,11 @@
             <a href="#">Projet 7</a>
             <a href="#">Projet 8</a>
         </div>
-    </section>
+    </main>
 
     <!-- Le bas de la page -->
     <footer>
-        <p><a href="mailto:alyssia.mattioni@gmail.com">alyssia.mattioni@gmail.com</a></p>
+        <a href="mailto:alyssia.mattioni@gmail.com">alyssia.mattioni@gmail.com</a>
         <p>© 2026 Alyssia Mattioni</p>
     </footer>
 
@@ -60,7 +56,6 @@
         const intro = document.getElementById("intro");
         const video = document.getElementById("video-intro");
 
-        // Cache l'animation et retient qu'elle a été vue
         function fermerIntro() {
             intro.style.display = "none";
             sessionStorage.setItem("introVue", "oui");
@@ -73,7 +68,7 @@
 
         video.addEventListener("ended", fermerIntro); // quand la vidéo se termine
         video.addEventListener("error", fermerIntro); // si le fichier est introuvable
-        setTimeout(fermerIntro, 8000);                // sécurité : après 8 secondes, on ferme
+        setTimeout(fermerIntro, 8000);                // sécurité : après 8 secondes
     </script>
 
 </body>
