@@ -100,9 +100,9 @@ main {
     z-index: 1;
     cursor: pointer;
 
-    width: 20vw;                    /* 20% de la largeur de l'écran */
-    min-width: 160px;
-    max-width: 360px;
+    width: 11vw;                    /* 11% de la largeur de l'écran */
+    min-width: 90px;                /* jamais plus petit que ça */
+    max-width: 200px;               /* jamais plus grand que ça */
     aspect-ratio: 1 / 1;            /* carré */
     background-color: lightgray;    /* visible si l'image est introuvable */
 }
