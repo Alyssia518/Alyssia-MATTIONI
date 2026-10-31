@@ -12,6 +12,8 @@ body {
 
 .grille a {
     background-color: lightgray;
+    color: black;
     padding: 40px;
     text-align: center;
+    text-decoration: none;
 }
