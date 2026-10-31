@@ -3,20 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>alyssia_mattioni</title>
-    <link rel="stylesheet" href="style.css?v=17">
-
-    <!-- L'animation du début ne se joue qu'une fois par visite (pas quand on revient depuis une autre page) -->
-    <script>
-        try {
-            var nav = performance.getEntriesByType('navigation')[0];
-            var rechargement = nav && nav.type === 'reload';
-            if (sessionStorage.getItem('introVue') && !rechargement) {
-                document.documentElement.classList.add('deja-vu');
-            } else {
-                sessionStorage.setItem('introVue', '1');
-            }
-        } catch (e) {}
-    </script>
+    <link rel="stylesheet" href="style.css?v=18">
 </head>
 <body>
 
@@ -25,10 +12,22 @@
         <video src="img/carte-visite-ar.mp4" autoplay muted playsinline></video>
     </div>
 
+    <!-- Intro déjà vue pendant cette visite ? Alors on la supprime tout de suite -->
+    <script>
+        try {
+            if (sessionStorage.getItem('introVue')) {
+                document.getElementById('intro').remove();
+            } else {
+                sessionStorage.setItem('introVue', '1');
+            }
+        } catch (e) {}
+    </script>
+
     <!-- Le haut de la page : logo à gauche, menu à droite -->
     <header>
         <img src="img/logo.png" alt="Logo" class="logo">
         <nav>
+            <a href="apropos.html">À propos</a>
             <a href="contact.html">Contact</a>
         </nav>
     </header>
