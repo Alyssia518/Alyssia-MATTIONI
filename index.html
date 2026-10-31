@@ -1,31 +1,984 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <title>Portfolio — Alyssia Mattioni</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <title>alyssia_mattioni</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="img/logo perso.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: 'Marine Up', sans-serif;
+      background: #ffffff; /* fond blanc */
+      overflow: hidden;
+      color: #000000; /* texte noir */
+    }
+
+    .loading-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #ffffff;
+      z-index: 1000;
+      transition: opacity 0.5s ease-out;
+    }
+
+    .loading-container.fade-out {
+      opacity: 0;
+    }
+
+    .loading-video {
+      width: 92vw;
+      height: 82vh;
+      max-width: 1100px;
+      object-fit: cover;
+      display: block;
+    }
+
+    @media (max-width: 640px) {
+      .loading-video {
+        width: 78vw;
+        height: 50vh;
+      }
+    }
+
+    .main-content {
+      display: none;
+      height: 100%;
+      background: #ffffff; /* fond blanc */
+      color: #000000; /* texte noir */
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    .main-content.show {
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    header {
+      background: #ffffff; /* fond blanc */
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      height: 90px;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: none; /* supprime le flou et transparence */
+    }
+
+    header .logo {
+      font-weight: 500;
+      font-size: 1.6rem;
+      letter-spacing: 1.5px;
+    }
+
+    header .logo img {
+      height: 50px;
+      width: auto;
+      display: block;
+    }
+
+    nav a {
+      color: #000000; /* liens noirs */
+      margin-left: 30px;
+      text-decoration: none;
+      font-weight: 300;
+      position: relative;
+      transition: color 0.3s ease;
+      display: inline-block;
+    }
+
+    nav a:hover {
+      color: #000000;
+    }
+
+    /* ========== IMAGE À GAUCHE DU LIEN "À PROPOS" ========== */
+    nav a[href="apropos.html"] {
+      position: relative;
+      padding-left: 40px; /* espace pour l'image */
+    }
+
+    nav a[href="apropos.html"]::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      width: 35px; /* image plus petite */
+      height: 35px;
+      
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    main {
+      flex: 1;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-wrapper {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0 20px;
+      text-align: center;
+    }
+
+    .hero {
+      max-width: 620px;
+      transition: color 0.3s ease;
+    }
+
+    /* petite flèche qui invite à scroller, sous le HEY ! */
+    .scroll-hint {
+      margin-top: 60px;
+      font-family: 'Courier New', ui-monospace, monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      opacity: 0.45;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      animation: bounce 2s ease-in-out infinite;
+    }
+
+    .scroll-hint svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(6px); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .scroll-hint {
+        animation: none;
+      }
+    }
+
+    /* deuxième écran : le choix des univers */
+    .tracker-section {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 60px 20px;
+    }
+
+    .hero h1 {
+      font-size: 3.2rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      color: #000000;
+    }
+
+    .hero h2 {
+      font-size: 1.8rem;
+      font-weight: 400;
+      margin-bottom: 12px;
+      color: #000000;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: #000000;
+    }
+
+    .detect-zone.touching h1,
+    .detect-zone.touching h2,
+    .detect-zone.touching p {
+      color: #000000 !important;
+      background: none !important;
+      -webkit-text-fill-color: #000000 !important;
+      filter: none !important;
+    }
+
+    /* ================================================
+       TRACKER — patch de nodes façon TouchDesigner
+       ================================================ */
+    .tracker-wrap {
+      position: relative;
+      padding-top: 10px;
+    }
+
+    /* le point d'où partent tous les câbles, juste sous le "HEY !" */
+    .tracker-hub {
+      width: 8px;
+      height: 8px;
+      background: #000000;
+      border-radius: 50%;
+      margin: 0 auto;
+    }
+
+    .tracker-svg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+      pointer-events: none;
+    }
+
+    .tracker-motif-svg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    .tracker-motif-svg path {
+      fill: none;
+      stroke: #000000;
+    }
+
+    .tracker-motif-svg circle {
+      fill: none;
+      stroke: #000000;
+    }
+
+    .tracker-motif-svg .is-dot {
+      fill: #000000;
+      stroke: none;
+    }
+
+    .tracker-svg path.connector {
+      fill: none;
+      stroke: #000000;
+      stroke-width: 1.2;
+      stroke-dasharray: 3 5;
+      opacity: 0.45;
+    }
+
+    .tracker-svg path.connector-signal {
+      fill: #000000;
+      opacity: 0.75;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .tracker-svg path.connector-signal {
+        display: none;
+      }
+    }
+
+    .tracker {
+      position: relative;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 22px;
+      margin-top: 40px;
+    }
+
+    /* décalages façon carte mentale — pas alignés en rangée droite */
+    .tracker-item:nth-child(1) { margin-top: 4px; }   /* Motion design — haut */
+    .tracker-item:nth-child(2) { margin-top: 74px; }  /* UX/UI — milieu */
+    .tracker-item:nth-child(3) { margin-top: 140px; } /* TouchDesigner — bas */
+    .tracker-item:nth-child(4) { margin-top: 140px; } /* 3D — bas, parallèle à TouchDesigner */
+    .tracker-item:nth-child(5) { margin-top: 4px; }   /* Identité — haut, parallèle à Motion design */
+
+    .tracker-item {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding: 12px 18px;
+      border: 1px solid #000000;
+      border-radius: 2px;
+      background: #ffffff;
+      color: #000000;
+      text-decoration: none;
+      font-weight: 400;
+      font-size: 0.92rem;
+      letter-spacing: 0.02em;
+      transition: background 0.18s ease, color 0.18s ease, transform 0.18s ease;
+    }
+
+    /* petit plot en haut du node, comme une entrée TouchDesigner */
+    .tracker-item::before {
+      content: '';
+      position: absolute;
+      top: -5px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 6px;
+      height: 6px;
+      background: #ffffff;
+      border: 1px solid #000000;
+      border-radius: 50%;
+      transition: background 0.18s ease;
+    }
+
+    .tracker-item:hover::before,
+    .tracker-item:focus-visible::before {
+      background: #000000;
+    }
+
+    .tracker-item__index {
+      font-family: 'Courier New', ui-monospace, monospace;
+      font-size: 0.72rem;
+      opacity: 0.55;
+    }
+
+    .tracker-item:hover,
+    .tracker-item:focus-visible {
+      background: #000000;
+      color: #ffffff;
+      transform: translateY(-3px);
+    }
+
+    .tracker-item:hover .tracker-item__index,
+    .tracker-item:focus-visible .tracker-item__index {
+      opacity: 0.75;
+    }
+
+    .tracker-item:focus-visible {
+      outline: 2px solid #000000;
+      outline-offset: 4px;
+    }
+
+    /* petite indication au-dessus du tracker */
+    .tracker-hint {
+      margin-top: 0;
+      padding-top: 14px;
+      font-family: 'Courier New', ui-monospace, monospace;
+      font-size: 0.7rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      opacity: 0.4;
+    }
+
+    @media (max-width: 768px) {
+      .tracker-wrap {
+        margin-top: 40px;
+        width: 100%;
+      }
+      .tracker {
+        flex-direction: column;
+        align-items: center;
+        gap: 26px;
+        margin-top: 30px;
+        width: 100%;
+      }
+      .tracker-item {
+        padding: 15px 20px;
+        font-size: 0.92rem;
+        width: 85%;
+        max-width: 340px;
+        justify-content: center;
+      }
+      .tracker-item:nth-child(1),
+      .tracker-item:nth-child(2),
+      .tracker-item:nth-child(3),
+      .tracker-item:nth-child(4),
+      .tracker-item:nth-child(5) {
+        margin-top: 0;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .tracker-item {
+        transition: none;
+      }
+    }
+
+    footer {
+      background: transparent;
+      padding: 40px 0 10px 0;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #000000;
+      font-weight: 300;
+      z-index: 2;
+      position: relative;
+      line-height: 1.8;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: nowrap;
+      flex-direction: row;
+      margin-bottom: 10px;
+    }
+
+    .contact-item {
+      margin-bottom: 0;
+      font-size: 1rem;
+    }
+
+    .contact-item a {
+      color: #000000;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .contact-item a:hover {
+      color: #000000;
+    }
+
+    .footer-bottom {
+      font-size: 0.8rem;
+      color: #000000;
+    }
+
+
+    ::-webkit-scrollbar {
+      display: none;
+    }
+
+    html {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    /* ========= BULLES PAC-MAN ========= */
+    .floating-bubble {
+      width: 110px;
+      height: 110px;
+      background: #000000; /* bulles noires */
+      position: absolute;
+      animation: float 8s ease-in-out infinite;
+      cursor: grab;
+      z-index: 5;
+      touch-action: none;
+      border-radius: 50%;
+      clip-path: polygon(
+        50% 50%,
+        100% 0%,
+        100% 100%,
+        0% 100%,
+        0% 0%
+      );
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-30px); }
+      100% { transform: translateY(0px); }
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2rem; }
+      .hero h2 { font-size: 1.4rem; }
+      .hero p { font-size: 1rem; }
+
+      .floating-bubble {
+        width: 80px;
+        height: 80px;
+      }
+
+      header {
+        padding: 15px 20px;
+        height: 70px;
+      }
+
+      header .logo img {
+        height: 40px;
+      }
+
+      nav a {
+        margin-left: 20px;
+        font-size: 0.9rem;
+      }
+
+      nav a[href="apropos.html"]::before {
+        width: 30px;
+        height: 30px;
+      }
+
+      nav a[href="apropos.html"] {
+        padding-left: 35px;
+      }
+
+      footer .contact-item {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
 </head>
 <body>
 
-    <!-- Le menu : un lien vers la page contact -->
-    <nav>
-        <a href="contact.html">Contact</a>
-    </nav>
+  <div class="loading-container" id="loadingContainer">
+    <video class="loading-video" id="loadingVideo" autoplay muted playsinline>
+      <source src="img/carte-visite-ar.mp4" type="video/mp4" />
+      Votre navigateur ne supporte pas la lecture de vidéos.
+    </video>
+  </div>
 
-    <h1>Bienvenue sur mon portfolio</h1>
-    <p>Alyssia Mattioni</p>
+  <div class="main-content" id="mainContent">
+    <header>
+      <div class="logo">
+        <img src="img/logo insta.png" alt="Logo" />
+      </div>
+      <nav>
+        <a href="apropos.html">À propos</a>
+        <a href="Sketchbook.html">Sketchbook</a>
+      </nav>
+    </header>
 
-    <!-- La grille : 8 cases -->
-    <div class="grille">
-        <a href="#">Projet 1</a>
-        <a href="#">Projet 2</a>
-        <a href="#">Projet 3</a>
-        <a href="#">Projet 4</a>
-        <a href="#">Projet 5</a>
-        <a href="#">Projet 6</a>
-        <a href="#">Projet 7</a>
-        <a href="#">Projet 8</a>
-    </div>
+    <main>
+      <section class="hero-wrapper" id="hero">
+        <div class="hero detect-zone">
+          <h1>HEY !</h1>
+          <div class="scroll-hint">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M12 4v16m0 0l-6-6m6 6l6-6" />
+            </svg>
+          </div>
+        </div>
+      </section>
 
+      <section class="tracker-section" id="trackerSection">
+        <svg class="tracker-motif-svg" id="trackerMotif" aria-hidden="true"></svg>
+
+        <!-- TRACKER : patch de nodes façon TouchDesigner -->
+        <div class="tracker-wrap" id="trackerWrap">
+          <div class="tracker-hub" id="trackerHub"></div>
+          <svg class="tracker-svg" id="trackerSvg">
+            <defs>
+              <marker id="arrowHead" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                <path d="M0,0 L6,3 L0,6 Z" fill="#000000" opacity="0.55"></path>
+              </marker>
+            </defs>
+          </svg>
+
+          <nav class="tracker" id="trackerNodes" aria-label="Catégories de projets">
+            <a class="tracker-item" href="motion-design.html">
+              <span>Motion design</span>
+            </a>
+            <a class="tracker-item" href="ux-ui.html">
+              <span>UX / UI</span>
+            </a>
+            <a class="tracker-item" href="touchdesigner.html">
+              <span>TouchDesigner</span>
+            </a>
+            <a class="tracker-item" href="3d.html">
+              <span>3D</span>
+            </a>
+            <a class="tracker-item" href="identite-visuelle.html">
+              <span>Identité visuelle</span>
+            </a>
+          </nav>
+
+        </div>
+      </section>
+    </main>
+
+    <footer id="contact">
+      <div class="footer-content">
+        <div class="contact-item">
+          <a href="mailto:alyssia.mattioni@gmail.com">alyssia.mattioni@gmail.com</a>
+        </div>
+        <div class="contact-item">
+          <a href="tel:+33613662129">06 13 66 21 29</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        © 2026 Alyssia Mattioni
+      </div>
+    </footer>
+
+    <!-- Bulles Pac-Man -->
+    <div class="floating-bubble" style="top: 10%; left: 14%; animation-delay: 0s; transform: rotate(30deg);"></div>
+    <div class="floating-bubble" style="top: 25%; left: 42%; animation-delay: 1.2s; transform: rotate(90deg);"></div>
+    <div class="floating-bubble" style="top: 38%; left: 68%; animation-delay: 2.4s; transform: rotate(150deg);"></div>
+    <div class="floating-bubble" style="top: 52%; left: 20%; animation-delay: 3.1s; transform: rotate(210deg);"></div>
+    <div class="floating-bubble" style="top: 65%; left: 58%; animation-delay: 0.7s; transform: rotate(270deg);"></div>
+    <div class="floating-bubble" style="top: 75%; left: 70%; animation-delay: 2.9s; transform: rotate(330deg);"></div>
+    <div class="floating-bubble" style="top: 82%; left: 36%; animation-delay: 1.6s; transform: rotate(60deg);"></div>
+    <div class="floating-bubble" style="top: 90%; left: 14%; animation-delay: 0.3s; transform: rotate(120deg);"></div>
+
+  </div>
+
+  <script>
+    const loadingContainer = document.getElementById('loadingContainer');
+    const loadingVideo = document.getElementById('loadingVideo');
+    const mainContent = document.getElementById('mainContent');
+
+    // l'animation ne doit jouer qu'une fois par visite, pas à chaque retour sur l'accueil
+    const introAlreadyPlayed = sessionStorage.getItem('introPlayed') === 'true';
+
+    function redirectToMain() {
+      sessionStorage.setItem('introPlayed', 'true');
+      loadingContainer.classList.add('fade-out');
+      setTimeout(() => {
+        loadingContainer.style.display = 'none';
+        mainContent.classList.add('show');
+        document.body.style.overflow = 'auto';
+        initMainPage();
+      }, 500);
+    }
+
+    // si l'anim a déjà été vue cette session, on saute direct, sans vidéo ni fondu
+    if (introAlreadyPlayed) {
+      loadingContainer.style.display = 'none';
+      mainContent.classList.add('show');
+      document.body.style.overflow = 'auto';
+      initMainPage();
+    }
+
+    // Trace les câbles entre le hub et chaque node, comme dans un patch TouchDesigner
+    function drawTrackerConnectors() {
+      const wrap = document.getElementById('trackerWrap');
+      const hub = document.getElementById('trackerHub');
+      const svg = document.getElementById('trackerSvg');
+      const nodes = document.querySelectorAll('.tracker-item');
+      if (!wrap || !hub || !svg || !nodes.length) return;
+
+      // nettoie les anciens tracés (garde les <defs>)
+      svg.querySelectorAll('path.connector, path.connector-signal').forEach((p) => p.remove());
+
+      const wrapRect = wrap.getBoundingClientRect();
+      const hubRect = hub.getBoundingClientRect();
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const svgNS = 'http://www.w3.org/2000/svg';
+
+      const hubX = hubRect.left + hubRect.width / 2 - wrapRect.left;
+      const hubY = hubRect.top + hubRect.height / 2 - wrapRect.top;
+
+      const isMobile = window.innerWidth <= 768;
+
+      nodes.forEach((node, i) => {
+        const nodeRect = node.getBoundingClientRect();
+        let d;
+
+        if (isMobile) {
+          // sur mobile, les cases sont empilées au centre : on longe alternativement
+          // le côté gauche et le côté droit au lieu de passer au milieu (caché derrière elles)
+          const nodeMidY = nodeRect.top + nodeRect.height / 2 - wrapRect.top;
+          const onLeft = i % 2 === 0;
+          const spineX = onLeft
+            ? nodeRect.left - wrapRect.left - 16
+            : nodeRect.right - wrapRect.left + 16;
+          const nodeEdgeX = onLeft
+            ? nodeRect.left - wrapRect.left - 3
+            : nodeRect.right - wrapRect.left + 3;
+          d = `M ${hubX} ${hubY} L ${spineX} ${hubY} L ${spineX} ${nodeMidY} L ${nodeEdgeX} ${nodeMidY}`;
+        } else {
+          const nodeX = nodeRect.left + nodeRect.width / 2 - wrapRect.left;
+          const nodeY = nodeRect.top - wrapRect.top - 6; // s'arrête juste avant le plot du node
+          const midY = hubY + (nodeY - hubY) * 0.55;
+          d = `M ${hubX} ${hubY} L ${hubX} ${midY} L ${nodeX} ${midY} L ${nodeX} ${nodeY}`;
+        }
+
+        const path = document.createElementNS(svgNS, 'path');
+        path.setAttribute('d', d);
+        path.setAttribute('class', 'connector');
+        path.setAttribute('marker-end', 'url(#arrowHead)');
+        svg.appendChild(path);
+
+        // petit Pac-Man qui voyage le long du câble
+        if (!reduceMotion) {
+          const signal = document.createElementNS(svgNS, 'path');
+          signal.setAttribute('d', 'M0,0 L2.6,-3.1 A4,4 0 1,0 2.6,3.1 Z');
+          signal.setAttribute('class', 'connector-signal');
+
+          const anim = document.createElementNS(svgNS, 'animateMotion');
+          anim.setAttribute('dur', '1.8s');
+          anim.setAttribute('begin', `${i * 0.25}s`);
+          anim.setAttribute('repeatCount', 'indefinite');
+          anim.setAttribute('rotate', 'auto');
+          anim.setAttribute('path', d);
+          signal.appendChild(anim);
+
+          svg.appendChild(signal);
+        }
+      });
+    }
+
+    let trackerResizeTimeout;
+    window.addEventListener('resize', () => {
+      clearTimeout(trackerResizeTimeout);
+      trackerResizeTimeout = setTimeout(() => {
+        drawTrackerConnectors();
+        generateTrackerMotif();
+      }, 100);
+    });
+
+    // Génère un motif de lignes fluides + bulles de tailles variées,
+    // façon contour organique / marbrure, avec quelques câbles
+    // pointillés animés façon TouchDesigner ici et là.
+    // Réutilisable : sert au footer ET au fond du tracker.
+    function drawOrganicMotif(svgId, W, H, opts) {
+      const svgNS = 'http://www.w3.org/2000/svg';
+      const svg = document.getElementById(svgId);
+      if (!svg) return;
+      svg.innerHTML = '';
+      svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const STRANDS = opts.strands;
+      const BUBBLES = opts.bubbles;
+      const convergeY = opts.convergeY;
+      const convergeStrength = opts.convergeStrength;
+      const arrowId = `arrow-${svgId}`;
+
+      // flèche pour les câbles façon TouchDesigner
+      const defs = document.createElementNS(svgNS, 'defs');
+      defs.innerHTML = `
+        <marker id="${arrowId}" markerWidth="7" markerHeight="7" refX="5" refY="2.5" orient="auto">
+          <path d="M0,0 L5,2.5 L0,5 Z" fill="#000000"></path>
+        </marker>`;
+      svg.appendChild(defs);
+
+      // une ligne sur trois environ sera un câble pointillé animé
+      const signalStrands = new Set();
+      for (let s = 0; s < STRANDS; s++) {
+        if (s % 3 === 1) signalStrands.add(s);
+      }
+
+      // -- les lignes qui serpentent horizontalement --
+      for (let s = 0; s < STRANDS; s++) {
+        let x = -10;
+        let y = 15 + Math.random() * (H - 30);
+        let angle = 0;
+        const points = [`M${x.toFixed(1)},${y.toFixed(1)}`];
+
+        while (x < W + 10) {
+          const stepLen = 14 + Math.random() * 10;
+          angle += (Math.random() - 0.5) * 0.8;
+          angle = Math.max(-1.1, Math.min(1.1, angle));
+          x += Math.cos(angle) * stepLen;
+          y += Math.sin(angle) * stepLen;
+          y = Math.max(6, Math.min(H - 6, y));
+
+          // convergence douce vers une zone cible
+          const pull = Math.exp(-((x - W / 2) ** 2) / (W * 43)) * convergeStrength;
+          y = y * (1 - pull) + convergeY * pull;
+
+          points.push(`L${x.toFixed(1)},${y.toFixed(1)}`);
+        }
+
+        const d = points.join(' ');
+        const path = document.createElementNS(svgNS, 'path');
+        path.setAttribute('d', d);
+        path.setAttribute('stroke-width', (0.55 + Math.random() * 0.25).toFixed(2));
+        path.setAttribute('opacity', (0.85 + Math.random() * 0.15).toFixed(2));
+
+        if (signalStrands.has(s)) {
+          path.setAttribute('stroke-dasharray', '2.5 4');
+          path.setAttribute('marker-end', `url(#${arrowId})`);
+        }
+        svg.appendChild(path);
+
+        // petit Pac-Man qui voyage sur les câbles signalés
+        if (signalStrands.has(s) && !reduceMotion) {
+          const signal = document.createElementNS(svgNS, 'path');
+          signal.setAttribute('d', 'M0,0 L1.9,-2.3 A3,3 0 1,0 1.9,2.3 Z');
+          signal.setAttribute('class', 'is-dot');
+          signal.setAttribute('opacity', '0.85');
+          const anim = document.createElementNS(svgNS, 'animateMotion');
+          anim.setAttribute('dur', `${3.5 + Math.random()}s`);
+          anim.setAttribute('repeatCount', 'indefinite');
+          anim.setAttribute('rotate', 'auto');
+          anim.setAttribute('path', d);
+          signal.appendChild(anim);
+          svg.appendChild(signal);
+        }
+      }
+
+      // -- les bulles de tailles variées, éparpillées (ou Pac-Man si demandé) --
+      for (let i = 0; i < BUBBLES; i++) {
+        const cx = Math.random() * W;
+        let cy = 8 + Math.random() * (H - 16);
+        const pull = Math.exp(-((cx - W / 2) ** 2) / (W * 43)) * (convergeStrength * 0.8);
+        cy = cy * (1 - pull) + convergeY * pull;
+        const r = opts.pacman ? 4 + Math.random() * 11 : 1.5 + Math.random() * 9;
+        const isDot = Math.random() < (opts.pacman ? 0.6 : 0.3);
+
+        if (opts.pacman && isDot) {
+          // forme Pac-Man : un cercle avec une bouche bien découpée
+          const facing = Math.random() * Math.PI * 2;
+          const mouth = (40 + Math.random() * 15) * (Math.PI / 180);
+          const a1 = facing - mouth;
+          const a2 = facing + mouth;
+          const p1x = cx + Math.cos(a1) * r;
+          const p1y = cy + Math.sin(a1) * r;
+          const p2x = cx + Math.cos(a2) * r;
+          const p2y = cy + Math.sin(a2) * r;
+          const pac = document.createElementNS(svgNS, 'path');
+          pac.setAttribute(
+            'd',
+            `M${cx.toFixed(1)},${cy.toFixed(1)} L${p1x.toFixed(1)},${p1y.toFixed(1)} A${r.toFixed(1)},${r.toFixed(1)} 0 1,0 ${p2x.toFixed(1)},${p2y.toFixed(1)} Z`
+          );
+          pac.setAttribute('class', 'is-dot');
+          pac.setAttribute('opacity', (0.88 + Math.random() * 0.12).toFixed(2));
+          svg.appendChild(pac);
+          continue;
+        }
+
+        const circle = document.createElementNS(svgNS, 'circle');
+        circle.setAttribute('cx', cx.toFixed(1));
+        circle.setAttribute('cy', cy.toFixed(1));
+        circle.setAttribute('r', r.toFixed(1));
+        circle.setAttribute('stroke-width', isDot ? '0' : (0.55 + Math.random() * 0.3).toFixed(2));
+        circle.setAttribute('opacity', (0.8 + Math.random() * 0.2).toFixed(2));
+        if (isDot) circle.setAttribute('class', 'is-dot');
+        svg.appendChild(circle);
+
+        // certaines bulles ont un petit anneau concentrique, comme sur la référence
+        if (!isDot && Math.random() < 0.3) {
+          const inner = document.createElementNS(svgNS, 'circle');
+          inner.setAttribute('cx', cx.toFixed(1));
+          inner.setAttribute('cy', cy.toFixed(1));
+          inner.setAttribute('r', (r * 0.55).toFixed(1));
+          inner.setAttribute('stroke-width', '0.5');
+          inner.setAttribute('opacity', '0.85');
+          svg.appendChild(inner);
+        }
+      }
+    }
+
+    function generateTrackerMotif() {
+      const section = document.getElementById('trackerSection');
+      if (!section) return;
+      const rect = section.getBoundingClientRect();
+      const W = Math.max(280, Math.round(rect.width));
+      const H = Math.max(260, Math.round(rect.height));
+      const isMobile = window.innerWidth <= 768;
+      drawOrganicMotif('trackerMotif', W, H, {
+        strands: isMobile ? Math.max(9, Math.round(H / 70)) : 9,
+        bubbles: isMobile ? Math.max(26, Math.round(H / 22)) : 26,
+        convergeY: H * 0.5,
+        convergeStrength: 0.22,
+        pacman: true,
+      });
+    }
+
+    function initMainPage() {
+      // dessine les câbles et le motif de fond une fois le contenu affiché et mis en page
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        drawTrackerConnectors();
+        generateTrackerMotif();
+      }));
+
+      const bubbles = document.querySelectorAll('.floating-bubble');
+      const detectZone = document.querySelector('.detect-zone');
+      let dragging = null;
+      let offsetX = 0;
+      let offsetY = 0;
+
+      function checkCollision(bubble, zone) {
+        const bRect = bubble.getBoundingClientRect();
+        const zRect = zone.getBoundingClientRect();
+        return !(
+          bRect.right < zRect.left ||
+          bRect.left > zRect.right ||
+          bRect.bottom < zRect.top ||
+          bRect.top > zRect.bottom
+        );
+      }
+
+      function updateTextOnContact() {
+        let isTouching = false;
+        bubbles.forEach(bubble => {
+          if (checkCollision(bubble, detectZone)) {
+            isTouching = true;
+          }
+        });
+
+        detectZone.classList.toggle('touching', isTouching);
+        requestAnimationFrame(updateTextOnContact);
+      }
+      updateTextOnContact();
+
+      function resumeFloating(bubble) {
+        bubble.style.animation = 'none';
+        void bubble.offsetWidth;
+        bubble.style.animation = 'float 8s ease-in-out infinite';
+      }
+
+      bubbles.forEach(bubble => {
+        bubble.addEventListener('mousedown', (e) => {
+          dragging = bubble;
+          offsetX = e.clientX - bubble.offsetLeft;
+          offsetY = e.clientY - bubble.offsetTop;
+          bubble.style.animation = 'none';
+        });
+
+        bubble.addEventListener('touchstart', (e) => {
+          e.preventDefault();
+          dragging = bubble;
+          const touch = e.touches[0];
+          offsetX = touch.clientX - bubble.offsetLeft;
+          offsetY = touch.clientY - bubble.offsetTop;
+          bubble.style.animation = 'none';
+        });
+      });
+
+      document.addEventListener('mousemove', (e) => {
+        if (dragging) {
+          dragging.style.left = `${e.clientX - offsetX}px`;
+          dragging.style.top = `${e.clientY - offsetY}px`;
+        }
+      });
+
+      document.addEventListener('mouseup', () => {
+        if (dragging) {
+          resumeFloating(dragging);
+          dragging = null;
+        }
+      });
+
+      document.addEventListener('touchmove', (e) => {
+        if (dragging) {
+          const touch = e.touches[0];
+          dragging.style.left = `${touch.clientX - offsetX}px`;
+          dragging.style.top = `${touch.clientY - offsetY}px`;
+        }
+      });
+
+      document.addEventListener('touchend', () => {
+        if (dragging) {
+          resumeFloating(dragging);
+          dragging = null;
+        }
+      });
+    }
+
+    loadingVideo.addEventListener('ended', redirectToMain);
+    // si la vidéo ne trouve pas son fichier (pas encore uploadé), on saute direct
+    loadingVideo.addEventListener('error', redirectToMain);
+
+    setTimeout(() => {
+      if (!mainContent.classList.contains('show')) {
+        redirectToMain();
+      }
+    }, 8000);
+  </script>
 </body>
 </html>
