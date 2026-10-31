@@ -92,7 +92,7 @@ main {
     pointer-events: none;           /* on clique à travers le calque... */
 }
 
-/* LA TAILLE DES CARRÉS : change width et max-width pour agrandir ou rapetisser */
+/* LA TAILLE DES IMAGES PROJET : change 30px (deux fois : width et height) */
 .carte {
     position: absolute;
     translate: -50% -50%;           /* left et top = le centre de l'image */
@@ -100,22 +100,21 @@ main {
     z-index: 1;
     cursor: pointer;
 
-    width: 11vw;                    /* 11% de la largeur de l'écran */
-    min-width: 90px;                /* jamais plus petit que ça */
-    max-width: 200px;               /* jamais plus grand que ça */
-    aspect-ratio: 1 / 1;            /* carré */
-    background-color: lightgray;    /* visible si l'image est introuvable */
+    width: 30px !important;         /* taille de test : très petit */
+    height: 30px !important;
+    background-color: lightgray;
+    outline: 2px solid red;         /* contour rouge pour bien les voir (à enlever ensuite) */
 }
 
 .carte:hover {
-    scale: 1.05;                    /* grossit un peu au survol */
+    scale: 1.3;                     /* grossit au survol */
 }
 
 /* L'image remplit le carré, recadrée si besoin */
 .carte img {
     display: block;
-    width: 100%;
-    height: 100%;
+    width: 100% !important;
+    height: 100% !important;
     object-fit: cover;
 }
 
