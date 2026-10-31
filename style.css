@@ -11,7 +11,7 @@ body {
     font-family: Arial, sans-serif;
     min-height: 100vh;              /* au moins la hauteur de l'écran */
     display: flex;
-    flex-direction: column;         /* header, main, footer l'un sous l'autre */
+    flex-direction: column;         /* header, titre, main, footer l'un sous l'autre */
 }
 
 /* ---------- L'animation du début ---------- */
@@ -52,20 +52,21 @@ nav a {
     text-decoration: none;
 }
 
-/* ---------- Le milieu ---------- */
-main {
-    flex: 1;                        /* prend toute la place restante */
-    display: flex;
-    flex-direction: column;         /* HEY ! puis la grille */
-    justify-content: center;        /* centré verticalement */
-    align-items: center;            /* centré horizontalement */
-    padding: 0 20px;
-}
-
-main h1 {
+/* ---------- Le titre ---------- */
+h1 {
+    text-align: center;
     font-size: 3.2rem;
     letter-spacing: 2px;
-    margin-bottom: 30px;
+    margin-top: 20px;
+}
+
+/* ---------- Le milieu : la grille au centre ---------- */
+main {
+    flex: 1;                        /* prend toute la place entre le titre et le footer */
+    display: flex;
+    justify-content: center;        /* centrée horizontalement */
+    align-items: center;            /* centrée verticalement */
+    padding: 0 20px;
 }
 
 .grille {
@@ -88,6 +89,7 @@ main h1 {
 
 /* ---------- Le bas de la page ---------- */
 footer {
+    margin-top: auto;               /* pousse le footer tout en bas */
     text-align: center;
     padding: 20px 0;
     font-size: 0.9rem;
