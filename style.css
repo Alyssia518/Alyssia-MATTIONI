@@ -92,25 +92,38 @@ main {
     pointer-events: none;           /* on clique à travers le calque... */
 }
 
+/* LES CARRÉS : change width pour les agrandir ou rapetisser */
 .carte {
     position: absolute;
-    translate: -50% -50%;           /* left et top = le centre de l'image */
-    pointer-events: auto;           /* ...mais les images restent cliquables */
+    translate: -50% -50%;           /* left et top = le centre du carré */
+    pointer-events: auto;           /* ...mais les carrés restent cliquables */
     z-index: 1;
     cursor: pointer;
-}
 
-/* LA TAILLE DES IMAGES : change ce chiffre pour les agrandir ou rapetisser */
-.carte img {
-    display: block;
     width: 22vw;                    /* 22% de la largeur de l'écran */
-    min-width: 200px;               /* jamais plus petite que ça */
-    max-width: 450px;               /* jamais plus grande que ça */
-    height: auto;                   /* garde les bonnes proportions */
+    min-width: 160px;
+    max-width: 320px;
+    aspect-ratio: 1 / 1;            /* carré */
+
+    background-color: lightgray;
+    color: black;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .carte:hover {
     scale: 1.05;                    /* grossit un peu au survol */
+}
+
+/* Quand tu auras tes images : remplace le texte par <img src="img/projet1.png">
+   et elles se mettront automatiquement à la taille du carré */
+.carte img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 
 /* ---------- Le bas de la page ---------- */
