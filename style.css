@@ -1,28 +1,91 @@
+/* Réglages de base pour toute la page */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     background-color: white;
     color: black;
     font-family: Arial, sans-serif;
 }
 
-/* Le menu en haut */
+/* ---------- Le haut de la page ---------- */
+header {
+    display: flex;                  /* met le logo et le menu côte à côte */
+    justify-content: space-between; /* logo à gauche, menu à droite */
+    align-items: center;            /* alignés verticalement */
+    padding: 20px 40px;
+    background-color: white;
+    position: sticky;               /* reste collé en haut quand on scrolle */
+    top: 0;
+}
+
+.logo {
+    height: 50px;
+}
+
 nav a {
     color: black;
+    margin-left: 30px;
+    text-decoration: none;
 }
 
-/* La grille */
+/* ---------- Premier écran ---------- */
+.accueil {
+    min-height: 100vh;              /* prend toute la hauteur de l'écran */
+    display: flex;
+    flex-direction: column;         /* HEY ! puis la flèche, l'un sous l'autre */
+    justify-content: center;        /* centré verticalement */
+    align-items: center;            /* centré horizontalement */
+}
+
+.accueil h1 {
+    font-size: 3.2rem;
+    letter-spacing: 2px;
+}
+
+.fleche {
+    margin-top: 40px;
+    font-size: 1.5rem;
+}
+
+/* ---------- Deuxième écran : la grille ---------- */
+.section-grille {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 20px;
+}
+
 .grille {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, 1fr); /* 4 colonnes */
     gap: 10px;
+    width: 100%;
+    max-width: 800px;
 }
 
-/* Les cases */
 .grille a {
     background-color: lightgray;
     color: black;
     text-decoration: none;
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 1 / 1;            /* cases carrées */
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+/* ---------- Le bas de la page ---------- */
+footer {
+    text-align: center;
+    padding: 40px 0 10px 0;
+    font-size: 0.9rem;
+}
+
+footer a {
+    color: black;
+    text-decoration: none;
 }
