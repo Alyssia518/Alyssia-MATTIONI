@@ -76,28 +76,27 @@ h1 {
 /* ---------- Le milieu ---------- */
 main {
     flex: 1;
+    width: 100%;
 }
 
-/* ---------- LE TABLEAU : une boîte 16:9, centrée, qui contient fond + images ---------- */
+/* ---------- LE TABLEAU : une boîte 16:9 dans la page, qui contient fond + images ---------- */
 .tableau {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    translate: -50% -50%;               /* centrée dans la fenêtre */
-    width: min(100vw, 177.78vh);        /* la plus grande boîte 16:9 qui tient dans la fenêtre */
+    position: relative;                 /* reste dans la page, sous le titre */
+    width: min(100%, calc((100vh - 220px) * 1.7778));
+                                        /* jamais plus haut que l'écran (220px = header + titre + footer, à ajuster) */
+    max-width: 1920px;                  /* jamais plus grand que ton dessin */
+    margin: 0 auto;                     /* centré */
     aspect-ratio: 16 / 9;
 
-    background-image: url("img/fond.png");  /* ton dessin 1920 x 1080, SANS le guide */
-    background-size: 100% 100%;
-    pointer-events: none;               /* on clique à travers la boîte... */
+    background-image: url("img/fond.png");  /* ton dessin 1920 x 1080 */
+    background-size: 100% 100%;         /* le dessin remplit exactement la boîte */
+    background-repeat: no-repeat;
 }
 
 /* LA TAILLE DES IMAGES : 9.115% du tableau = 175px sur un écran 1920 de large */
-/* C'est la taille du guide : si tu la changes, tes traits ne tomberont plus sur les images */
 .carte {
     position: absolute;
     translate: -50% -50%;               /* left et top = le centre de l'image */
-    pointer-events: auto;               /* ...mais les images restent cliquables */
     cursor: pointer;
     width: 9.115%;
     aspect-ratio: 1 / 1;
