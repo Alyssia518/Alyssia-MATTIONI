@@ -8,7 +8,7 @@
 body {
     background-color: white;                /* affiché si l'image est introuvable */
     background-image: url("img/fond.png");  /* ton dessin avec les traits */
-    background-size: cover;                 /* remplit tout l'écran */
+    background-size: cover;
     background-position: center;
     background-attachment: fixed;
     color: black;
@@ -50,7 +50,7 @@ body {
 /* ---------- Le haut de la page ---------- */
 header {
     position: relative;
-    z-index: 2;                     /* au-dessus des projets, pour rester cliquable */
+    z-index: 2;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -93,15 +93,20 @@ main {
 }
 
 .carte {
-    position: absolute;             /* placée avec left et top (dans le HTML) */
+    position: absolute;
     translate: -50% -50%;           /* left et top = le centre de l'image */
     pointer-events: auto;           /* ...mais les images restent cliquables */
     z-index: 1;
+    cursor: pointer;
 }
 
-/* L'image garde sa taille d'origine (on ne met ni width ni height) */
+/* LA TAILLE DES IMAGES : change ce chiffre pour les agrandir ou rapetisser */
 .carte img {
     display: block;
+    width: 18vw;                    /* 18% de la largeur de l'écran */
+    min-width: 140px;               /* jamais plus petite que ça */
+    max-width: 320px;               /* jamais plus grande que ça */
+    height: auto;                   /* garde les bonnes proportions */
 }
 
 .carte:hover {
