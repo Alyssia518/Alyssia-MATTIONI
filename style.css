@@ -94,9 +94,11 @@ main {
 }
 
 /* LA TAILLE DES IMAGES : 9.115% du tableau = 175px sur un écran 1920 de large */
+/* C'est la taille du guide : si tu la changes, tes traits ne tomberont plus sur les images */
 .carte {
     position: absolute;
     translate: -50% -50%;               /* left et top = le centre de l'image */
+    pointer-events: auto;               /* ...mais les images restent cliquables */
     cursor: pointer;
     width: 9.115%;
     aspect-ratio: 1 / 1;
