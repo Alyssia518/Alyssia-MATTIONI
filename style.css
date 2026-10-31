@@ -6,7 +6,7 @@
 }
 
 body {
-    background-color: white;                /* affiché si l'image est introuvable */
+    background-color: white;                /* affiché si fond.png n'existe pas encore */
     background-image: url("img/fond.png");  /* ton dessin avec les traits */
     background-size: cover;
     background-position: center;
@@ -92,38 +92,31 @@ main {
     pointer-events: none;           /* on clique à travers le calque... */
 }
 
-/* LES CARRÉS : change width pour les agrandir ou rapetisser */
+/* LA TAILLE DES CARRÉS : change width et max-width pour agrandir ou rapetisser */
 .carte {
     position: absolute;
-    translate: -50% -50%;           /* left et top = le centre du carré */
-    pointer-events: auto;           /* ...mais les carrés restent cliquables */
+    translate: -50% -50%;           /* left et top = le centre de l'image */
+    pointer-events: auto;           /* ...mais les images restent cliquables */
     z-index: 1;
     cursor: pointer;
 
-    width: 22vw;                    /* 22% de la largeur de l'écran */
+    width: 20vw;                    /* 20% de la largeur de l'écran */
     min-width: 160px;
-    max-width: 320px;
+    max-width: 360px;
     aspect-ratio: 1 / 1;            /* carré */
-
-    background-color: lightgray;
-    color: black;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background-color: lightgray;    /* visible si l'image est introuvable */
 }
 
 .carte:hover {
     scale: 1.05;                    /* grossit un peu au survol */
 }
 
-/* Quand tu auras tes images : remplace le texte par <img src="img/projet1.png">
-   et elles se mettront automatiquement à la taille du carré */
+/* L'image remplit le carré, recadrée si besoin */
 .carte img {
+    display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    display: block;
 }
 
 /* ---------- Le bas de la page ---------- */
