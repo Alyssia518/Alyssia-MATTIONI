@@ -9,11 +9,14 @@ body {
     background-color: white;
     color: black;
     font-family: Arial, sans-serif;
+    min-height: 100vh;              /* au moins la hauteur de l'écran */
+    display: flex;
+    flex-direction: column;         /* header, main, footer l'un sous l'autre */
 }
 
 /* ---------- L'animation du début ---------- */
 #intro {
-    position: fixed;                /* colle à l'écran */
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -33,13 +36,10 @@ body {
 
 /* ---------- Le haut de la page ---------- */
 header {
-    display: flex;                  /* met le logo et le menu côte à côte */
+    display: flex;
     justify-content: space-between; /* logo à gauche, menu à droite */
-    align-items: center;            /* alignés verticalement */
+    align-items: center;
     padding: 20px 40px;
-    background-color: white;
-    position: sticky;               /* reste collé en haut quand on scrolle */
-    top: 0;
 }
 
 .logo {
@@ -52,32 +52,20 @@ nav a {
     text-decoration: none;
 }
 
-/* ---------- Premier écran ---------- */
-.accueil {
-    min-height: 100vh;              /* prend toute la hauteur de l'écran */
+/* ---------- Le milieu ---------- */
+main {
+    flex: 1;                        /* prend toute la place restante */
     display: flex;
-    flex-direction: column;         /* HEY ! puis la flèche, l'un sous l'autre */
+    flex-direction: column;         /* HEY ! puis la grille */
     justify-content: center;        /* centré verticalement */
     align-items: center;            /* centré horizontalement */
+    padding: 0 20px;
 }
 
-.accueil h1 {
+main h1 {
     font-size: 3.2rem;
     letter-spacing: 2px;
-}
-
-.fleche {
-    margin-top: 40px;
-    font-size: 1.5rem;
-}
-
-/* ---------- Deuxième écran : la grille ---------- */
-.section-grille {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 60px 20px;
+    margin-bottom: 30px;
 }
 
 .grille {
@@ -85,7 +73,7 @@ nav a {
     grid-template-columns: repeat(4, 1fr); /* 4 colonnes */
     gap: 10px;
     width: 100%;
-    max-width: 800px;
+    max-width: 600px;
 }
 
 .grille a {
@@ -101,7 +89,7 @@ nav a {
 /* ---------- Le bas de la page ---------- */
 footer {
     text-align: center;
-    padding: 40px 0 10px 0;
+    padding: 20px 0;
     font-size: 0.9rem;
 }
 
@@ -112,18 +100,17 @@ footer a {
 
 /* ---------- Les bulles qui flottent ---------- */
 .bulle {
-    position: fixed;                /* restent en place quand on scrolle */
+    position: fixed;
     width: 100px;
     height: 100px;
     background-color: black;
-    border-radius: 50%;             /* rond */
-    clip-path: polygon(50% 50%, 100% 0%, 100% 100%, 0% 100%, 0% 0%); /* découpe la bouche façon Pac-Man */
+    border-radius: 50%;
+    clip-path: polygon(50% 50%, 100% 0%, 100% 100%, 0% 100%, 0% 0%);
     z-index: -1;                    /* derrière tout le reste */
-    pointer-events: none;           /* non cliquables : on clique à travers */
+    pointer-events: none;           /* non cliquables */
     animation: flotte 8s ease-in-out infinite;
 }
 
-/* Le mouvement : monte de 30px puis redescend */
 @keyframes flotte {
     0%   { transform: translateY(0); }
     50%  { transform: translateY(-30px); }
