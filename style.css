@@ -92,7 +92,7 @@ main {
     pointer-events: none;           /* on clique à travers le calque... */
 }
 
-/* LA TAILLE DES IMAGES PROJET : change 30px (deux fois : width et height) */
+/* LA TAILLE DES IMAGES PROJET : change 70px (deux fois : width et height) */
 .carte {
     position: absolute;
     translate: -50% -50%;           /* left et top = le centre de l'image */
@@ -100,14 +100,13 @@ main {
     z-index: 1;
     cursor: pointer;
 
-    width: 30px !important;         /* taille de test : très petit */
-    height: 30px !important;
-    background-color: lightgray;
-    outline: 2px solid red;         /* contour rouge pour bien les voir (à enlever ensuite) */
+    width: 70px !important;         /* taille des images projet */
+    height: 70px !important;
+    background-color: lightgray;    /* carré gris visible si l'image est introuvable */
 }
 
 .carte:hover {
-    scale: 1.3;                     /* grossit au survol */
+    scale: 1.1;                     /* grossit un peu au survol */
 }
 
 /* L'image remplit le carré, recadrée si besoin */
