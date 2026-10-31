@@ -88,18 +88,23 @@ main {
     aspect-ratio: 16 / 9;
 
     background-image: url("img/fond.png");  /* ton dessin 1920 x 1080, SANS le guide */
-    background-size: 100% 100%;
     background-repeat: no-repeat;
+    /* Ton fond.png est un RECADRAGE du dessin (environ 1500 x 693), pas l'artboard complet 1920 x 1080. */
+    /* Ces 2 lignes le remettent à sa place exacte, comme sur la maquette. */
+    background-size: 78.19% 64.16%;
+    background-position: 70.22% 71.71%;
+    /* Si tu réexportes fond.png en 1920 x 1080 complet (plan de travail entier), remplace ces 2 lignes par : */
+    /* background-size: 100% 100%; */
     pointer-events: none;               /* on clique à travers la boîte... */
 }
 
-/* LA TAILLE DES IMAGES : 10% du tableau = environ 175px sur ton écran (avant 9.115% = 161px) */
+/* LA TAILLE DES IMAGES : 9.115% du tableau = 175px sur un écran 1920 de large (taille de la maquette) */
 .carte {
     position: absolute;
     translate: -50% -50%;               /* left et top = le centre de l'image */
     pointer-events: auto;               /* ...mais les images restent cliquables */
     cursor: pointer;
-    width: 10%;
+    width: 9.115%;
     aspect-ratio: 1 / 1;
     background-color: lightgray;        /* visible si l'image est introuvable */
 }
