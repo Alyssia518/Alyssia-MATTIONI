@@ -87,19 +87,19 @@ main {
     width: min(100vw, 177.78vh);        /* la plus grande boîte 16:9 qui tient dans la fenêtre */
     aspect-ratio: 16 / 9;
 
-    background-image: url("img/fond.png");  /* ton dessin 1920 x 1080 */
+    background-image: url("img/fond.png");  /* ton dessin 1920 x 1080, SANS le guide */
     background-size: 100% 100%;
     pointer-events: none;               /* on clique à travers la boîte... */
 }
 
-/* LA TAILLE DES IMAGES PROJET : 6.8% du tableau = environ 130px sur un écran 1920 de large */
-/* Plus petit : 5.5%   /   Plus grand : 8% */
+/* LA TAILLE DES IMAGES : 9.115% du tableau = 175px sur un écran 1920 de large */
+/* C'est la taille du guide : si tu la changes, tes traits ne tomberont plus sur les images */
 .carte {
     position: absolute;
     translate: -50% -50%;               /* left et top = le centre de l'image */
     pointer-events: auto;               /* ...mais les images restent cliquables */
     cursor: pointer;
-    width: 6.8%;
+    width: 9.115%;
     aspect-ratio: 1 / 1;
     background-color: lightgray;        /* visible si l'image est introuvable */
 }
