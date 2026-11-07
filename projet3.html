@@ -64,7 +64,7 @@
     hyphens: auto;
   }
 
-  /* vidéo du prototype */
+  /* vidéo */
   .video {
     margin-top: 70px;
   }
@@ -88,10 +88,10 @@
     display: none;
     overflow: auto;
     z-index: 100;
+    scrollbar-width: none;
   }
-  .viewer.actif { display: block; }
-  .viewer { scrollbar-width: none; }
   .viewer::-webkit-scrollbar { display: none; }
+  .viewer.actif { display: block; }
   .viewer img {
     display: block;
     width: 3200px;
@@ -133,28 +133,29 @@
 
   <div class="contenu">
     <div class="apercu">
-      <img id="apercu" src="img/frame_asinine.png" alt="Parcours complet de l'interface boutique Asinine">
+      <img id="apercu" src="img/test_export_streetfood.png" alt="Storyboard du motion design Lyon Street Food">
       <p class="indice">Cliquer sur l’image pour l’agrandir et lire les détails.</p>
     </div>
 
     <div class="texte">
       <p>Conception d’un motion design fictif centrée sur l’aspect culinaire du festival Lyon Street Food, visant à retranscrire l’ambiance immersive des stands, la diversité des plats et l’expérience sensorielle offerte aux visiteurs.</p>
-      <p>Une phase de recherche préalable basée sur l’analyse de plusieurs affiches a permis de dégager des principes visuels, graphiques et narratifs adaptés à l’univers de l’événement. </p>
-      <p>Cette étape a été suivie de la création d’un mini storyboard puis de la production de l’animation sur After Effects dans le cadre d’un premier projet de motion design. </p>
-      <p>Adobe Illustrator et After Effect</p>
+      <p>Une phase de recherche préalable basée sur l’analyse de plusieurs affiches a permis de dégager des principes visuels, graphiques et narratifs adaptés à l’univers de l’événement.</p>
+      <p>Cette étape a été suivie de la création d’un mini storyboard puis de la production de l’animation sur After Effects dans le cadre d’un premier projet de motion design.</p>
+      <p>Adobe Illustrator et After Effects</p>
     </div>
   </div>
 
   <div class="video">
-    <h2>Prototype</h2>
+    <h2>Animation</h2>
     <video controls playsinline preload="metadata">
-      <source src="img/Lyon_streetfood.mp4" type="video/mp4">
+      <source src="img/Lyon_streetfood.mp4?v=2" type="video/mp4">
+      Ton navigateur ne peut pas lire cette vidéo.
     </video>
   </div>
 
   <!-- visionneuse -->
   <div class="viewer" id="viewer">
-    <img src="img/test_export_streetfood.png" alt="Parcours complet de l'interface boutique Asinine (agrandi)">
+    <img src="img/test_export_streetfood.png" alt="Storyboard du motion design Lyon Street Food (agrandi)">
   </div>
   <button class="fermer" id="fermer">✕ Fermer</button>
 
