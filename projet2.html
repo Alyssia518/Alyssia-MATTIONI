@@ -43,15 +43,17 @@
   /* vidéo à gauche, texte à droite */
   .contenu {
     display: grid;
-    grid-template-columns: 1.4fr 1fr;
+    grid-template-columns: 1fr 1fr;
     gap: 60px;
     align-items: center;
   }
 
   .contenu video {
     display: block;
-    width: 100%;
+    width: auto;
+    max-width: 100%;
     height: auto;
+    max-height: 60vh;
   }
 
   .texte p {
@@ -129,6 +131,7 @@
     body { padding: 26px 22px 50px; }
     h1 { margin: 40px 0 30px; }
     .contenu { grid-template-columns: 1fr; gap: 30px; }
+    .contenu video { max-height: 70vh; }
     .parcours { margin-top: 70px; }
     .viewer img { width: 2400px; }
   }
