@@ -9,6 +9,10 @@
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
+  /* cache la barre de défilement (le scroll reste actif) */
+  html { scrollbar-width: none; }
+  html::-webkit-scrollbar { display: none; }
+
   body {
     background: #fff;
     color: #000;
