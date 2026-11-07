@@ -64,6 +64,22 @@
     hyphens: auto;
   }
 
+  /* vidéo du prototype */
+  .video {
+    margin-top: 70px;
+  }
+  .video h2 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+  .video video {
+    display: block;
+    width: 100%;
+    max-height: 85vh;
+    background: #000;
+  }
+
   /* visionneuse plein écran */
   .viewer {
     position: fixed;
@@ -74,6 +90,8 @@
     z-index: 100;
   }
   .viewer.actif { display: block; }
+  .viewer { scrollbar-width: none; }
+  .viewer::-webkit-scrollbar { display: none; }
   .viewer img {
     display: block;
     width: 3200px;
@@ -125,6 +143,14 @@
       <p>Nous avons débuté le projet par la création de documents partagés pour rechercher des références et nous documenter sur l’artiste et son univers graphique.</p>
       <p>Figma, Adobe Photoshop et Blender</p>
     </div>
+  </div>
+
+  <div class="video">
+    <h2>Prototype</h2>
+    <video controls playsinline preload="metadata">
+      <source src="img/asinineprototype.mp4" type="video/mp4">
+      Ton navigateur ne peut pas lire cette vidéo.
+    </video>
   </div>
 
   <!-- visionneuse -->
