@@ -1,1 +1,177 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projet 2 — Alyssia Mattioni</title>
+<link rel="icon" type="image/png" href="img/logo perso.png">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
+  body {
+    background: #fff;
+    color: #000;
+    font-family: 'Montserrat', sans-serif;
+    padding: 34px 44px 60px;
+  }
+
+  /* bouton retour */
+  .retour {
+    display: inline-block;
+    border: 1px solid #000;
+    border-radius: 999px;
+    padding: 8px 18px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #000;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+  }
+  .retour:hover { background: #000; color: #fff; }
+
+  h1 {
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    font-weight: 600;
+    margin: 50px 0 50px;
+  }
+
+  /* image à gauche, texte à droite */
+  .contenu {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+
+  .apercu img {
+    width: 100%;
+    height: auto;
+    display: block;
+    cursor: zoom-in;
+  }
+  .indice {
+    margin-top: 12px;
+    font-size: 0.8rem;
+    color: #555;
+  }
+
+  .texte p {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    text-align: justify;
+    hyphens: auto;
+  }
+
+  /* vidéo du prototype */
+  .video {
+    margin-top: 70px;
+  }
+  .video h2 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+  .video video {
+    display: block;
+    width: 100%;
+    max-height: 85vh;
+    background: #000;
+  }
+
+  /* visionneuse plein écran */
+  .viewer {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.92);
+    display: none;
+    overflow: auto;
+    z-index: 100;
+  }
+  .viewer.actif { display: block; }
+  .viewer { scrollbar-width: none; }
+  .viewer::-webkit-scrollbar { display: none; }
+  .viewer img {
+    display: block;
+    width: 3200px;
+    max-width: none;
+    height: auto;
+    background: #fff;
+    cursor: zoom-out;
+  }
+  .viewer.petit img { width: 100vw; }
+  .fermer {
+    position: fixed;
+    top: 16px;
+    right: 20px;
+    z-index: 101;
+    border: 1px solid #fff;
+    background: #000;
+    color: #fff;
+    border-radius: 999px;
+    padding: 8px 18px;
+    font: 500 0.85rem 'Montserrat', sans-serif;
+    cursor: pointer;
+    display: none;
+  }
+  .viewer.actif ~ .fermer { display: block; }
+
+  @media (max-width: 820px) {
+    body { padding: 26px 22px 40px; }
+    h1 { margin: 40px 0 30px; }
+    .contenu { grid-template-columns: 1fr; gap: 30px; }
+    .viewer img { width: 2400px; }
+  }
+</style>
+</head>
+<body>
+
+  <a class="retour" href="index.html">← Retour</a>
+
+  <h1>Asinine</h1>
+
+  <div class="contenu">
+    <div class="apercu">
+      <img id="apercu" src="img/frame_asinine.png" alt="Parcours complet de l'interface boutique Asinine">
+      <p class="indice">Cliquer sur l’image pour l’agrandir et lire les détails.</p>
+    </div>
+
+    <div class="texte">
+      <p>Projet de groupe autour de la création d’une application fictive pour l’artiste Asinine.</p>
+      <p>Je me suis occupée de la partie boutique de l’application en prenant en charge la conception des wireframes, les choix typographiques, les couleurs, la mise en page et l’organisation de l’interface.</p>
+      <p>Nous avons débuté le projet par la création de documents partagés pour rechercher des références et nous documenter sur l’artiste et son univers graphique.</p>
+      <p>Figma, Adobe Photoshop et Blender</p>
+    </div>
+  </div>
+
+  <div class="video">
+    <h2>Prototype</h2>
+    <video controls playsinline preload="metadata">
+      <source src="img/Lyon_streetfood.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <!-- visionneuse -->
+  <div class="viewer" id="viewer">
+    <img src="img/test_export_streetfood.png" alt="Parcours complet de l'interface boutique Asinine (agrandi)">
+  </div>
+  <button class="fermer" id="fermer">✕ Fermer</button>
+
+  <script>
+    const viewer = document.getElementById('viewer');
+    const fermer = document.getElementById('fermer');
+    document.getElementById('apercu').addEventListener('click', () => {
+      viewer.classList.add('actif');
+      viewer.scrollTop = 0;
+      viewer.scrollLeft = 0;
+    });
+    const close = () => viewer.classList.remove('actif');
+    fermer.addEventListener('click', close);
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+    // clic sur l'image : bascule entre vue agrandie et vue d'ensemble
+    viewer.querySelector('img').addEventListener('click', () => viewer.classList.toggle('petit'));
+  </script>
+
+</body>
+</html>
