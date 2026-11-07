@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Motion design Lyon Street Food — Alyssia Mattioni</title>
+<title>Asinine — Alyssia Mattioni</title>
 <link rel="icon" type="image/png" href="img/logo perso.png">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -12,6 +12,11 @@
   /* cache la barre de défilement (le scroll reste actif) */
   html { scrollbar-width: none; }
   html::-webkit-scrollbar { display: none; }
+
+  :root {
+    /* forme du cadre vidéo : plus le chiffre est petit, plus les côtés vides sont coupés */
+    --ratio: 1;
+  }
 
   body {
     background: #fff;
@@ -40,10 +45,12 @@
     margin: 50px 0 50px;
   }
 
-  /* vidéo à gauche, texte à droite */
+  /* vidéo à gauche, texte à droite
+     la colonne vidéo est calculée pour que la hauteur soit la même
+     que sur les autres pages, mais sans les grands côtés vides */
   .contenu {
     display: grid;
-    grid-template-columns: 1.4fr 1fr;
+    grid-template-columns: calc((100vw - 88px) * 0.314 * var(--ratio)) 1fr;
     gap: 60px;
     align-items: center;
   }
@@ -51,9 +58,13 @@
   .contenu video {
     display: block;
     width: 100%;
-    height: auto;
+    aspect-ratio: var(--ratio);
+    object-fit: cover;
   }
 
+  .texte {
+    max-width: 560px;
+  }
   .texte p {
     font-size: 0.95rem;
     line-height: 1.9;
@@ -64,29 +75,74 @@
     font-weight: 600;
   }
 
-  /* storyboard */
-  .storyboard {
+  /* parcours de l'interface */
+  .parcours {
     margin-top: 100px;
     text-align: center;
   }
-  .storyboard h2 {
+  .parcours h2 {
     font-size: 1.3rem;
     font-weight: 600;
     margin-bottom: 30px;
   }
-  .storyboard img {
+  .parcours img {
     display: block;
     width: 100%;
     max-width: 1000px;
     height: auto;
     margin: 0 auto;
+    cursor: zoom-in;
   }
+  .indice {
+    margin-top: 14px;
+    font-size: 0.8rem;
+    color: #555;
+  }
+
+  /* visionneuse plein écran */
+  .viewer {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.92);
+    display: none;
+    overflow: auto;
+    z-index: 100;
+    scrollbar-width: none;
+  }
+  .viewer::-webkit-scrollbar { display: none; }
+  .viewer.actif { display: block; }
+  .viewer img {
+    display: block;
+    width: 3200px;
+    max-width: none;
+    height: auto;
+    background: #fff;
+    cursor: zoom-out;
+  }
+  .viewer.petit img { width: 100vw; }
+  .fermer {
+    position: fixed;
+    top: 16px;
+    right: 20px;
+    z-index: 101;
+    border: 1px solid #fff;
+    background: #000;
+    color: #fff;
+    border-radius: 999px;
+    padding: 8px 18px;
+    font: 500 0.85rem 'Montserrat', sans-serif;
+    cursor: pointer;
+    display: none;
+  }
+  .viewer.actif ~ .fermer { display: block; }
 
   @media (max-width: 820px) {
     body { padding: 26px 22px 50px; }
     h1 { margin: 40px 0 30px; }
     .contenu { grid-template-columns: 1fr; gap: 30px; }
-    .storyboard { margin-top: 70px; }
+    .texte { max-width: none; }
+    .parcours { margin-top: 70px; }
+    .viewer img { width: 2400px; }
   }
 </style>
 </head>
@@ -94,25 +150,48 @@
 
   <a class="retour" href="index.html">← Retour</a>
 
-  <h1>Motion design Lyon streetfood</h1>
+  <h1>Asinine</h1>
 
   <div class="contenu">
     <video controls playsinline preload="metadata">
-      <source src="img/Lyon_streetfood.mp4" type="video/mp4">
+      <source src="img/video_asinine_prototype.mp4" type="video/mp4">
+      Ton navigateur ne peut pas lire cette vidéo.
     </video>
 
     <div class="texte">
-      <p>Conception d’un motion design fictif centrée sur l’aspect culinaire du festival Lyon Street Food, visant à retranscrire l’ambiance immersive des stands, la diversité des plats et l’expérience sensorielle offerte aux visiteurs.</p>
-      <p>Une phase de recherche préalable basée sur l’analyse de plusieurs affiches a permis de dégager des principes visuels, graphiques et narratifs adaptés à l’univers de l’événement.</p>
-      <p>Cette étape a été suivie de la création d’un mini storyboard puis de la production de l’animation sur After Effects dans le cadre d’un premier projet de motion design.</p>
-      <p class="outils">Adobe Illustrator et After Effects</p>
+      <p>Projet de groupe autour de la création d’une application fictive pour l’artiste Asinine.</p>
+      <p>Je me suis occupée de la partie boutique de l’application en prenant en charge la conception des wireframes, les choix typographiques, les couleurs, la mise en page et l’organisation de l’interface.</p>
+      <p>Nous avons débuté le projet par la création de documents partagés pour rechercher des références et nous documenter sur l’artiste et son univers graphique.</p>
+      <p class="outils">Figma, Adobe Photoshop et Blender</p>
     </div>
   </div>
 
-  <div class="storyboard">
-    <h2>Storyboard</h2>
-    <img src="img/test_export_streetfood.png" alt="Storyboard du motion design Lyon Street Food">
+  <div class="parcours">
+    <h2>Parcours de l’interface boutique</h2>
+    <img id="apercu" src="img/frame_asinine.png" alt="Parcours complet de l'interface boutique Asinine">
+    <p class="indice">Cliquer sur l’image pour l’agrandir et lire les détails.</p>
   </div>
+
+  <!-- visionneuse -->
+  <div class="viewer" id="viewer">
+    <img src="img/frame_asinine.png" alt="Parcours complet de l'interface boutique Asinine (agrandi)">
+  </div>
+  <button class="fermer" id="fermer">✕ Fermer</button>
+
+  <script>
+    const viewer = document.getElementById('viewer');
+    const fermer = document.getElementById('fermer');
+    document.getElementById('apercu').addEventListener('click', () => {
+      viewer.classList.add('actif');
+      viewer.scrollTop = 0;
+      viewer.scrollLeft = 0;
+    });
+    const close = () => viewer.classList.remove('actif');
+    fermer.addEventListener('click', close);
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+    // clic sur l'image : bascule entre vue agrandie et vue d'ensemble
+    viewer.querySelector('img').addEventListener('click', () => viewer.classList.toggle('petit'));
+  </script>
 
 </body>
 </html>
