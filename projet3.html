@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Projet 3 — Alyssia Mattioni</title>
+<title>Motion design Lyon Street Food — Alyssia Mattioni</title>
 <link rel="icon" type="image/png" href="img/logo perso.png">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -17,7 +17,7 @@
     background: #fff;
     color: #000;
     font-family: 'Montserrat', sans-serif;
-    padding: 34px 44px 60px;
+    padding: 34px 44px 70px;
   }
 
   /* bouton retour */
@@ -40,48 +40,53 @@
     margin: 50px 0 50px;
   }
 
-  /* image à gauche, texte à droite */
+  /* vidéo à gauche, texte à droite */
   .contenu {
     display: grid;
-    grid-template-columns: 1.3fr 1fr;
+    grid-template-columns: 1.4fr 1fr;
     gap: 60px;
-    align-items: start;
+    align-items: center;
   }
 
-  .contenu img {
+  .contenu video {
+    display: block;
     width: 100%;
     height: auto;
-    display: block;
   }
 
   .texte p {
     font-size: 0.95rem;
-    line-height: 1.8;
-    margin-bottom: 20px;
-    text-align: justify;
-    hyphens: auto;
+    line-height: 1.9;
+    margin-bottom: 22px;
+  }
+  .texte .outils {
+    margin-top: 34px;
+    font-weight: 600;
   }
 
-  /* vidéo */
-  .video {
-    margin-top: 70px;
+  /* storyboard */
+  .storyboard {
+    margin-top: 100px;
+    text-align: center;
   }
-  .video h2 {
+  .storyboard h2 {
     font-size: 1.3rem;
     font-weight: 600;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
   }
-  .video video {
+  .storyboard img {
     display: block;
     width: 100%;
-    max-height: 85vh;
-    background: #000;
+    max-width: 1000px;
+    height: auto;
+    margin: 0 auto;
   }
 
   @media (max-width: 820px) {
-    body { padding: 26px 22px 40px; }
+    body { padding: 26px 22px 50px; }
     h1 { margin: 40px 0 30px; }
     .contenu { grid-template-columns: 1fr; gap: 30px; }
+    .storyboard { margin-top: 70px; }
   }
 </style>
 </head>
@@ -92,22 +97,22 @@
   <h1>Motion design Lyon streetfood</h1>
 
   <div class="contenu">
-    <img src="img/test_export_streetfood.png" alt="Storyboard du motion design Lyon Street Food">
+    <video controls playsinline preload="metadata">
+      <source src="img/Lyon_streetfood.mp4" type="video/mp4">
+      Ton navigateur ne peut pas lire cette vidéo.
+    </video>
 
     <div class="texte">
       <p>Conception d’un motion design fictif centrée sur l’aspect culinaire du festival Lyon Street Food, visant à retranscrire l’ambiance immersive des stands, la diversité des plats et l’expérience sensorielle offerte aux visiteurs.</p>
       <p>Une phase de recherche préalable basée sur l’analyse de plusieurs affiches a permis de dégager des principes visuels, graphiques et narratifs adaptés à l’univers de l’événement.</p>
       <p>Cette étape a été suivie de la création d’un mini storyboard puis de la production de l’animation sur After Effects dans le cadre d’un premier projet de motion design.</p>
-      <p>Adobe Illustrator et After Effects</p>
+      <p class="outils">Adobe Illustrator et After Effects</p>
     </div>
   </div>
 
-  <div class="video">
-    <h2>Animation</h2>
-    <video controls playsinline preload="metadata">
-      <source src="img/Lyon_streetfood.mp4" type="video/mp4">
-      Ton navigateur ne peut pas lire cette vidéo.
-    </video>
+  <div class="storyboard">
+    <h2>Storyboard</h2>
+    <img src="img/test_export_streetfood.png" alt="Storyboard du motion design Lyon Street Food">
   </div>
 
 </body>
