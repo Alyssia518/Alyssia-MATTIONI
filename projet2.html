@@ -40,29 +40,27 @@
     margin: 50px 0 50px;
   }
 
-  /* vidéo : garde son format d'origine, sans bandes noires */
-  .video video {
-    display: block;
-    margin: 0 auto;
-    width: auto;
-    height: auto;
-    max-width: 100%;
-    max-height: 80vh;
+  /* vidéo à gauche, texte à droite */
+  .contenu {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 60px;
+    align-items: center;
   }
 
-  /* texte centré sous la vidéo */
-  .texte {
-    max-width: 760px;
-    margin: 60px auto 0;
-    text-align: center;
+  .contenu video {
+    display: block;
+    width: 100%;
+    height: auto;
   }
+
   .texte p {
     font-size: 0.95rem;
     line-height: 1.9;
     margin-bottom: 22px;
   }
   .texte .outils {
-    margin-top: 40px;
+    margin-top: 34px;
     font-weight: 600;
   }
 
@@ -130,7 +128,7 @@
   @media (max-width: 820px) {
     body { padding: 26px 22px 50px; }
     h1 { margin: 40px 0 30px; }
-    .texte { margin-top: 40px; }
+    .contenu { grid-template-columns: 1fr; gap: 30px; }
     .parcours { margin-top: 70px; }
     .viewer img { width: 2400px; }
   }
@@ -142,18 +140,18 @@
 
   <h1>Asinine</h1>
 
-  <div class="video">
+  <div class="contenu">
     <video controls playsinline preload="metadata">
       <source src="img/video_asinine_prototype.mp4" type="video/mp4">
       Ton navigateur ne peut pas lire cette vidéo.
     </video>
-  </div>
 
-  <div class="texte">
-    <p>Projet de groupe autour de la création d’une application fictive pour l’artiste Asinine.</p>
-    <p>Je me suis occupée de la partie boutique de l’application en prenant en charge la conception des wireframes, les choix typographiques, les couleurs, la mise en page et l’organisation de l’interface.</p>
-    <p>Nous avons débuté le projet par la création de documents partagés pour rechercher des références et nous documenter sur l’artiste et son univers graphique.</p>
-    <p class="outils">Figma, Adobe Photoshop et Blender</p>
+    <div class="texte">
+      <p>Projet de groupe autour de la création d’une application fictive pour l’artiste Asinine.</p>
+      <p>Je me suis occupée de la partie boutique de l’application en prenant en charge la conception des wireframes, les choix typographiques, les couleurs, la mise en page et l’organisation de l’interface.</p>
+      <p>Nous avons débuté le projet par la création de documents partagés pour rechercher des références et nous documenter sur l’artiste et son univers graphique.</p>
+      <p class="outils">Figma, Adobe Photoshop et Blender</p>
+    </div>
   </div>
 
   <div class="parcours">
