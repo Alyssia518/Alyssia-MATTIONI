@@ -36,7 +36,7 @@
     margin: 50px 0 50px;
   }
 
-  /* photo à gauche, texte à droite */
+  /* images à gauche, texte à droite */
   .contenu {
     display: grid;
     grid-template-columns: 1.3fr 1fr;
@@ -44,8 +44,15 @@
     align-items: start;
   }
 
-  .contenu img {
+  .images {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .images img {
     width: 100%;
+    height: auto;
     display: block;
   }
 
@@ -70,19 +77,19 @@
 
   <h1>Titre du projet</h1>
 
- <div class="contenu">
-  <div class="images">
-    <img src="img/site_asinine.png" alt="Boutique Asinine - accueil">
-    <img src="img/site_asinine2.png" alt="Boutique Asinine - produit">
-  </div>
+  <div class="contenu">
+    <div class="images">
+      <img src="img/site_asinine.png" alt="Boutique Asinine - accueil">
+      <img src="img/site_asinine2.png" alt="Boutique Asinine - produit">
+    </div>
 
-  <div class="texte">
-    <p>Projet de groupe autour de la création d'une application fictive pour l'artiste Asinine.</p>
-    <p>Je me suis occupée de la partie boutique de l'application en prenant en charge la conception des wireframes, les choix typographiques, les couleurs, la mise en page et l'organisation de l'interface.</p>
-    <p>Nous avons débuté le projet par la création de documents partagés pour rechercher des références et nous documenter sur l'artiste et son univers graphique.</p>
-    <p>Figma, Adobe Photoshop et Blender</p>
+    <div class="texte">
+      <p>Projet de groupe autour de la création d'une application fictive pour l'artiste Asinine.</p>
+      <p>Je me suis occupée de la partie boutique de l'application en prenant en charge la conception des wireframes, les choix typographiques, les couleurs, la mise en page et l'organisation de l'interface.</p>
+      <p>Nous avons débuté le projet par la création de documents partagés pour rechercher des références et nous documenter sur l'artiste et son univers graphique.</p>
+      <p>Figma, Adobe Photoshop et Blender</p>
+    </div>
   </div>
-</div>
 
 </body>
 </html>
