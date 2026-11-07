@@ -13,11 +13,6 @@
   html { scrollbar-width: none; }
   html::-webkit-scrollbar { display: none; }
 
-  :root {
-    /* forme du cadre vidéo : plus le chiffre est petit, plus les côtés vides sont coupés */
-    --ratio: 1;
-  }
-
   body {
     background: #fff;
     color: #000;
@@ -45,25 +40,25 @@
     margin: 50px 0 50px;
   }
 
-  /* vidéo à gauche, texte à droite
-     la colonne vidéo est calculée pour que la hauteur soit la même
-     que sur les autres pages, mais sans les grands côtés vides */
+  /* vidéo verticale à gauche, texte collé à droite */
   .contenu {
-    display: grid;
-    grid-template-columns: calc((100vw - 88px) * 0.314 * var(--ratio)) 1fr;
-    gap: 60px;
+    display: flex;
     align-items: center;
+    gap: 60px;
   }
 
+  /* même hauteur que la vidéo de la page Lyon */
   .contenu video {
     display: block;
-    width: 100%;
-    aspect-ratio: var(--ratio);
+    flex-shrink: 0;
+    height: calc((100vw - 148px) * 0.328);
+    width: auto;
+    aspect-ratio: 295 / 595;
     object-fit: cover;
   }
 
   .texte {
-    max-width: 560px;
+    max-width: 700px;
   }
   .texte p {
     font-size: 0.95rem;
@@ -139,7 +134,8 @@
   @media (max-width: 820px) {
     body { padding: 26px 22px 50px; }
     h1 { margin: 40px 0 30px; }
-    .contenu { grid-template-columns: 1fr; gap: 30px; }
+    .contenu { flex-direction: column; align-items: flex-start; gap: 30px; }
+    .contenu video { width: min(100%, 320px); height: auto; }
     .texte { max-width: none; }
     .parcours { margin-top: 70px; }
     .viewer img { width: 2400px; }
