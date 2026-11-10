@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>alyssia_mattioni</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="img/logo perso.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/index.css" />
+</head>
+<body>
+
+  <div class="loading-container" id="loadingContainer">
+    <video class="loading-video" id="loadingVideo" autoplay muted playsinline>
+      <source src="img/carte-visite-ar.mp4" type="video/mp4" />
+      Votre navigateur ne supporte pas la lecture de vidéos.
+    </video>
+  </div>
+
+  <div class="main-content" id="mainContent">
+    <header>
+      <div class="logo">
+        <img src="img/logo insta.png" alt="Logo" />
+      </div>
+      <nav>
+        <a href="apropos.html">À propos</a>
+        <a href="Sketchbook.html">Sketchbook</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero-wrapper" id="hero">
+        <div class="hero detect-zone">
+          <h1>HEY !</h1>
+          <div class="scroll-hint">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M12 4v16m0 0l-6-6m6 6l6-6" />
+            </svg>
+          </div>
+        </div>
+      </section>
+
+      <section class="tracker-section" id="trackerSection">
+        <svg class="tracker-motif-svg" id="trackerMotif" aria-hidden="true"></svg>
+
+        <div class="tracker-wrap" id="trackerWrap">
+          <div class="tracker-hub" id="trackerHub"></div>
+          <svg class="tracker-svg" id="trackerSvg">
+            <defs>
+              <marker id="arrowHead" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                <path d="M0,0 L6,3 L0,6 Z" fill="#000000" opacity="0.55"></path>
+              </marker>
+            </defs>
+          </svg>
+
+          <nav class="tracker" id="trackerNodes" aria-label="Catégories de projets">
+            <a class="tracker-item" href="motion-design.html"><span>Motion design</span></a>
+            <a class="tracker-item" href="ux-ui.html"><span>UX / UI</span></a>
+            <a class="tracker-item" href="touchdesigner.html"><span>TouchDesigner</span></a>
+            <a class="tracker-item" href="3d.html"><span>3D</span></a>
+            <a class="tracker-item" href="identite-visuelle.html"><span>Identité visuelle</span></a>
+          </nav>
+        </div>
+      </section>
+    </main>
+
+    <footer id="contact">
+      <div class="footer-content">
+        <div class="contact-item"><a href="mailto:alyssia.mattioni@gmail.com">alyssia.mattioni@gmail.com</a></div>
+        <div class="contact-item"><a href="tel:+33613662129">06 13 66 21 29</a></div>
+      </div>
+      <div class="footer-bottom">© 2026 Alyssia Mattioni</div>
+    </footer>
+
+    <div class="floating-bubble" style="top: 10%; left: 14%; animation-delay: 0s; transform: rotate(30deg);"></div>
+    <div class="floating-bubble" style="top: 25%; left: 42%; animation-delay: 1.2s; transform: rotate(90deg);"></div>
+    <div class="floating-bubble" style="top: 38%; left: 68%; animation-delay: 2.4s; transform: rotate(150deg);"></div>
+    <div class="floating-bubble" style="top: 52%; left: 20%; animation-delay: 3.1s; transform: rotate(210deg);"></div>
+    <div class="floating-bubble" style="top: 65%; left: 58%; animation-delay: 0.7s; transform: rotate(270deg);"></div>
+    <div class="floating-bubble" style="top: 75%; left: 70%; animation-delay: 2.9s; transform: rotate(330deg);"></div>
+    <div class="floating-bubble" style="top: 82%; left: 36%; animation-delay: 1.6s; transform: rotate(60deg);"></div>
+    <div class="floating-bubble" style="top: 90%; left: 14%; animation-delay: 0.3s; transform: rotate(120deg);"></div>
+  </div>
+
+  <script src="js/index.js"></script>
+</body>
+</html>
