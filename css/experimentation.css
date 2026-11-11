@@ -1,0 +1,31 @@
+/* Galerie libre pour la page Expérimentation.
+   Se combine avec grille.css (header, footer, next-project, etc.) */
+
+.gallery {
+  columns: 3;
+  column-gap: 18px;
+  margin-top: 20px;
+}
+
+.gallery__item {
+  break-inside: avoid;
+  margin: 0 0 18px 0;
+  overflow: hidden;
+  background: #f5f5f5;
+  border: 1px solid #000000;
+}
+
+.gallery__item img,
+.gallery__item video {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+@media (max-width: 900px) {
+  .gallery { columns: 2; }
+}
+
+@media (max-width: 600px) {
+  .gallery { columns: 1; column-gap: 0; }
+}
