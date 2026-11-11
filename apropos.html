@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<title>À propos — Alyssia Mattioni</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/png" href="img/logo perso.png" />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/apropos.css" />
+</head>
+<body>
+
+  <header>
+    <a class="back-btn" href="index.html">
+      <svg viewBox="0 0 24 24"><path d="M19 12H5M5 12l6-6M5 12l6 6"/></svg>
+      Retour
+    </a>
+    <button class="burger" id="burgerBtn" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <div class="nav-overlay" id="navOverlay">
+    <svg class="nav-motif-svg" id="navMotif" aria-hidden="true"></svg>
+    <div class="nav-links">
+      <a href="index.html">Accueil</a>
+      <a href="index.html#trackerSection">Projets</a>
+      <a href="Sketchbook.html">Sketchbook</a>
+    </div>
+  </div>
+
+  <div class="body-grid">
+    <div class="motif-panel">
+      <video autoplay muted loop playsinline>
+        <source src="img/carte-visite-ar.mp4" type="video/mp4" />
+      </video>
+    </div>
+
+    <div>
+      <div class="info-rows">
+        <a class="info-row" href="img/cv.pdf" download>
+          <span class="info-label">CV</span>
+          <span class="info-value">TÉLÉCHARGER</span>
+        </a>
+        <a class="info-row" href="img/portfolio.pdf" download>
+          <span class="info-label">PORTFOLIO</span>
+          <span class="info-value">TÉLÉCHARGER</span>
+        </a>
+        <div class="info-row copy-row" id="mailRow">
+          <span class="info-label">MAIL</span>
+          <span class="info-value">
+            <span class="copy-feedback" id="copyFeedback">copié</span>
+            alyssia.mattioni@gmail.com
+            <svg viewBox="0 0 24 24"><rect x="8" y="8" width="13" height="13" rx="1.5"/><path d="M16 8V5a1.5 1.5 0 0 0-1.5-1.5H4A1.5 1.5 0 0 0 2.5 5v11A1.5 1.5 0 0 0 4 17.5h3"/></svg>
+          </span>
+        </div>
+      </div>
+
+      <div class="socials">
+        <div class="social-col">
+          <a href="https://www.behance.net/alyssia1" target="_blank" rel="noopener">/ BEHANCE</a>
+        </div>
+        <div class="social-col">
+          <a href="mailto:alyssia.mattioni@gmail.com">/ EMAIL</a>
+        </div>
+        <div class="copyright">© 2026</div>
+      </div>
+    </div>
+  </div>
+
+  <footer></footer>
+
+<script src="js/apropos.js"></script>
+</body>
+</html>
