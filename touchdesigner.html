@@ -2,12 +2,14 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <title>TouchDesigner — Portfolio Alyssia Mattioni</title>
+  <title>Expérimentation — Portfolio Alyssia Mattioni</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" type="image/png" href="img/logo perso.png" />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/grille.css" />
+  <link rel="stylesheet" href="css/experimentation.css" />
 </head>
+
 <body>
 
   <header>
@@ -22,20 +24,53 @@
 
   <main>
     <a class="back-link" href="index.html">← Retour à l'accueil</a>
-    <h1>TouchDesigner</h1>
-    <p class="page-intro">Explorations génératives et visuels temps réel, appris et expérimentés en autodidacte.</p>
+    <h1>Expérimentation</h1>
+    <p class="page-intro">
+      Recherches visuelles, essais génératifs, tests temps réel — un laboratoire ouvert.
+    </p>
 
-    <div class="grid">
-      <a class="card" href="touchdesigner-feu-artifice.html">
-        <div class="card__media">
-          <span class="card__placeholder">Média à venir</span>
-        </div>
-        <div class="card__body">
-          <span class="card__tag">Exploration</span>
-          <h3>Génératif — feu d'artifice</h3>
-          <p>Système visuel génératif en temps réel, autour d'un feu d'artifice.</p>
-        </div>
-      </a>
+    <div class="gallery">
+
+      <!-- ============================================
+           REMPLACE les src ci-dessous par tes fichiers.
+           Tu peux mélanger <img> et <video> dans l'ordre
+           que tu veux : ils s'affichent dans cet ordre.
+           ============================================ -->
+
+      <figure class="gallery__item">
+        <img src="img/exp1.jpg" alt="Expérimentation 1" loading="lazy" />
+      </figure>
+
+      <figure class="gallery__item">
+        <video src="img/exp2.mp4" autoplay muted loop playsinline></video>
+      </figure>
+
+      <figure class="gallery__item">
+        <img src="img/exp3.png" alt="Expérimentation 3" loading="lazy" />
+      </figure>
+
+      <figure class="gallery__item">
+        <video src="img/exp4.mp4" autoplay muted loop playsinline></video>
+      </figure>
+
+      <figure class="gallery__item">
+        <img src="img/exp5.jpg" alt="Expérimentation 5" loading="lazy" />
+      </figure>
+
+      <figure class="gallery__item">
+        <img src="img/exp6.jpg" alt="Expérimentation 6" loading="lazy" />
+      </figure>
+
+      <figure class="gallery__item">
+        <video src="img/exp7.mp4" autoplay muted loop playsinline></video>
+      </figure>
+
+      <figure class="gallery__item">
+        <img src="img/exp8.png" alt="Expérimentation 8" loading="lazy" />
+      </figure>
+
+      <!-- Ajoute autant de <figure class="gallery__item"> que tu veux -->
+
     </div>
   </main>
 
