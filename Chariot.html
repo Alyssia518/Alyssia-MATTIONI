@@ -5,8 +5,34 @@
   <title>Chariot — Portfolio Alyssia Mattioni</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" type="image/png" href="img/logo perso.png" />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/projet.css" />
+  <style>
+    h1 { font-weight: 700; }
+
+    /* Grille 2x2 pour les images */
+    .images-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 36px;
+      align-items: start;
+    }
+
+    @media (max-width: 700px) {
+      .images-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Style des images dans la grille */
+    .images-grid img {
+      width: 100%;
+      height: auto; /* Garde les proportions naturelles */
+      display: block;
+      background: #f5f5f5;
+      border-radius: 2px;
+      object-fit: contain; /* L'image est entière, pas coupée */
+    }
+  </style>
 </head>
 
 <body>
@@ -17,7 +43,8 @@
     <span class="project-tag">Exploration</span>
     <h1>Chariot modélisation</h1>
 
-    <div class="project-media">
+    <!-- Grille de 4 images -->
+    <div class="images-grid">
       <img src="img/chariot1.png" alt="Chariot 3D — vue 1" />
       <img src="img/chariot2.png" alt="Chariot 3D — vue 2" />
       <img src="img/chariot3.png" alt="Chariot 3D — vue 3" />
