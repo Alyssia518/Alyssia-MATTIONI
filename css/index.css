@@ -33,13 +33,13 @@ html, body {
 }
 .main-content.show { display: flex; }
 
-/* ---- Dessin en fond ---- */
+/* ---- DESSIN ANIMÉ EN FOND (derrière tout) ---- */
 .bg-motif-svg {
   position: fixed;
   top: 0; left: 0;
   width: 100%; height: 100%;
   pointer-events: none;
-  z-index: 0;
+  z-index: 0; /* Bien derrière */
 }
 .bg-motif-svg path,
 .bg-motif-svg circle {
@@ -51,6 +51,12 @@ html, body {
   fill: #002337;
   stroke: none;
   opacity: 0.15;
+}
+
+/* On remet le header, main et footer au-dessus du dessin */
+header, main, footer {
+  position: relative;
+  z-index: 1;
 }
 
 /* ---- Header ---- */
@@ -76,7 +82,7 @@ nav a {
 }
 nav a:hover { opacity: 0.6; }
 
-/* ---- Section Tracker ---- */
+/* ---- Section Tracker (les boutons) ---- */
 main {
   flex: 1;
   position: relative;
@@ -88,11 +94,12 @@ main {
   min-height: calc(100vh - 90px);
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: center; /* Centre les boutons verticalement */
   align-items: center;
   padding: 40px 20px;
 }
 
+/* Le motif spécifique derrière les boutons */
 .tracker-motif-svg {
   position: absolute;
   top: 0; left: 0;
@@ -128,6 +135,7 @@ main {
 }
 .tracker-svg path.connector-signal { fill: #002337; opacity: 0.75; }
 
+/* --- Les boutons --- */
 .tracker {
   position: relative;
   display: flex;
@@ -138,6 +146,7 @@ main {
   margin-top: 40px;
 }
 
+/* Décalage des boutons (façon patch) */
 .tracker-item:nth-child(1) { margin-top: 4px; }
 .tracker-item:nth-child(2) { margin-top: 74px; }
 .tracker-item:nth-child(3) { margin-top: 140px; }
@@ -182,9 +191,23 @@ footer {
 .footer-content a { color: #002337; text-decoration: none; }
 .footer-bottom { font-size: 0.8rem; color: #002337; }
 
+/* ---- BULLES QUI VOLENT (si tu les as gardées dans le HTML) ---- */
+.floating-bubble {
+  width: 110px; height: 110px; background: #002337;
+  position: absolute; animation: float 8s ease-in-out infinite;
+  cursor: grab; z-index: 5; touch-action: none; border-radius: 50%;
+  clip-path: polygon(50% 50%, 100% 0%, 100% 100%, 0% 100%, 0% 0%);
+}
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-30px); }
+  100% { transform: translateY(0px); }
+}
+
 ::-webkit-scrollbar { display: none; }
 html { -ms-overflow-style: none; scrollbar-width: none; }
 
+/* ---- Responsive ---- */
 @media (max-width: 768px) {
   header { padding: 15px 20px; height: 70px; }
   header .logo img { height: 40px; }
@@ -196,4 +219,6 @@ html { -ms-overflow-style: none; scrollbar-width: none; }
     width: 85%; max-width: 340px; justify-content: center;
   }
   .tracker-item:nth-child(n) { margin-top: 0; }
+  
+  .floating-bubble { width: 80px; height: 80px; }
 }
