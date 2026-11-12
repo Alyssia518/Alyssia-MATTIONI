@@ -8,10 +8,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/grille.css" />
   <style>
-    /* Image entière (contain) au lieu de recadrée (cover) */
-    .card__media img.img-contain {
-      object-fit: contain;
-      background: #ffffff;
+    /* Cadrage cover + ancre à 12% du haut (juste un chouillat sous le top) */
+    .card__media img.crop-top {
+      object-fit: cover;
+      object-position: center 12%;
     }
   </style>
 </head>
@@ -61,10 +61,10 @@
         </div>
       </article>
 
-      <!-- 3. TÉMOIGNAGE SEP — image entière -->
+      <!-- 3. TÉMOIGNAGE SEP — cadrage à 12% du haut -->
       <article class="card" onclick="window.location.href='temoignage-sep.html'">
         <div class="card__media">
-          <img src="img/plan9_afsep.jpg" alt="Témoignage SEP" class="img-contain" />
+          <img src="img/plan9_afsep.jpg" alt="Témoignage SEP" class="crop-top" />
         </div>
         <div class="card__body">
           <span class="card__tag">Association</span>
@@ -73,10 +73,10 @@
         </div>
       </article>
 
-      <!-- 4. CASCADE — image entière -->
+      <!-- 4. CASCADE -->
       <article class="card" onclick="window.location.href='cascade.html'">
         <div class="card__media">
-          <img src="img/behance-cascade.jpg" alt="Animatique 2D — Cascade" class="img-contain" />
+          <img src="img/behance-cascade.jpg" alt="Animatique 2D — Cascade" class="crop-top" />
         </div>
         <div class="card__body">
           <span class="card__tag">Expérimentation</span>
