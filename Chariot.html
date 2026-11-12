@@ -10,27 +10,27 @@
   <style>
     h1 { font-weight: 700; }
 
-    /* Grille 2x2 pour les images */
+    /* Grille 2x2 parfaite */
     .images-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 16px;
       margin-bottom: 36px;
-      align-items: start;
     }
 
     @media (max-width: 700px) {
       .images-grid { grid-template-columns: 1fr; }
     }
 
-    /* Style des images dans la grille */
+    /* Toutes les images font la même taille (carré) et remplissent l'espace */
     .images-grid img {
       width: 100%;
-      height: auto; /* Garde les proportions naturelles */
+      aspect-ratio: 1 / 1; /* Force un format carré */
+      object-fit: cover;   /* Remplit le carré sans déformer */
+      object-position: center; /* Centre le sujet */
       display: block;
       background: #f5f5f5;
       border-radius: 2px;
-      object-fit: contain; /* L'image est entière, pas coupée */
     }
   </style>
 </head>
