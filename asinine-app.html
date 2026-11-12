@@ -10,7 +10,6 @@
   <style>
     h1 { font-weight: 700; }
 
-    /* Vidéo plus petite et centrée (format téléphone) */
     .video-container {
       max-width: 400px;
       margin: 0 auto 40px auto;
@@ -24,7 +23,6 @@
       display: block;
     }
 
-    /* Conteneur pour les images côte à côte */
     .images-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -44,7 +42,6 @@
       border-radius: 2px;
     }
 
-    /* Zoom */
     .zoomable { cursor: zoom-in; }
 
     .lightbox {
@@ -95,6 +92,24 @@
       font-family: 'Courier New', monospace;
       pointer-events: none;
     }
+
+    /* Ligne outils en bas (Figma, etc.) */
+    .tools-line {
+      font-size: 0.85rem;
+      font-weight: 300;
+      color: #555555;
+      border-top: 1px solid #000000;
+      padding-top: 20px;
+      margin-top: 30px;
+    }
+    .tools-line a {
+      color: #555555;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .tools-line a:hover {
+      color: #000000;
+    }
   </style>
 </head>
 <body>
@@ -134,6 +149,11 @@
     <p style="font-size: 0.75rem; color: #666; margin-top: 10px; margin-bottom: 36px; text-align: center;">
       Cliquez sur la frame de droite pour zoomer (molette = zoom, glisser = déplacer)
     </p>
+
+    <!-- Ligne outils avec Figma -->
+    <div class="tools-line">
+      Figma
+    </div>
 
   </main>
 
