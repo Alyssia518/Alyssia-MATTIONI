@@ -2,7 +2,7 @@
 
 html, body {
   background: #ffffff;
-  color: #000000;
+  color: #002337;
   font-family: 'Montserrat', sans-serif;
   -webkit-font-smoothing: antialiased;
 }
@@ -18,9 +18,9 @@ main {
   margin-bottom: 32px;
   font-size: 0.85rem;
   font-weight: 300;
-  color: #000000;
+  color: #002337;
   text-decoration: none;
-  border-bottom: 1px solid #000000;
+  border-bottom: 1px solid #002337;
 }
 .back-link:hover { opacity: 0.6; }
 
@@ -30,7 +30,7 @@ main {
   text-transform: uppercase;
   letter-spacing: 0.05em;
   padding: 4px 10px;
-  border: 1px solid #000000;
+  border: 1px solid #002337;
   margin-bottom: 18px;
 }
 
@@ -46,14 +46,13 @@ h1 {
   font-weight: 300;
   line-height: 1.7;
   max-width: 68ch;
-  color: #222222;
+  color: #333;
   margin-bottom: 36px;
 }
 .project-description p + p { margin-top: 18px; }
 
 /* ============================================
-   MÉDIA SEUL — pleine largeur, un média à la fois
-   (pour les pages où il n'y a qu'une grande vidéo)
+   MÉDIA SEUL
    ============================================ */
 .project-media {
   width: 100%;
@@ -76,7 +75,6 @@ h1 {
   margin-top: 20px;
 }
 
-/* Variante "cover" 16/10 (grande bannière) */
 .project-media--cover {
   aspect-ratio: 16 / 10;
 }
@@ -88,7 +86,6 @@ h1 {
   display: block;
 }
 
-/* Variante "social" (format vertical réseau) */
 .project-media--social {
   max-width: 420px;
   margin-left: auto;
@@ -96,8 +93,7 @@ h1 {
 }
 
 /* ============================================
-   NOUVEAU : GALERIE COMPACTE — plusieurs médias côte à côte
-   à utiliser quand tu as plusieurs images/vidéos dans une page
+   GALERIE COMPACTE
    ============================================ */
 .project-gallery {
   display: grid;
@@ -121,7 +117,6 @@ h1 {
   object-fit: cover;
 }
 
-/* Si tu veux forcer une hauteur max (pour un rendu plus compact) */
 .project-gallery--fixed .project-gallery__item {
   aspect-ratio: 4 / 3;
 }
@@ -133,7 +128,6 @@ h1 {
   object-position: center top;
 }
 
-/* Portrait (pour vidéo verticale format smartphone) */
 .project-gallery--portrait .project-gallery__item {
   aspect-ratio: 9 / 16;
   max-width: 300px;
@@ -154,9 +148,9 @@ footer {
   text-align: center;
   font-size: 0.85rem;
   font-weight: 300;
-  color: #000000;
+  color: #002337;
 }
-footer a { color: #000000; }
+footer a { color: #002337; }
 
 .next-project {
   position: fixed;
@@ -165,18 +159,18 @@ footer a { color: #000000; }
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  border: 1px solid #000000;
+  border: 1px solid #002337;
   background: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  color: #000000;
-  transition: background 0.2s ease, transform 0.2s ease;
+  color: #002337;
+  transition: background 0.2s ease, transform 0.2s ease, color 0.2s ease;
   z-index: 20;
 }
 .next-project:hover {
-  background: #000000;
+  background: #002337;
   color: #ffffff;
   transform: translateX(3px);
 }
@@ -192,9 +186,9 @@ footer a { color: #000000; }
   opacity: 0;
   transition: opacity 0.2s ease;
   background: #ffffff;
-  color: #000000;
+  color: #002337;
   padding: 4px 8px;
-  border: 1px solid #000000;
+  border: 1px solid #002337;
 }
 .next-project:hover .next-project__label { opacity: 1; }
 
