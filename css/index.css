@@ -5,7 +5,7 @@ html, body {
   font-family: 'Montserrat', sans-serif;
   background: #ffffff;
   overflow-x: hidden;
-  color: #000000;
+  color: #002337; /* NOUVEAU BLEU FONCÉ */
 }
 
 /* ---- Écran de chargement ---- */
@@ -27,7 +27,7 @@ html, body {
 /* ---- Contenu principal ---- */
 .main-content {
   display: none; min-height: 100vh;
-  background: #ffffff; color: #000000;
+  background: #ffffff; color: #002337;
   position: relative;
   flex-direction: column;
 }
@@ -44,11 +44,11 @@ html, body {
 .bg-motif-svg path,
 .bg-motif-svg circle {
   fill: none;
-  stroke: #000000;
-  opacity: 0.15; /* Discret en fond */
+  stroke: #002337; /* NOUVEAU BLEU FONCÉ */
+  opacity: 0.15;
 }
 .bg-motif-svg .is-dot {
-  fill: #000000;
+  fill: #002337; /* NOUVEAU BLEU FONCÉ */
   stroke: none;
   opacity: 0.15;
 }
@@ -68,13 +68,13 @@ header {
 header .logo img { height: 50px; width: auto; display: block; }
 
 nav a {
-  color: #000000;
+  color: #002337; /* NOUVEAU BLEU FONCÉ */
   margin-left: 30px;
   text-decoration: none;
   font-weight: 300;
   transition: color 0.3s ease;
 }
-nav a:hover { color: #555; }
+nav a:hover { opacity: 0.6; }
 
 /* ---- Section Tracker ---- */
 main {
@@ -85,27 +85,25 @@ main {
 
 .tracker-section {
   position: relative;
-  min-height: calc(100vh - 90px); /* Prend l'écran entier sous le header */
+  min-height: calc(100vh - 90px);
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Centre verticalement les boutons */
+  justify-content: center;
   align-items: center;
   padding: 40px 20px;
 }
 
-/* Le fond du tracker (les lignes animées) */
 .tracker-motif-svg {
   position: absolute;
   top: 0; left: 0;
   width: 100%; height: 100%;
   pointer-events: none;
-  z-index: -1; /* Derrière les boutons */
+  z-index: -1;
 }
-.tracker-motif-svg path { fill: none; stroke: #000000; }
-.tracker-motif-svg circle { fill: none; stroke: #000000; }
-.tracker-motif-svg .is-dot { fill: #000000; stroke: none; }
+.tracker-motif-svg path { fill: none; stroke: #002337; } /* NOUVEAU BLEU FONCÉ */
+.tracker-motif-svg circle { fill: none; stroke: #002337; } /* NOUVEAU BLEU FONCÉ */
+.tracker-motif-svg .is-dot { fill: #002337; stroke: none; } /* NOUVEAU BLEU FONCÉ */
 
-/* Les câbles entre le hub et les boutons */
 .tracker-wrap {
   position: relative;
   padding-top: 10px;
@@ -115,9 +113,9 @@ main {
 }
 .tracker-hub {
   width: 8px; height: 8px;
-  background: #000000;
+  background: #002337; /* NOUVEAU BLEU FONCÉ */
   border-radius: 50%;
-  margin: 0 auto 20px auto; /* Petit espace sous le hub */
+  margin: 0 auto 20px auto;
 }
 .tracker-svg {
   position: absolute; top: 0; left: 0;
@@ -125,12 +123,11 @@ main {
   overflow: visible; pointer-events: none;
 }
 .tracker-svg path.connector {
-  fill: none; stroke: #000000; stroke-width: 1.2;
+  fill: none; stroke: #002337; stroke-width: 1.2; /* NOUVEAU BLEU FONCÉ */
   stroke-dasharray: 3 5; opacity: 0.45;
 }
-.tracker-svg path.connector-signal { fill: #000000; opacity: 0.75; }
+.tracker-svg path.connector-signal { fill: #002337; opacity: 0.75; } /* NOUVEAU BLEU FONCÉ */
 
-/* Les boutons */
 .tracker {
   position: relative;
   display: flex;
@@ -141,7 +138,6 @@ main {
   margin-top: 40px;
 }
 
-/* Décalage des boutons (façon carte mentale) */
 .tracker-item:nth-child(1) { margin-top: 4px; }
 .tracker-item:nth-child(2) { margin-top: 74px; }
 .tracker-item:nth-child(3) { margin-top: 140px; }
@@ -152,8 +148,8 @@ main {
   position: relative;
   display: flex; align-items: center; gap: 9px;
   padding: 12px 18px;
-  border: 1px solid #000000; border-radius: 2px;
-  background: #ffffff; color: #000000;
+  border: 1px solid #002337; border-radius: 2px; /* NOUVEAU BLEU FONCÉ */
+  background: #ffffff; color: #002337; /* NOUVEAU BLEU FONCÉ */
   text-decoration: none;
   font-weight: 500; font-size: 0.92rem;
   transition: background 0.18s ease, color 0.18s ease, transform 0.18s ease;
@@ -161,12 +157,12 @@ main {
 .tracker-item::before {
   content: ''; position: absolute; top: -5px; left: 50%;
   transform: translateX(-50%); width: 6px; height: 6px;
-  background: #ffffff; border: 1px solid #000000; border-radius: 50%;
+  background: #ffffff; border: 1px solid #002337; border-radius: 50%; /* NOUVEAU BLEU FONCÉ */
 }
 .tracker-item:hover {
-  background: #000000; color: #ffffff; transform: translateY(-3px);
+  background: #002337; color: #ffffff; transform: translateY(-3px); /* NOUVEAU BLEU FONCÉ */
 }
-.tracker-item:hover::before { background: #000000; }
+.tracker-item:hover::before { background: #002337; } /* NOUVEAU BLEU FONCÉ */
 
 /* ---- Footer ---- */
 footer {
@@ -174,7 +170,7 @@ footer {
   padding: 40px 0 20px 0;
   text-align: center;
   font-size: 0.9rem;
-  color: #000000;
+  color: #002337; /* NOUVEAU BLEU FONCÉ */
   font-weight: 300;
   position: relative;
   z-index: 2;
@@ -183,13 +179,12 @@ footer {
   display: flex; justify-content: center; gap: 15px;
   margin-bottom: 10px;
 }
-.footer-content a { color: #000000; text-decoration: none; }
-.footer-bottom { font-size: 0.8rem; color: #000000; }
+.footer-content a { color: #002337; text-decoration: none; } /* NOUVEAU BLEU FONCÉ */
+.footer-bottom { font-size: 0.8rem; color: #002337; } /* NOUVEAU BLEU FONCÉ */
 
 ::-webkit-scrollbar { display: none; }
 html { -ms-overflow-style: none; scrollbar-width: none; }
 
-/* ---- Responsive ---- */
 @media (max-width: 768px) {
   header { padding: 15px 20px; height: 70px; }
   header .logo img { height: 40px; }
@@ -200,5 +195,5 @@ html { -ms-overflow-style: none; scrollbar-width: none; }
     padding: 15px 20px; font-size: 0.92rem;
     width: 85%; max-width: 340px; justify-content: center;
   }
-  .tracker-item:nth-child(n) { margin-top: 0; } /* Annule les décalages sur mobile */
+  .tracker-item:nth-child(n) { margin-top: 0; }
 }
