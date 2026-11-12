@@ -8,48 +8,20 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/projet.css" />
   <style>
-    /* Titre souligné */
+    /* Titre en gras + souligné */
     h1 {
+      font-weight: 700;
       text-decoration: underline;
       text-underline-offset: 8px;
       text-decoration-thickness: 1px;
-    }
-
-    /* Layout : médias à gauche, texte à droite */
-    .project-layout {
-      display: grid;
-      grid-template-columns: 1fr 340px;
-      gap: 40px;
-      margin-bottom: 40px;
-      align-items: start;
-    }
-
-    /* Colonne médias */
-    .project-media-col {
-      min-width: 0;
-    }
-
-    /* Colonne texte */
-    .project-text-col {
-      position: sticky;
-      top: 24px;
-    }
-    .project-text-col .project-description {
-      font-size: 0.9rem;
-      line-height: 1.6;
-      margin-bottom: 24px;
-      max-width: none;
-    }
-    .project-text-col .project-description p + p {
-      margin-top: 14px;
     }
 
     /* 4 vidéos verticales côte à côte */
     .videos-row {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 8px;
-      margin-bottom: 20px;
+      gap: 12px;
+      margin-bottom: 24px;
     }
     .videos-row video {
       width: 100%;
@@ -65,7 +37,8 @@
     .posters-row {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
+      gap: 16px;
+      margin-bottom: 40px;
       align-items: start;
     }
     .posters-row img {
@@ -77,29 +50,35 @@
       border-radius: 2px;
     }
 
-    /* Outils */
-    .tools {
+    /* Texte en bas, en 2 colonnes, justifié */
+    .text-bottom {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-top: 40px;
+      padding-top: 30px;
+      border-top: 1px solid #000000;
+    }
+    .text-bottom .project-description {
+      margin-bottom: 0;
+      font-size: 0.92rem;
+      text-align: justify;
+      hyphens: auto;
+    }
+    .text-bottom .project-description p + p {
+      margin-top: 14px;
+    }
+    .text-bottom .tools {
       font-size: 0.85rem;
       font-weight: 300;
       color: #555555;
-      border-top: 1px solid #000000;
-      padding-top: 16px;
       margin-top: 20px;
-    }
-
-    /* Responsive : sur mobile, tout s'empile */
-    @media (max-width: 900px) {
-      .project-layout {
-        grid-template-columns: 1fr;
-        gap: 28px;
-      }
-      .project-text-col {
-        position: static;
-      }
+      text-align: left;
     }
 
     @media (max-width: 700px) {
       .videos-row { grid-template-columns: repeat(2, 1fr); }
+      .text-bottom { grid-template-columns: 1fr; gap: 20px; }
     }
     @media (max-width: 480px) {
       .videos-row { grid-template-columns: 1fr; }
@@ -116,65 +95,59 @@
     <span class="project-tag">Association</span>
     <h1>Sensibilisation et prévention à la sclérose en plaques</h1>
 
-    <div class="project-layout">
+    <!-- 4 vidéos autoplay + loop + muted -->
+    <div class="videos-row">
+      <video autoplay muted loop playsinline controls>
+        <source src="img/Animation_AFSEP.mp4" type="video/mp4">
+      </video>
+      <video autoplay muted loop playsinline controls>
+        <source src="img/plan10_afsep.mp4" type="video/mp4">
+      </video>
+      <video autoplay muted loop playsinline controls>
+        <source src="img/plan9_afsep.mp4" type="video/mp4">
+      </video>
+      <video autoplay muted loop playsinline controls>
+        <source src="img/plan3_afsep.mp4" type="video/mp4">
+      </video>
+    </div>
 
-      <!-- Colonne gauche : vidéos + affiches -->
-      <div class="project-media-col">
+    <!-- 2 affiches A3 portrait -->
+    <div class="posters-row">
+      <img src="img/affiche_1.png" alt="Affiche AFSEP 1" />
+      <img src="img/affiche_2.png" alt="Affiche AFSEP 2" />
+    </div>
 
-        <!-- 4 vidéos autoplay + loop + muted -->
-        <div class="videos-row">
-          <video autoplay muted loop playsinline controls>
-            <source src="img/Animation_AFSEP.mp4" type="video/mp4">
-          </video>
-          <video autoplay muted loop playsinline controls>
-            <source src="img/plan10_afsep.mp4" type="video/mp4">
-          </video>
-          <video autoplay muted loop playsinline controls>
-            <source src="img/plan9_afsep.mp4" type="video/mp4">
-          </video>
-          <video autoplay muted loop playsinline controls>
-            <source src="img/plan3_afsep.mp4" type="video/mp4">
-          </video>
-        </div>
-
-        <!-- 2 affiches A3 portrait -->
-        <div class="posters-row">
-          <img src="img/affiche_1.png" alt="Affiche AFSEP 1" />
-          <img src="img/affiche_2.png" alt="Affiche AFSEP 2" />
-        </div>
-
+    <!-- Texte en bas, en 2 colonnes, justifié -->
+    <div class="text-bottom">
+      <div class="project-description">
+        <p>
+          Dans le cadre d'un projet de sensibilisation à la sclérose en plaques, j'ai souhaité mettre en lumière les symptômes de cette maladie, qui ne sont pas toujours bien connus ou reconnus.
+        </p>
+        <p>
+          Le projet s'adresse à tous, avec une attention particulière portée aux jeunes adultes, puisque les premiers symptômes apparaissent le plus souvent entre 25 et 30 ans. L'objectif est de les aider à mieux identifier certains signes de la maladie, mais aussi de mieux comprendre le quotidien des personnes atteintes.
+        </p>
+        <p>
+          Pour commencer, j'ai pris contact avec plusieurs personnes atteintes de sclérose en plaques, qui m'ont partagé leurs témoignages personnels. Lors de mes échanges avec l'une d'entre elles, membre de l'AFSEP (Association Française des Sclérosés en Plaques), elle m'a fait part de son envie de participer à la sensibilisation en partageant son propre témoignage.
+        </p>
       </div>
 
-      <!-- Colonne droite : texte -->
-      <div class="project-text-col">
-
-        <div class="project-description">
-          <p>
-            Dans le cadre d'un projet de sensibilisation à la sclérose en plaques, j'ai souhaité mettre en lumière les symptômes de cette maladie, qui ne sont pas toujours bien connus ou reconnus.
-          </p>
-          <p>
-            Le projet s'adresse à tous, avec une attention particulière portée aux jeunes adultes, puisque les premiers symptômes apparaissent le plus souvent entre 25 et 30 ans. L'objectif est de les aider à mieux identifier certains signes de la maladie, mais aussi de mieux comprendre le quotidien des personnes atteintes.
-          </p>
-          <p>
-            Pour commencer, j'ai pris contact avec plusieurs personnes atteintes de sclérose en plaques, qui m'ont partagé leurs témoignages personnels. Lors de mes échanges avec l'une d'entre elles, membre de l'AFSEP (Association Française des Sclérosés en Plaques), elle m'a fait part de son envie de participer à la sensibilisation en partageant son propre témoignage. C'est à partir de cet échange qu'est née l'idée de réaliser une animation en motion design, proposée à l'AFSEP, tout en préservant son anonymat grâce à une silhouette.
-          </p>
-          <p>
-            Ce choix permet de mettre en avant son vécu sans montrer son identité, mais aussi de laisser chacun s'identifier plus facilement à la personne représentée.
-          </p>
-          <p>
-            Pour accompagner cette animation, j'ai proposé des affiches contenant des QR codes qui renvoient directement vers celle-ci. Elles ont été imaginées pour être installées dans des lieux fréquentés par les jeunes adultes, comme les lycées, les universités ou les salles d'attente.
-          </p>
-          <p>
-            L'objectif est de rendre l'animation facilement accessible et de sensibiliser davantage de personnes à la maladie.
-          </p>
-        </div>
-
-        <div class="tools">
+      <div class="project-description">
+        <p>
+          C'est à partir de cet échange qu'est née l'idée de réaliser une animation en motion design, proposée à l'AFSEP, tout en préservant son anonymat grâce à une silhouette.
+        </p>
+        <p>
+          Ce choix permet de mettre en avant son vécu sans montrer son identité, mais aussi de laisser chacun s'identifier plus facilement à la personne représentée.
+        </p>
+        <p>
+          Pour accompagner cette animation, j'ai proposé des affiches contenant des QR codes qui renvoient directement vers celle-ci. Elles ont été imaginées pour être installées dans des lieux fréquentés par les jeunes adultes, comme les lycées, les universités ou les salles d'attente.
+        </p>
+        <p>
+          L'objectif est de rendre l'animation facilement accessible et de sensibiliser davantage de personnes à la maladie.
+        </p>
+        <p class="tools">
           Adobe Illustrator, After Effects et InDesign
-        </div>
-
+        </p>
       </div>
-
     </div>
 
   </main>
