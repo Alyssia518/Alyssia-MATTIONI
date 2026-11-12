@@ -5,8 +5,16 @@
   <title>UX / UI — Portfolio Alyssia Mattioni</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" type="image/png" href="img/logo perso.png" />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/grille.css" />
+  <style>
+    /* Comme l'image Asinine est verticale (format téléphone),
+       on l'ancre en haut pour ne pas couper le visage/le contenu important */
+    .card__media img.crop-top {
+      object-fit: cover;
+      object-position: center top;
+    }
+  </style>
 </head>
 
 <body>
@@ -31,7 +39,7 @@
       <!-- PROJET — ASININE -->
       <a class="card" href="asinine-app.html">
         <div class="card__media">
-          <span class="card__placeholder">Média à venir</span>
+          <img src="img/asinine_tel.png" alt="Prototype application Asinine" class="crop-top" />
         </div>
         <div class="card__body">
           <span class="card__tag">Prototype Figma</span>
