@@ -19,7 +19,7 @@
 
   <div class="main-content" id="mainContent">
     
-    <!-- NOUVEAU : Le dessin en fond fixe -->
+    <!-- Le dessin en fond fixe -->
     <svg class="bg-motif-svg" id="bgMotif" aria-hidden="true"></svg>
 
     <header>
@@ -33,19 +33,11 @@
     </header>
 
     <main>
-      <section class="hero-wrapper" id="hero">
-        <div class="hero detect-zone">
-          <h1>HEY !</h1>
-          <div class="scroll-hint">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M12 4v16m0 0l-6-6m6 6l6-6" />
-            </svg>
-          </div>
-        </div>
-      </section>
-
-      <section class="tracker-section" id="trackerSection">
+      <!-- Le tracker est maintenant tout en haut, plus de section "HEY !" -->
+      <section class="tracker-section" id="trackerSection" style="min-height: calc(100vh - 90px); display: flex; flex-direction: column; justify-content: center;">
+        
         <svg class="tracker-motif-svg" id="trackerMotif" aria-hidden="true"></svg>
+        
         <div class="tracker-wrap" id="trackerWrap">
           <div class="tracker-hub" id="trackerHub"></div>
           <svg class="tracker-svg" id="trackerSvg">
@@ -55,6 +47,7 @@
               </marker>
             </defs>
           </svg>
+          
           <nav class="tracker" id="trackerNodes" aria-label="Catégories de projets">
             <a class="tracker-item" href="motion-design.html"><span>Motion design</span></a>
             <a class="tracker-item" href="ux-ui.html"><span>UX / UI</span></a>
@@ -74,14 +67,6 @@
       <div class="footer-bottom">© 2026 Alyssia Mattioni</div>
     </footer>
 
-    <div class="floating-bubble" style="top: 10%; left: 14%; animation-delay: 0s; transform: rotate(30deg);"></div>
-    <div class="floating-bubble" style="top: 25%; left: 42%; animation-delay: 1.2s; transform: rotate(90deg);"></div>
-    <div class="floating-bubble" style="top: 38%; left: 68%; animation-delay: 2.4s; transform: rotate(150deg);"></div>
-    <div class="floating-bubble" style="top: 52%; left: 20%; animation-delay: 3.1s; transform: rotate(210deg);"></div>
-    <div class="floating-bubble" style="top: 65%; left: 58%; animation-delay: 0.7s; transform: rotate(270deg);"></div>
-    <div class="floating-bubble" style="top: 75%; left: 70%; animation-delay: 2.9s; transform: rotate(330deg);"></div>
-    <div class="floating-bubble" style="top: 82%; left: 36%; animation-delay: 1.6s; transform: rotate(60deg);"></div>
-    <div class="floating-bubble" style="top: 90%; left: 14%; animation-delay: 0.3s; transform: rotate(120deg);"></div>
   </div>
 
   <script src="js/index.js"></script>
