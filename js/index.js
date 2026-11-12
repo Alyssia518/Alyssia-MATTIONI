@@ -1,34 +1,31 @@
 const loadingContainer = document.getElementById('loadingContainer');
-const loadingVideo = document.getElementById('loadingVideo');
 const mainContent = document.getElementById('mainContent');
 
-// Vérifie si on a déjà vu l'intro
+// Vérifie si l'animation a déjà été vue (pour ne pas la relancer quand on clique sur "Retour")
 const introAlreadyPlayed = sessionStorage.getItem('introPlayed') === 'true';
 
 if (introAlreadyPlayed) {
-  // Si oui, on affiche direct (le CSS gère le reste)
+  // Si on a déjà vu l'anim, on l'affiche direct sans rien attendre
   loadingContainer.style.display = 'none';
   mainContent.classList.add('show');
   document.body.style.overflow = 'auto';
-  // On dessine les lignes (si la fonction existe)
-  if (typeof initPage === 'function') initPage();
+  initPage();
 } else {
-  // Si non, on joue la vidéo
+  // Si c'est la 1ère fois, on sauvegarde le fait qu'on va la voir
   sessionStorage.setItem('introPlayed', 'true');
-  
-  // 1. Si la vidéo se termine, on cache l'écran
-  loadingVideo.addEventListener('ended', () => {
-    loadingContainer.style.display = 'none';
-    mainContent.classList.add('show');
-    document.body.style.overflow = 'auto';
-    if (typeof initPage === 'function') initPage();
-  });
 
-  // 2. Si la vidéo ne se lance pas (erreur de fichier), on cache direct
-  loadingVideo.addEventListener('error', () => {
-    loadingContainer.style.display = 'none';
-    mainContent.classList.add('show');
-    document.body.style.overflow = 'auto';
-    if (typeof initPage === 'function') initPage();
-  });
+  // LE FIX : On attend 6 secondes (5000 ms = 5s, 6000 ms = 6s) 
+  // et on force l'affichage, quoi qu'il arrive.
+  setTimeout(() => {
+    loadingContainer.classList.add('fade-out'); // On lance le fondu
+    setTimeout(() => {
+      loadingContainer.style.display = 'none'; // On cache la vidéo
+      mainContent.classList.add('show');       // On affiche l'accueil
+      document.body.style.overflow = 'auto';   // On réactive le scroll
+      initPage();                              // On dessine les lignes
+    }, 500); // On laisse 0.5 sec pour que le fondu CSS se termine
+  }, 6000); // <-- Modifie ce chiffre si ta vidéo est plus longue (ex: 8000 pour 8s)
 }
+
+// --- Tes fonctions de dessin (ne pas toucher) ---
+function drawTrackerConnectors() { /* ... ton code actuel ... */ }
