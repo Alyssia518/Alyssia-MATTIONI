@@ -2,51 +2,45 @@ const loadingContainer = document.getElementById('loadingContainer');
 const loadingVideo = document.getElementById('loadingVideo');
 const mainContent = document.getElementById('mainContent');
 
-// On vérifie si l'intro a déjà été jouée dans cette session
-const introAlreadyPlayed = sessionStorage.getItem('introPlayed') === 'true';
+// --- 1. GESTION DE L'ANIMATION D'INTRO ---
 
-// Fonction pour afficher la page principale
 function showMainContent() {
-  // On s'assure de ne pas exécuter cette fonction deux fois d'affilée
+  // Si l'accueil est déjà affiché, on ne fait rien
   if (mainContent.classList.contains('show')) return;
   
+  // On cache l'écran de chargement
   loadingContainer.style.display = 'none';
+  
+  // On affiche l'accueil et on réactive le scroll
   mainContent.classList.add('show');
   document.body.style.overflow = 'auto';
+  
+  // On lance le dessin des lignes et des bulles
   initPage(); 
 }
 
-// Fonction pour lancer l'animation d'intro
-function playIntro() {
-  sessionStorage.setItem('introPlayed', 'true');
-  
-  // 1. Si la vidéo se termine normalement
-  loadingVideo.addEventListener('ended', () => {
-    loadingContainer.classList.add('fade-out');
-    setTimeout(showMainContent, 500); // On laisse 0.5s pour le fondu
-  });
+// On vérifie si on a déjà vu l'animation (sessionStorage)
+const introAlreadyPlayed = sessionStorage.getItem('introPlayed') === 'true';
 
-  // 2. Si la vidéo ne trouve pas le fichier ou plante
-  loadingVideo.addEventListener('error', () => {
-    showMainContent();
-  });
-
-  // 3. SÉCURITÉ : Si au bout de 8 secondes la vidéo n'a pas fini, on force l'affichage
-  setTimeout(() => {
-    showMainContent();
-  }, 8000);
-}
-
-// Au chargement de la page :
 if (introAlreadyPlayed) {
-  // L'utilisateur a déjà vu l'intro (il a cliqué sur "Retour") -> on affiche direct !
+  // Si on revient sur la page, on l'affiche direct sans anim
   showMainContent();
 } else {
-  // C'est la première fois -> on lance l'intro
-  playIntro();
+  // Si c'est la première fois, on lance l'anim
+  sessionStorage.setItem('introPlayed', 'true'); // On sauvegarde qu'on l'a vue
+  
+  // On force la lecture de la vidéo (parfois le navigateur bloque)
+  loadingVideo.play().catch(() => {});
+
+  // LA SOLUTION : On attend 6 secondes MAXIMUM et on passe à l'accueil
+  setTimeout(() => {
+    loadingContainer.classList.add('fade-out'); // Effet de fondu
+    setTimeout(showMainContent, 500); // On affiche l'accueil après le fondu (0.5s)
+  }, 6000); // 6000 ms = 6 secondes
 }
 
-// --- Le reste de ton code pour dessiner les lignes ---
+
+// --- 2. TON CODE DE DESSIN (On ne touche pas à ça) ---
 
 function drawTrackerConnectors() {
   const wrap = document.getElementById('trackerWrap');
