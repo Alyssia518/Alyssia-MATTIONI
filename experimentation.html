@@ -8,7 +8,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/grille.css" />
   <style>
-    /* Galerie style "Masonry" : les médias s'empilent */
     .gallery {
       columns: 3;
       column-gap: 16px;
@@ -28,14 +27,8 @@
       height: auto;
       display: block;
     }
-    
-    /* Responsive : 2 colonnes sur tablette, 1 sur mobile */
-    @media (max-width: 900px) {
-      .gallery { columns: 2; }
-    }
-    @media (max-width: 600px) {
-      .gallery { columns: 1; }
-    }
+    @media (max-width: 900px) { .gallery { columns: 2; } }
+    @media (max-width: 600px) { .gallery { columns: 1; } }
   </style>
 </head>
 
@@ -53,9 +46,9 @@
 
   <main>
     <a class="back-link" href="index.html">← Retour à l'accueil</a>
-    <h1>Expérimentations | suivi de tutoriels</h1>
+    <h1>Expérimentation</h1>
     <p class="page-intro">
-      
+      Recherches visuelles, essais génératifs, tests temps réel — un laboratoire ouvert.
     </p>
 
     <div class="gallery">
@@ -64,62 +57,50 @@
       <div class="gallery__item">
         <video src="img/gameplay_prototype.mp4" autoplay muted loop playsinline></video>
       </div>
-
       <div class="gallery__item">
         <video src="img/rendu-3d-interaction.mp4" autoplay muted loop playsinline></video>
       </div>
-
       <div class="gallery__item">
         <video src="img/tuto.mp4" autoplay muted loop playsinline></video>
       </div>
-
       <div class="gallery__item">
         <video src="img/AnimationMattioniAlyssia.mp4" autoplay muted loop playsinline></video>
       </div>
-
       <div class="gallery__item">
         <video src="img/video_illu_phare.mp4" autoplay muted loop playsinline></video>
       </div>
 
       <!-- ================= IMAGES ================= -->
+      <!-- J'ai mis %20 pour les espaces, mais si tu renommes les fichiers, enlève les %20 -->
       <div class="gallery__item">
-        <img src="img/premiere export illu.jpg" alt="Expérimentation" />
+        <img src="img/premiere%20export%20illu.jpg" alt="Expérimentation" />
       </div>
-
       <div class="gallery__item">
         <img src="img/bateau.jpg" alt="Expérimentation" />
       </div>
-
       <div class="gallery__item">
         <img src="img/peluche4.jpg" alt="Expérimentation" />
       </div>
-
       <div class="gallery__item">
         <img src="img/ouii.jpg" alt="Expérimentation" />
       </div>
-
       <div class="gallery__item">
         <img src="img/oui.jpg" alt="Expérimentation" />
       </div>
-
       <div class="gallery__item">
         <img src="img/ffff.jpg" alt="Expérimentation" />
       </div>
-
       <div class="gallery__item">
         <img src="img/ccc.jpg" alt="Expérimentation" />
       </div>
-
       <div class="gallery__item">
         <img src="img/lasienne.jpg" alt="Expérimentation" />
       </div>
-
       <div class="gallery__item">
         <img src="img/escalier.jpg" alt="Expérimentation" />
       </div>
-
       <div class="gallery__item">
-        <img src="img/maison horreur.jpg" alt="Expérimentation" />
+        <img src="img/maison%20horreur.jpg" alt="Expérimentation" />
       </div>
 
     </div>
