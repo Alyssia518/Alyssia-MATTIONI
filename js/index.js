@@ -5,29 +5,36 @@ const mainContent = document.getElementById('mainContent');
 // On vérifie si l'intro a déjà été jouée dans cette session
 const introAlreadyPlayed = sessionStorage.getItem('introPlayed') === 'true';
 
-// Fonction pour afficher la page principale (sans animation)
+// Fonction pour afficher la page principale
 function showMainContent() {
-  loadingContainer.style.display = 'none'; // On cache l'écran de chargement direct
+  // On s'assure de ne pas exécuter cette fonction deux fois d'affilée
+  if (mainContent.classList.contains('show')) return;
+  
+  loadingContainer.style.display = 'none';
   mainContent.classList.add('show');
-  document.body.style.overflow = 'auto'; // On réactive le scroll
-  initPage(); // On lance le dessin des lignes/boutons
+  document.body.style.overflow = 'auto';
+  initPage(); 
 }
 
 // Fonction pour lancer l'animation d'intro
 function playIntro() {
   sessionStorage.setItem('introPlayed', 'true');
   
-  // Si la vidéo est bloquée ou ne charge pas, on passe direct
-  loadingVideo.play().catch(() => {
+  // 1. Si la vidéo se termine normalement
+  loadingVideo.addEventListener('ended', () => {
+    loadingContainer.classList.add('fade-out');
+    setTimeout(showMainContent, 500); // On laisse 0.5s pour le fondu
+  });
+
+  // 2. Si la vidéo ne trouve pas le fichier ou plante
+  loadingVideo.addEventListener('error', () => {
     showMainContent();
   });
 
-  loadingVideo.addEventListener('ended', () => {
-    loadingContainer.classList.add('fade-out');
-    setTimeout(() => {
-      showMainContent();
-    }, 500);
-  });
+  // 3. SÉCURITÉ : Si au bout de 8 secondes la vidéo n'a pas fini, on force l'affichage
+  setTimeout(() => {
+    showMainContent();
+  }, 8000);
 }
 
 // Au chargement de la page :
@@ -39,7 +46,7 @@ if (introAlreadyPlayed) {
   playIntro();
 }
 
-// --- Le reste du code (dessin des lignes, tracker) ---
+// --- Le reste de ton code pour dessiner les lignes ---
 
 function drawTrackerConnectors() {
   const wrap = document.getElementById('trackerWrap');
