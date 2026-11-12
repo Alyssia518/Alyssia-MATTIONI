@@ -1,34 +1,30 @@
 const loadingContainer = document.getElementById('loadingContainer');
 const mainContent = document.getElementById('mainContent');
 
-// On vérifie si on a déjà vu l'animation
+// Si on a déjà vu l'intro, on l'affiche direct
 const introAlreadyPlayed = sessionStorage.getItem('introPlayed') === 'true';
 
 if (introAlreadyPlayed) {
-  // Si on a déjà vu l'anim, on l'affiche direct sans attendre
   loadingContainer.style.display = 'none';
   mainContent.classList.add('show');
   document.body.style.overflow = 'auto';
   initPage();
 } else {
-  // Si c'est la 1ère fois, on sauvegarde le fait qu'on va la voir
   sessionStorage.setItem('introPlayed', 'true');
-
+  
   // LA SÉCURITÉ : On attend 7 secondes et on force l'affichage
   setTimeout(() => {
-    loadingContainer.classList.add('fade-out'); 
+    loadingContainer.classList.add('fade-out');
     setTimeout(() => {
       loadingContainer.style.display = 'none';
       mainContent.classList.add('show');
       document.body.style.overflow = 'auto';
       initPage();
-    }, 500); // Temps du fondu
-  }, 7000); // 7000 ms = 7 secondes
+    }, 500); 
+  }, 7000); // 7 secondes
 }
 
-// ==========================================
-// TON CODE DE DESSIN (INCHANGÉ)
-// ==========================================
+// --- TON CODE DE DESSIN ---
 
 function drawTrackerConnectors() {
   const wrap = document.getElementById('trackerWrap');
@@ -219,6 +215,7 @@ function generateTrackerMotif() {
   });
 }
 
+// C'est cette fonction qui dessine le fond derrière les boutons !
 function generateBackgroundMotif() {
   const W = Math.max(280, window.innerWidth);
   const H = Math.max(260, window.innerHeight);
@@ -235,7 +232,7 @@ function initPage() {
   requestAnimationFrame(() => requestAnimationFrame(() => {
     drawTrackerConnectors();
     generateTrackerMotif();
-    generateBackgroundMotif();
+    generateBackgroundMotif(); // <--- ON L'APPELLE ICI
   }));
 
   let resizeTimeout;
