@@ -10,6 +10,7 @@
 </head>
 <body>
 
+  <!-- Écran de chargement avec la vidéo -->
   <div class="loading-container" id="loadingContainer">
     <video class="loading-video" id="loadingVideo" autoplay muted playsinline>
       <source src="img/carte-visite-ar.mp4" type="video/mp4" />
@@ -19,7 +20,7 @@
 
   <div class="main-content" id="mainContent">
     
-    <!-- Le dessin en fond fixe -->
+    <!-- Le dessin en fond fixe (le motif animé) -->
     <svg class="bg-motif-svg" id="bgMotif" aria-hidden="true"></svg>
 
     <header>
@@ -33,7 +34,6 @@
     </header>
 
     <main>
-      <!-- Le tracker est tout en haut (le "HEY" et les bulles ont été retirés) -->
       <section class="tracker-section" id="trackerSection">
         <svg class="tracker-motif-svg" id="trackerMotif" aria-hidden="true"></svg>
         
@@ -42,7 +42,6 @@
           <svg class="tracker-svg" id="trackerSvg">
             <defs>
               <marker id="arrowHead" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-                <!-- La flèche passe en bleu pétrole -->
                 <path d="M0,0 L6,3 L0,6 Z" fill="#002337" opacity="0.55"></path>
               </marker>
             </defs>
@@ -66,6 +65,16 @@
       </div>
       <div class="footer-bottom">© 2026 Alyssia Mattioni</div>
     </footer>
+
+    <!-- TES BULLES ANIMÉES (je les ai remises comme dans ton code d'origine) -->
+    <div class="floating-bubble" style="top: 10%; left: 14%; animation-delay: 0s; transform: rotate(30deg);"></div>
+    <div class="floating-bubble" style="top: 25%; left: 42%; animation-delay: 1.2s; transform: rotate(90deg);"></div>
+    <div class="floating-bubble" style="top: 38%; left: 68%; animation-delay: 2.4s; transform: rotate(150deg);"></div>
+    <div class="floating-bubble" style="top: 52%; left: 20%; animation-delay: 3.1s; transform: rotate(210deg);"></div>
+    <div class="floating-bubble" style="top: 65%; left: 58%; animation-delay: 0.7s; transform: rotate(270deg);"></div>
+    <div class="floating-bubble" style="top: 75%; left: 70%; animation-delay: 2.9s; transform: rotate(330deg);"></div>
+    <div class="floating-bubble" style="top: 82%; left: 36%; animation-delay: 1.6s; transform: rotate(60deg);"></div>
+    <div class="floating-bubble" style="top: 90%; left: 14%; animation-delay: 0.3s; transform: rotate(120deg);"></div>
 
   </div>
 
