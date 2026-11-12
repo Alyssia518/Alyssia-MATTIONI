@@ -10,21 +10,33 @@
   <style>
     h1 { font-weight: 700; }
 
+    /* Vidéo plus petite et centrée */
+    .video-container {
+      max-width: 400px; /* Taille réduite pour format téléphone */
+      margin: 0 auto 40px auto;
+      background: #f5f5f5;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .video-container video {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
     /* Conteneur pour les images côte à côte */
     .images-row {
       display: grid;
-      grid-template-columns: 1fr 1fr; /* 2 colonnes */
+      grid-template-columns: 1fr 1fr;
       gap: 20px;
-      margin-bottom: 36px;
+      margin-bottom: 20px;
       align-items: start;
     }
     @media (max-width: 700px) {
-      .images-row { grid-template-columns: 1fr; } /* 1 colonne sur mobile */
+      .images-row { grid-template-columns: 1fr; }
     }
 
-    /* Les images prennent 100% de leur colonne */
-    .images-row img,
-    .images-row video {
+    .images-row img {
       width: 100%;
       height: auto;
       display: block;
@@ -32,16 +44,13 @@
       border-radius: 2px;
     }
 
-    /* Curseur zoom sur l'image cliquable */
-    .zoomable {
-      cursor: zoom-in;
-    }
+    /* Zoom */
+    .zoomable { cursor: zoom-in; }
 
-    /* Lightbox (plein écran) */
     .lightbox {
       position: fixed;
       inset: 0;
-      background: rgba(255, 255, 255, 0.95); /* fond blanc translucide */
+      background: rgba(255, 255, 255, 0.95);
       z-index: 1000;
       display: none;
       justify-content: center;
@@ -49,12 +58,8 @@
       overflow: hidden;
       cursor: grab;
     }
-    .lightbox.active {
-      display: flex;
-    }
-    .lightbox:active {
-      cursor: grabbing;
-    }
+    .lightbox.active { display: flex; }
+    .lightbox:active { cursor: grabbing; }
     .lightbox img {
       max-width: 90vw;
       max-height: 90vh;
@@ -65,7 +70,6 @@
       transform-origin: center center;
     }
     
-    /* Bouton fermer */
     .close-btn {
       position: absolute;
       top: 20px;
@@ -78,11 +82,8 @@
       line-height: 1;
       transition: opacity 0.2s;
     }
-    .close-btn:hover {
-      opacity: 0.5;
-    }
+    .close-btn:hover { opacity: 0.5; }
 
-    /* Indication zoom */
     .zoom-hint {
       position: absolute;
       bottom: 20px;
@@ -108,25 +109,22 @@
       <p>Projet fictif réalisé en groupe sur Figma. J'étais en charge de la conception et de l'organisation de la partie boutique.</p>
     </div>
 
-    <!-- Vidéo (pleine largeur) -->
-    <div class="project-media">
+    <!-- Vidéo plus petite (centrée) -->
+    <div class="video-container">
       <video src="img/video_asinine_prototype.mp4" controls playsinline muted loop></video>
     </div>
 
-    <!-- Les 2 images côte à côte (plus petites) -->
+    <!-- Les 2 images côte à côte -->
     <div class="images-row">
-      <!-- Image 1 : Site -->
       <div>
         <img src="img/site_asinine2.png" alt="Site Asinine" />
       </div>
-      
-      <!-- Image 2 : Frame (cliquable pour zoomer) -->
       <div>
         <img src="img/frame_asinine.png" alt="Frame Asinine" class="zoomable" id="frameImg" />
       </div>
     </div>
     
-    <p style="font-size: 0.75rem; color: #666; margin-top: -20px; margin-bottom: 36px; text-align: center;">
+    <p style="font-size: 0.75rem; color: #666; margin-top: 10px; margin-bottom: 36px; text-align: center;">
       Cliquez sur la frame de droite pour zoomer (molette = zoom, glisser = déplacer)
     </p>
 
@@ -161,13 +159,11 @@
     let translateX = 0, translateY = 0;
     let scale = 1;
     
-    // Ouvrir la lightbox
     frameImg.addEventListener('click', () => {
       lightbox.classList.add('active');
       resetTransform();
     });
 
-    // Fermer
     closeBtn.addEventListener('click', closeLightbox);
     lightbox.addEventListener('click', (e) => {
       if (e.target === lightbox) closeLightbox();
@@ -192,33 +188,21 @@
       resetTransform();
     }
 
-    // Zoom avec la molette
     lightbox.addEventListener('wheel', (e) => {
-      e.preventDefault(); // Empêche le scroll de la page
-      
-      // Calcul du zoom
+      e.preventDefault();
       const zoomSpeed = 0.1;
-      if (e.deltaY < 0) {
-        scale += zoomSpeed; // Zoom avant
-      } else {
-        scale -= zoomSpeed; // Zoom arrière
-      }
-      
-      // Limites (entre 1x et 5x)
+      if (e.deltaY < 0) scale += zoomSpeed;
+      else scale -= zoomSpeed;
       scale = Math.max(1, Math.min(scale, 5));
-      
-      // Si on dézoom à 1, on recentre
       if (scale === 1) {
         translateX = 0;
         translateY = 0;
       }
-      
       updateTransform();
     }, { passive: false });
 
-    // Drag pour déplacer
     lightbox.addEventListener('mousedown', (e) => {
-      if (scale <= 1) return; // Pas de déplacement si pas zoomé
+      if (scale <= 1) return;
       isDragging = true;
       startX = e.clientX - translateX;
       startY = e.clientY - translateY;
@@ -231,24 +215,19 @@
       updateTransform();
     });
 
-    window.addEventListener('mouseup', () => {
-      isDragging = false;
-    });
+    window.addEventListener('mouseup', () => { isDragging = false; });
 
-    // Support tactile (mobile)
     let initialPinchDistance = 0;
     let initialScale = 1;
 
     lightbox.addEventListener('touchstart', (e) => {
       if (e.touches.length === 1) {
-        // Un doigt = déplacement
         if (scale > 1) {
           isDragging = true;
           startX = e.touches[0].clientX - translateX;
           startY = e.touches[0].clientY - translateY;
         }
       } else if (e.touches.length === 2) {
-        // Deux doigts = zoom
         isDragging = false;
         initialPinchDistance = Math.hypot(
           e.touches[0].clientX - e.touches[1].clientX,
@@ -278,9 +257,7 @@
       }
     }, { passive: true });
 
-    lightbox.addEventListener('touchend', () => {
-      isDragging = false;
-    });
+    lightbox.addEventListener('touchend', () => { isDragging = false; });
   </script>
 
 </body>
