@@ -8,39 +8,46 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/projet.css" />
   <style>
-    /* Styles propres à cette page — forcent la grille compacte */
-    .media-grid {
+    /* 4 vidéos verticales côte à côte sur UNE ligne */
+    .videos-row {
       display: grid;
-      gap: 14px;
-      margin-bottom: 30px;
-    }
-    .media-grid--videos {
       grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-bottom: 36px;
     }
-    .media-grid--posters {
-      grid-template-columns: repeat(2, 1fr);
-    }
-    .media-grid video,
-    .media-grid img {
+    .videos-row video {
       width: 100%;
-      height: 100%;
-      display: block;
+      aspect-ratio: 9 / 16;
       object-fit: cover;
       object-position: center top;
+      display: block;
       background: #f5f5f5;
+      border-radius: 2px;
     }
-    .media-grid video {
-      aspect-ratio: 9 / 16;
+
+    /* 2 affiches côte à côte */
+    .posters-row {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-bottom: 36px;
     }
-    .media-grid img {
-      aspect-ratio: 4 / 3;
+    .posters-row img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      display: block;
+      background: #f5f5f5;
+      border-radius: 2px;
     }
-    @media (max-width: 900px) {
-      .media-grid--videos { grid-template-columns: repeat(2, 1fr); }
+
+    /* Sur petit écran, on empile */
+    @media (max-width: 700px) {
+      .videos-row { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 480px) {
-      .media-grid--videos { grid-template-columns: 1fr; }
-      .media-grid--posters { grid-template-columns: 1fr; }
+      .videos-row { grid-template-columns: 1fr; }
+      .posters-row { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -59,8 +66,8 @@
       </p>
     </div>
 
-    <!-- 4 vidéos côte à côte -->
-    <div class="media-grid media-grid--videos">
+    <!-- Les 4 vidéos verticales côte à côte -->
+    <div class="videos-row">
       <video controls playsinline>
         <source src="img/Animation AFSEP.mp4" type="video/mp4">
       </video>
@@ -75,8 +82,8 @@
       </video>
     </div>
 
-    <!-- 2 affiches côte à côte -->
-    <div class="media-grid media-grid--posters">
+    <!-- Les 2 affiches côte à côte -->
+    <div class="posters-row">
       <img src="img/affiche_1.png" alt="Affiche AFSEP 1" />
       <img src="img/affiche_2.png" alt="Affiche AFSEP 2" />
     </div>
