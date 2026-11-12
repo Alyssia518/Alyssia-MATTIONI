@@ -3,7 +3,7 @@
 html, body {
   height:100%;
   background:#ffffff;
-  color:#000000;
+  color:#002337;
   font-family:'Montserrat', sans-serif;
   overflow:hidden;
   touch-action: none;
@@ -14,20 +14,19 @@ html, body {
   top: 26px;
   left: 30px;
   z-index:25;
-  pointer-events:auto;
   text-decoration:none;
-  color:#000000;
+  color:#002337;
   font-family:'Courier New', ui-monospace, monospace;
   font-size:0.72rem;
   letter-spacing:0.08em;
   text-transform:uppercase;
-  border:1px solid #000000;
+  border:1px solid #002337;
   padding: 8px 14px;
   border-radius:2px;
   background:#ffffff;
   transition: background 0.2s ease, color 0.2s ease;
 }
-.home-btn:hover{ background:#000000; color:#ffffff; }
+.home-btn:hover{ background:#002337; color:#ffffff; }
 .home-btn::before{ content:'← '; }
 
 .zoom-readout{
@@ -59,15 +58,15 @@ html, body {
   position:absolute;
   top:0; left:0;
   background:#ffffff;
-  border: 1px solid #000000;
+  border: 1px solid #002337;
   border-radius:1px;
   overflow:hidden;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.25);
+  box-shadow: 0 2px 10px rgba(0,35,55,0.2);
   cursor:pointer;
 }
 .thumb svg{ width:100%; height:100%; display:block; }
-.thumb svg path{ fill:none; stroke:#000000; stroke-width:1.4; stroke-linecap:round; }
-.thumb.tone-a{ background:#111111; }
+.thumb svg path{ fill:none; stroke:#002337; stroke-width:1.4; stroke-linecap:round; }
+.thumb.tone-a{ background:#002337; }
 .thumb.tone-a svg path{ stroke:#ffffff; }
 .thumb.tone-b{ background:#e7e2d8; }
 
@@ -78,7 +77,7 @@ html, body {
   width: 360px;
   max-width: 88vw;
   background:#ffffff;
-  border-left: 1px solid #000000;
+  border-left: 1px solid #002337;
   z-index: 40;
   display:flex;
   flex-direction:column;
@@ -95,7 +94,7 @@ html, body {
   position:absolute;
   top: 24px; right: 24px;
   width: 34px; height:34px;
-  border:1px solid #000000;
+  border:1px solid #002337;
   background:#ffffff;
   border-radius:50%;
   display:flex;align-items:center;justify-content:center;
@@ -103,13 +102,13 @@ html, body {
   font-size:16px;
   transition: background 0.2s, color 0.2s;
 }
-.detail-close:hover{ background:#000000; color:#ffffff; }
+.detail-close:hover{ background:#002337; color:#ffffff; }
 
 .detail-frame{
   width: 100%;
   max-width: 280px;
   aspect-ratio: 1/1;
-  border:1px solid #000000;
+  border:1px solid #002337;
   background:#ffffff;
   padding: 20px;
   display:flex;
@@ -117,7 +116,7 @@ html, body {
   justify-content:center;
 }
 .detail-frame svg{ width:100%; height:100%; }
-.detail-frame svg path{ fill:none; stroke:#000000; stroke-width:1.4; }
+.detail-frame svg path{ fill:none; stroke:#002337; stroke-width:1.4; }
 
 .detail-label{
   margin-top:18px;
@@ -132,7 +131,7 @@ html, body {
   .home-btn{ top:18px; left:16px; font-size:0.62rem; padding:6px 10px; }
   .zoom-readout{ top:18px; right:16px; font-size:0.62rem; }
   .detail{ width:100%; max-width:100%; height: 45%; top:auto; bottom:0; right:0;
-    border-left:none; border-top:1px solid #000000;
+    border-left:none; border-top:1px solid #002337;
     transform: translateY(100%); flex-direction:row; gap:20px; padding:20px; }
   .detail.open{ transform: translateY(0%); }
   .detail-frame{ max-width: 140px; padding:12px; }
