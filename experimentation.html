@@ -5,9 +5,38 @@
   <title>Expérimentation — Portfolio Alyssia Mattioni</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" type="image/png" href="img/logo perso.png" />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/grille.css" />
-  <link rel="stylesheet" href="css/experimentation.css" />
+  <style>
+    /* Galerie style "Masonry" : les médias s'empilent joliment */
+    .gallery {
+      columns: 3;
+      column-gap: 16px;
+      margin-top: 20px;
+    }
+    .gallery__item {
+      break-inside: avoid;
+      margin-bottom: 16px;
+      overflow: hidden;
+      background: #f5f5f5;
+      border-radius: 2px;
+      border: 1px solid #000000;
+    }
+    .gallery__item img,
+    .gallery__item video {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    
+    /* Responsive : 2 colonnes sur tablette, 1 sur mobile */
+    @media (max-width: 900px) {
+      .gallery { columns: 2; }
+    }
+    @media (max-width: 600px) {
+      .gallery { columns: 1; }
+    }
+  </style>
 </head>
 
 <body>
@@ -31,45 +60,67 @@
 
     <div class="gallery">
 
-      <!-- ============================================
-           REMPLACE les src ci-dessous par tes fichiers.
-           Tu peux mélanger <img> et <video> dans l'ordre
-           que tu veux : ils s'affichent dans cet ordre.
-           ============================================ -->
+      <!-- ================= VIDÉOS ================= -->
+      <div class="gallery__item">
+        <video src="img/gameplay_prototype.mp4" autoplay muted loop playsinline></video>
+      </div>
 
-      <figure class="gallery__item">
-        <img src="img/exp1.jpg" alt="Expérimentation 1" loading="lazy" />
-      </figure>
+      <div class="gallery__item">
+        <video src="img/rendu-3d-interaction.mp4" autoplay muted loop playsinline></video>
+      </div>
 
-      <figure class="gallery__item">
-        <video src="img/exp2.mp4" autoplay muted loop playsinline></video>
-      </figure>
+      <div class="gallery__item">
+        <video src="img/tuto.mp4" autoplay muted loop playsinline></video>
+      </div>
 
-      <figure class="gallery__item">
-        <img src="img/exp3.png" alt="Expérimentation 3" loading="lazy" />
-      </figure>
+      <div class="gallery__item">
+        <video src="img/AnimationMattioniAlyssia.mp4" autoplay muted loop playsinline></video>
+      </div>
 
-      <figure class="gallery__item">
-        <video src="img/exp4.mp4" autoplay muted loop playsinline></video>
-      </figure>
+      <div class="gallery__item">
+        <video src="img/video_illu_phare.mp4" autoplay muted loop playsinline></video>
+      </div>
 
-      <figure class="gallery__item">
-        <img src="img/exp5.jpg" alt="Expérimentation 5" loading="lazy" />
-      </figure>
+      <!-- ================= IMAGES ================= -->
+      <div class="gallery__item">
+        <img src="img/premiere export illu.jpg" alt="Expérimentation" />
+      </div>
 
-      <figure class="gallery__item">
-        <img src="img/exp6.jpg" alt="Expérimentation 6" loading="lazy" />
-      </figure>
+      <div class="gallery__item">
+        <img src="img/bateau.jpg" alt="Expérimentation" />
+      </div>
 
-      <figure class="gallery__item">
-        <video src="img/exp7.mp4" autoplay muted loop playsinline></video>
-      </figure>
+      <div class="gallery__item">
+        <img src="img/peluche4.jpg" alt="Expérimentation" />
+      </div>
 
-      <figure class="gallery__item">
-        <img src="img/exp8.png" alt="Expérimentation 8" loading="lazy" />
-      </figure>
+      <div class="gallery__item">
+        <img src="img/ouii.jpg" alt="Expérimentation" />
+      </div>
 
-      <!-- Ajoute autant de <figure class="gallery__item"> que tu veux -->
+      <div class="gallery__item">
+        <img src="img/oui.jpg" alt="Expérimentation" />
+      </div>
+
+      <div class="gallery__item">
+        <img src="img/ffff.jpg" alt="Expérimentation" />
+      </div>
+
+      <div class="gallery__item">
+        <img src="img/ccc.jpg" alt="Expérimentation" />
+      </div>
+
+      <div class="gallery__item">
+        <img src="img/lasienne.jpg" alt="Expérimentation" />
+      </div>
+
+      <div class="gallery__item">
+        <img src="img/escalier.jpg" alt="Expérimentation" />
+      </div>
+
+      <div class="gallery__item">
+        <img src="img/maison horreur.jpg" alt="Expérimentation" />
+      </div>
 
     </div>
   </main>
