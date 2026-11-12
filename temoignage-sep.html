@@ -8,7 +8,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/projet.css" />
   <style>
-    /* 4 vidéos verticales côte à côte */
     .videos-row {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -25,7 +24,6 @@
       border-radius: 2px;
     }
 
-    /* 2 affiches format A3 portrait — affichées en entier, côte à côte */
     .posters-row {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -66,23 +64,23 @@
       </p>
     </div>
 
-    <!-- 4 vidéos verticales côte à côte -->
+    <!-- 4 vidéos autoplay + loop + muted -->
     <div class="videos-row">
-      <video controls playsinline>
-        <source src="img/Animation AFSEP.mp4" type="video/mp4">
+      <video autoplay muted loop playsinline controls>
+        <source src="img/Animation_AFSEP.mp4" type="video/mp4">
       </video>
-      <video controls playsinline>
+      <video autoplay muted loop playsinline controls>
         <source src="img/plan10_afsep.mp4" type="video/mp4">
       </video>
-      <video controls playsinline>
+      <video autoplay muted loop playsinline controls>
         <source src="img/plan9_afsep.mp4" type="video/mp4">
       </video>
-      <video controls playsinline>
+      <video autoplay muted loop playsinline controls>
         <source src="img/plan3_afsep.mp4" type="video/mp4">
       </video>
     </div>
 
-    <!-- 2 affiches A3 portrait, entières et côte à côte -->
+    <!-- 2 affiches A3 portrait -->
     <div class="posters-row">
       <img src="img/affiche_1.png" alt="Affiche AFSEP 1" />
       <img src="img/affiche_2.png" alt="Affiche AFSEP 2" />
