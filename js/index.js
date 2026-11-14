@@ -1,7 +1,6 @@
 const loadingContainer = document.getElementById('loadingContainer');
 const mainContent = document.getElementById('mainContent');
 
-// On vérifie si on a déjà vu l'animation
 const introAlreadyPlayed = sessionStorage.getItem('introPlayed') === 'true';
 
 if (introAlreadyPlayed) {
@@ -11,8 +10,6 @@ if (introAlreadyPlayed) {
   initPage();
 } else {
   sessionStorage.setItem('introPlayed', 'true');
-  
-  // SÉCURITÉ : On attend 7 secondes et on force l'affichage
   setTimeout(() => {
     loadingContainer.classList.add('fade-out');
     setTimeout(() => {
@@ -23,8 +20,6 @@ if (introAlreadyPlayed) {
     }, 500); 
   }, 7000);
 }
-
-// --- TON CODE DE DESSIN COMPLET ---
 
 function drawTrackerConnectors() {
   const wrap = document.getElementById('trackerWrap');
@@ -83,7 +78,6 @@ function drawTrackerConnectors() {
   });
 }
 
-// C'est la fonction exacte de la page À propos !
 function drawOrganicMotif(svgId, W, H, opts) {
   const svgNS = 'http://www.w3.org/2000/svg';
   const svg = document.getElementById(svgId);
@@ -96,8 +90,15 @@ function drawOrganicMotif(svgId, W, H, opts) {
   const BUBBLES = opts.bubbles;
   const convergeY = opts.convergeY;
   const convergeStrength = opts.convergeStrength;
+  const arrowId = `arrow-${svgId}`;
 
-  // Plus de flèches ici, juste le tracé pur
+  const defs = document.createElementNS(svgNS, 'defs');
+  defs.innerHTML = `
+    <marker id="${arrowId}" markerWidth="7" markerHeight="7" refX="5" refY="2.5" orient="auto">
+      <path d="M0,0 L5,2.5 L0,5 Z" fill="#ffffff"></path>
+    </marker>`;
+  svg.appendChild(defs);
+
   const signalStrands = new Set();
   for (let s = 0; s < STRANDS; s++) {
     if (s % 3 === 1) signalStrands.add(s);
@@ -116,10 +117,8 @@ function drawOrganicMotif(svgId, W, H, opts) {
       x += Math.cos(angle) * stepLen;
       y += Math.sin(angle) * stepLen;
       y = Math.max(6, Math.min(H - 6, y));
-
       const pull = Math.exp(-((x - W / 2) ** 2) / (W * 43)) * convergeStrength;
       y = y * (1 - pull) + convergeY * pull;
-
       points.push(`L${x.toFixed(1)},${y.toFixed(1)}`);
     }
 
@@ -128,7 +127,10 @@ function drawOrganicMotif(svgId, W, H, opts) {
     path.setAttribute('d', d);
     path.setAttribute('stroke-width', (0.55 + Math.random() * 0.25).toFixed(2));
     path.setAttribute('opacity', (0.85 + Math.random() * 0.15).toFixed(2));
-    if (signalStrands.has(s)) path.setAttribute('stroke-dasharray', '2.5 4');
+    if (signalStrands.has(s)) {
+      path.setAttribute('stroke-dasharray', '2.5 4');
+      path.setAttribute('marker-end', `url(#${arrowId})`);
+    }
     svg.appendChild(path);
 
     if (signalStrands.has(s) && !reduceMotion) {
@@ -180,7 +182,6 @@ function drawOrganicMotif(svgId, W, H, opts) {
     if (isDot) circle.setAttribute('class', 'is-dot');
     svg.appendChild(circle);
 
-    // Petits anneaux concentriques
     if (!isDot && Math.random() < 0.3) {
       const inner = document.createElementNS(svgNS, 'circle');
       inner.setAttribute('cx', cx.toFixed(1));
@@ -200,28 +201,16 @@ function generateTrackerMotif() {
   const W = Math.max(280, Math.round(rect.width));
   const H = Math.max(260, Math.round(rect.height));
   const isMobile = window.innerWidth <= 768;
-  
-  // On utilise EXACTEMENT les réglages de la page À propos
   drawOrganicMotif('trackerMotif', W, H, {
-    strands: 7,
-    bubbles: 18,
-    convergeY: H * 0.5,
-    convergeStrength: 0.2,
-    pacman: true,
+    strands: 7, bubbles: 18, convergeY: H * 0.5, convergeStrength: 0.2, pacman: true,
   });
 }
 
 function generateBackgroundMotif() {
   const W = Math.max(280, window.innerWidth);
   const H = Math.max(260, window.innerHeight);
-  
-  // On utilise EXACTEMENT les réglages de la page À propos
   drawOrganicMotif('bgMotif', W, H, {
-    strands: 7,
-    bubbles: 18,
-    convergeY: H * 0.5,
-    convergeStrength: 0.2,
-    pacman: true,
+    strands: 7, bubbles: 18, convergeY: H * 0.5, convergeStrength: 0.2, pacman: true,
   });
 }
 
