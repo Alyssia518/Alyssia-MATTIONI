@@ -30,16 +30,16 @@ html, body {
 }
 .main-content.show { display: flex; }
 
-/* ---- DESSIN ANIMÉ DE FOND ---- */
+/* ---- DESSIN ANIMÉ DE FOND (teinté de bleu) ---- */
 .bg-motif-svg {
   position: fixed; top: 0; left: 0;
   width: 100%; height: 100%;
   pointer-events: none;
   z-index: 0;
 }
-.bg-motif-svg path { fill: none; stroke: #002337; }
-.bg-motif-svg circle { fill: none; stroke: #002337; }
-.bg-motif-svg .is-dot { fill: #002337; stroke: none; }
+.bg-motif-svg path { fill: none; stroke: #0084B4; opacity: 0.2; } /* Lignes de fond en bleu clair */
+.bg-motif-svg circle { fill: none; stroke: #0084B4; opacity: 0.2; }
+.bg-motif-svg .is-dot { fill: #0084B4; stroke: none; opacity: 0.2; }
 
 header, main, footer {
   position: relative;
@@ -57,6 +57,7 @@ header {
   top: 0;
   z-index: 10;
   height: 90px;
+  border-bottom: 1px solid #f0f0f0; /* Petite ligne discrète */
 }
 header .logo img { height: 50px; width: auto; display: block; }
 
@@ -64,10 +65,10 @@ nav a {
   color: #002337;
   margin-left: 30px;
   text-decoration: none;
-  font-weight: 300;
+  font-weight: 500; /* Un peu plus gras */
   transition: color 0.3s ease;
 }
-nav a:hover { color: #0084B4; } /* Nouvelle couleur au survol */
+nav a:hover { color: #0084B4; }
 
 /* ---- Section Tracker ---- */
 main { flex: 1; }
@@ -82,15 +83,16 @@ main { flex: 1; }
   padding: 40px 20px;
 }
 
+/* Le motif derrière les boutons (aussi teinté) */
 .tracker-motif-svg {
   position: absolute; top: 0; left: 0;
   width: 100%; height: 100%;
   pointer-events: none;
   z-index: 0;
 }
-.tracker-motif-svg path { fill: none; stroke: #002337; }
-.tracker-motif-svg circle { fill: none; stroke: #002337; }
-.tracker-motif-svg .is-dot { fill: #002337; stroke: none; }
+.tracker-motif-svg path { fill: none; stroke: #0084B4; opacity: 0.3; }
+.tracker-motif-svg circle { fill: none; stroke: #0084B4; opacity: 0.3; }
+.tracker-motif-svg .is-dot { fill: #0084B4; stroke: none; opacity: 0.3; }
 
 .tracker-wrap {
   position: relative;
@@ -100,10 +102,11 @@ main { flex: 1; }
   z-index: 2;
 }
 .tracker-hub {
-  width: 8px; height: 8px;
-  background: #002337;
+  width: 10px; height: 10px;
+  background: #0084B4; /* Hub en bleu vif */
   border-radius: 50%;
   margin: 0 auto 20px auto;
+  box-shadow: 0 0 10px rgba(0, 132, 180, 0.4);
 }
 .tracker-svg {
   position: absolute; top: 0; left: 0;
@@ -111,10 +114,10 @@ main { flex: 1; }
   overflow: visible; pointer-events: none;
 }
 .tracker-svg path.connector {
-  fill: none; stroke: #002337; stroke-width: 1.2;
-  stroke-dasharray: 3 5; opacity: 0.45;
+  fill: none; stroke: #002337; stroke-width: 1.5;
+  stroke-dasharray: 4 6; opacity: 0.6;
 }
-.tracker-svg path.connector-signal { fill: #002337; opacity: 0.75; }
+.tracker-svg path.connector-signal { fill: #0084B4; opacity: 1; } /* Les petits Pac-Man en bleu */
 
 .tracker {
   position: relative;
@@ -132,29 +135,31 @@ main { flex: 1; }
 .tracker-item:nth-child(4) { margin-top: 140px; }
 .tracker-item:nth-child(5) { margin-top: 4px; }
 
-/* --- LES BOUTONS HARMONISÉS --- */
+/* --- LES BOUTONS --- */
 .tracker-item {
   position: relative;
   display: flex; align-items: center; gap: 9px;
-  padding: 12px 18px;
-  border: 1.5px solid #002337; 
-  border-radius: 8px; /* Coins légèrement arrondis */
+  padding: 14px 22px;
+  border: 2px solid #002337; 
+  border-radius: 8px;
   background: #ffffff; color: #002337;
   text-decoration: none;
-  font-weight: 500; font-size: 0.92rem;
-  transition: all 0.2s ease;
+  font-weight: 600; font-size: 0.95rem;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.02);
 }
 .tracker-item::before {
-  content: ''; position: absolute; top: -5px; left: 50%;
-  transform: translateX(-50%); width: 6px; height: 6px;
-  background: #ffffff; border: 1.5px solid #002337; border-radius: 50%;
-  transition: all 0.2s ease;
+  content: ''; position: absolute; top: -6px; left: 50%;
+  transform: translateX(-50%); width: 8px; height: 8px;
+  background: #ffffff; border: 2px solid #002337; border-radius: 50%;
+  transition: all 0.25s ease;
 }
 .tracker-item:hover {
-  background: #0084B4; /* Nouvelle couleur */
+  background: #0084B4; 
   border-color: #0084B4;
   color: #ffffff; 
-  transform: translateY(-3px);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 15px rgba(0, 132, 180, 0.3);
 }
 .tracker-item:hover::before { background: #0084B4; border-color: #0084B4; }
 
@@ -165,7 +170,7 @@ footer {
   text-align: center;
   font-size: 0.9rem;
   color: #002337;
-  font-weight: 300;
+  font-weight: 400;
 }
 .footer-content {
   display: flex; justify-content: center; gap: 15px;
@@ -184,7 +189,7 @@ html { -ms-overflow-style: none; scrollbar-width: none; }
   
   .tracker { flex-direction: column; align-items: center; gap: 26px; margin-top: 30px; }
   .tracker-item {
-    padding: 15px 20px; font-size: 0.92rem;
+    padding: 15px 20px; font-size: 0.95rem;
     width: 85%; max-width: 340px; justify-content: center;
   }
   .tracker-item:nth-child(n) { margin-top: 0; }
