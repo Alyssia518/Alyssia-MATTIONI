@@ -3,16 +3,16 @@
 html, body {
   height: 100%;
   font-family: 'Montserrat', sans-serif;
-  background: #0084B4; /* LE FOND EST BLEU CLAIR */
+  background: #ffffff; /* FOND BLANC */
   overflow-x: hidden;
-  color: #002337; /* LE TEXTE EST BLEU FONCÉ */
+  color: #002337; /* TEXTE BLEU FONCÉ */
 }
 
 /* ---- Écran de chargement ---- */
 .loading-container {
   position: fixed; top: 0; left: 0; width: 100%; height: 100%;
   display: flex; justify-content: center; align-items: center;
-  background: #0084B4; z-index: 1000;
+  background: #ffffff; z-index: 1000; /* Fond blanc pendant le chargement */
   transition: opacity 0.5s ease-out;
 }
 .loading-container.fade-out { opacity: 0; }
@@ -24,22 +24,22 @@ html, body {
 /* ---- Contenu principal ---- */
 .main-content {
   display: none; min-height: 100vh;
-  background: #0084B4;
+  background: #ffffff; /* Fond blanc */
   position: relative;
   flex-direction: column;
 }
 .main-content.show { display: flex; }
 
-/* ---- DESSIN ANIMÉ DE FOND ---- */
+/* ---- DESSIN ANIMÉ DE FOND (en bleu foncé) ---- */
 .bg-motif-svg {
   position: fixed; top: 0; left: 0;
   width: 100%; height: 100%;
   pointer-events: none;
   z-index: 0;
 }
-.bg-motif-svg path { fill: none; stroke: #002337; opacity: 0.2; }
-.bg-motif-svg circle { fill: none; stroke: #002337; opacity: 0.2; }
-.bg-motif-svg .is-dot { fill: #002337; stroke: none; opacity: 0.2; }
+.bg-motif-svg path { fill: none; stroke: #002337; }
+.bg-motif-svg circle { fill: none; stroke: #002337; }
+.bg-motif-svg .is-dot { fill: #002337; stroke: none; }
 
 header, main, footer {
   position: relative;
@@ -65,9 +65,9 @@ nav a {
   margin-left: 30px;
   text-decoration: none;
   font-weight: 500;
-  transition: opacity 0.3s ease;
+  transition: color 0.3s ease;
 }
-nav a:hover { opacity: 0.6; }
+nav a:hover { color: #0084B4; }
 
 /* ---- Section Tracker ---- */
 main { flex: 1; }
@@ -82,15 +82,16 @@ main { flex: 1; }
   padding: 40px 20px;
 }
 
+/* Le motif derrière les boutons (bleu foncé) */
 .tracker-motif-svg {
   position: absolute; top: 0; left: 0;
   width: 100%; height: 100%;
   pointer-events: none;
   z-index: 0;
 }
-.tracker-motif-svg path { fill: none; stroke: #002337; opacity: 0.4; }
-.tracker-motif-svg circle { fill: none; stroke: #002337; opacity: 0.4; }
-.tracker-motif-svg .is-dot { fill: #002337; stroke: none; opacity: 0.4; }
+.tracker-motif-svg path { fill: none; stroke: #002337; opacity: 0.8; }
+.tracker-motif-svg circle { fill: none; stroke: #002337; opacity: 0.8; }
+.tracker-motif-svg .is-dot { fill: #002337; stroke: none; opacity: 0.8; }
 
 .tracker-wrap {
   position: relative;
@@ -100,7 +101,7 @@ main { flex: 1; }
   z-index: 2;
 }
 .tracker-hub {
-  width: 8px; height: 8px;
+  width: 10px; height: 10px;
   background: #002337;
   border-radius: 50%;
   margin: 0 auto 20px auto;
@@ -132,32 +133,35 @@ main { flex: 1; }
 .tracker-item:nth-child(4) { margin-top: 140px; }
 .tracker-item:nth-child(5) { margin-top: 4px; }
 
-/* --- LES BOUTONS --- */
+/* --- LES BOUTONS EN BLEU CLAIR --- */
 .tracker-item {
   position: relative;
   display: flex; align-items: center; gap: 9px;
-  padding: 12px 18px;
-  border: 1px solid #002337; 
-  border-radius: 4px;
-  background: transparent; color: #002337;
+  padding: 12px 20px;
+  border: none; 
+  border-radius: 6px;
+  background: #0084B4; /* FOND DU BOUTON BLEU CLAIR */
+  color: #ffffff; /* TEXTE BLANC */
   text-decoration: none;
-  font-weight: 500; font-size: 0.92rem;
+  font-weight: 600; font-size: 0.92rem;
   transition: all 0.2s ease;
+  box-shadow: 0 2px 5px rgba(0, 132, 180, 0.2); /* Petite ombre */
 }
 .tracker-item::before {
-  content: ''; position: absolute; top: -5px; left: 50%;
-  transform: translateX(-50%); width: 6px; height: 6px;
-  background: #0084B4; /* Plot de la même couleur que le fond */
-  border: 1px solid #002337; border-radius: 50%;
+  content: ''; position: absolute; top: -6px; left: 50%;
+  transform: translateX(-50%); width: 8px; height: 8px;
+  background: #0084B4; border: 2px solid #ffffff; border-radius: 50%;
   transition: all 0.2s ease;
 }
 .tracker-item:hover {
-  background: #002337; 
-  border-color: #002337;
-  color: #0084B4; 
+  background: #002337; /* Au survol, le bouton devient bleu foncé */
   transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(0, 35, 55, 0.3);
 }
-.tracker-item:hover::before { background: #002337; }
+.tracker-item:hover::before { 
+  background: #002337; 
+  border-color: #ffffff; 
+}
 
 /* ---- Footer ---- */
 footer {
@@ -172,8 +176,8 @@ footer {
   display: flex; justify-content: center; gap: 15px;
   margin-bottom: 10px;
 }
-.footer-content a { color: #002337; text-decoration: none; transition: opacity 0.2s; }
-.footer-content a:hover { opacity: 0.6; }
+.footer-content a { color: #002337; text-decoration: none; transition: color 0.2s; }
+.footer-content a:hover { color: #0084B4; }
 
 ::-webkit-scrollbar { display: none; }
 html { -ms-overflow-style: none; scrollbar-width: none; }
