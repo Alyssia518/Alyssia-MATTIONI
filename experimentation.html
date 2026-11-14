@@ -18,7 +18,8 @@
       margin-bottom: 16px;
       overflow: hidden;
       background: #f5f5f5;
-      border-radius: 8px; /* Coins arrondis, pas de bordure */
+      border-radius: 8px; /* Coins arrondis, pas de bordure noire */
+      /* border: 1px solid #000000;  <-- LIGNE SUPPRIMÉE */
     }
     .gallery__item img,
     .gallery__item video {
@@ -70,8 +71,9 @@
       </div>
 
       <!-- ================= IMAGES ================= -->
+      <!-- J'ai gardé les espaces, remplacés par %20 pour que le navigateur les lise -->
       <div class="gallery__item">
-        <img src="img/premiere_export_illu.jpg" alt="Expérimentation" />
+        <img src="img/premiere%20export%20illu.jpg" alt="Expérimentation" />
       </div>
       <div class="gallery__item">
         <img src="img/bateau.jpg" alt="Expérimentation" />
@@ -98,7 +100,7 @@
         <img src="img/escalier.jpg" alt="Expérimentation" />
       </div>
       <div class="gallery__item">
-        <img src="img/maison_horreur.jpg" alt="Expérimentation" />
+        <img src="img/maison%20horreur.jpg" alt="Expérimentation" />
       </div>
 
     </div>
