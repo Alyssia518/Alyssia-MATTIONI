@@ -95,7 +95,7 @@ function drawOrganicMotif(svgId, W, H, opts) {
   const defs = document.createElementNS(svgNS, 'defs');
   defs.innerHTML = `
     <marker id="${arrowId}" markerWidth="7" markerHeight="7" refX="5" refY="2.5" orient="auto">
-      <path d="M0,0 L5,2.5 L0,5 Z" fill="#ffffff"></path>
+      <path d="M0,0 L5,2.5 L0,5 Z" fill="#002337"></path>
     </marker>`;
   svg.appendChild(defs);
 
