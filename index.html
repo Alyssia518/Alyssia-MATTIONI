@@ -1,76 +1,193 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8" />
-  <title>alyssia_mattioni</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" type="image/png" href="img/logo perso.png" />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/index.css" />
-</head>
-<body>
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-  <!-- Écran de chargement vidéo -->
-  <div class="loading-container" id="loadingContainer">
-    <video class="loading-video" id="loadingVideo" autoplay muted playsinline>
-      <source src="img/carte-visite-ar.mp4" type="video/mp4" />
-      Votre navigateur ne supporte pas la lecture de vidéos.
-    </video>
-  </div>
+html, body {
+  height: 100%;
+  font-family: 'Montserrat', sans-serif;
+  background: #ffffff;
+  overflow-x: hidden;
+  color: #002337;
+}
 
-  <div class="main-content" id="mainContent">
-    
-    <!-- LE MOTIF ANIMÉ EN FOND (c'est ça qui manquait !) -->
-    <svg class="bg-motif-svg" id="bgMotif" aria-hidden="true"></svg>
+/* ---- Écran de chargement ---- */
+.loading-container {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  display: flex; justify-content: center; align-items: center;
+  background: #ffffff; z-index: 1000;
+  transition: opacity 0.5s ease-out;
+}
+.loading-container.fade-out { opacity: 0; }
+.loading-video {
+  width: 92vw; height: 82vh; max-width: 1100px;
+  object-fit: cover; display: block;
+}
 
-    <header>
-      <div class="logo">
-        <img src="img/logo insta.png" alt="Logo" />
-      </div>
-      <nav>
-        <a href="apropos.html">À propos</a>
-        <a href="Sketchbook.html">Sketchbook</a>
-      </nav>
-    </header>
+/* ---- Contenu principal ---- */
+.main-content {
+  display: none; min-height: 100vh;
+  background: #ffffff; color: #002337;
+  position: relative;
+  flex-direction: column;
+}
+.main-content.show { display: flex; }
 
-    <main>
-      <!-- Le tracker avec les boutons, tout en haut -->
-      <section class="tracker-section" id="trackerSection">
-        
-        <!-- Le motif spécifique du tracker -->
-        <svg class="tracker-motif-svg" id="trackerMotif" aria-hidden="true"></svg>
+/* ---- DESSIN ANIMÉ DE FOND ---- */
+.bg-motif-svg {
+  position: fixed; top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+/* On remet le bleu foncé pour que ça se voie */
+.bg-motif-svg path { fill: none; stroke: #002337; }
+.bg-motif-svg circle { fill: none; stroke: #002337; }
+.bg-motif-svg .is-dot { fill: #002337; stroke: none; }
 
-        <div class="tracker-wrap" id="trackerWrap">
-          <div class="tracker-hub" id="trackerHub"></div>
-          <svg class="tracker-svg" id="trackerSvg">
-            <defs>
-              <marker id="arrowHead" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-                <path d="M0,0 L6,3 L0,6 Z" fill="#002337" opacity="0.55"></path>
-              </marker>
-            </defs>
-          </svg>
-          
-          <nav class="tracker" id="trackerNodes" aria-label="Catégories de projets">
-            <a class="tracker-item" href="motion-design.html"><span>Motion design</span></a>
-            <a class="tracker-item" href="ux-ui.html"><span>UX / UI</span></a>
-            <a class="tracker-item" href="experimentation.html"><span>Expérimentation</span></a>
-            <a class="tracker-item" href="3d.html"><span>3D</span></a>
-            <a class="tracker-item" href="identite-visuelle.html"><span>Identité visuelle</span></a>
-          </nav>
-        </div>
-      </section>
-    </main>
+header, main, footer {
+  position: relative;
+  z-index: 1;
+}
 
-    <footer id="contact">
-      <div class="footer-content">
-        <div class="contact-item"><a href="mailto:alyssia.mattioni@gmail.com">alyssia.mattioni@gmail.com</a></div>
-        <div class="contact-item"><a href="tel:+33613662129">06 13 66 21 29</a></div>
-      </div>
-      <div class="footer-bottom">© 2026 Alyssia Mattioni</div>
-    </footer>
+/* ---- Header ---- */
+header {
+  background: #ffffff;
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  height: 90px;
+}
+header .logo img { height: 50px; width: auto; display: block; }
 
-  </div>
+nav a {
+  color: #002337;
+  margin-left: 30px;
+  text-decoration: none;
+  font-weight: 400;
+  transition: color 0.3s ease;
+}
+nav a:hover { color: #0084B4; }
 
-  <script src="js/index.js"></script>
-</body>
-</html>
+/* ---- Section Tracker ---- */
+main { flex: 1; }
+
+.tracker-section {
+  position: relative;
+  min-height: calc(100vh - 90px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+.tracker-motif-svg {
+  position: absolute; top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+.tracker-motif-svg path { fill: none; stroke: #002337; }
+.tracker-motif-svg circle { fill: none; stroke: #002337; }
+.tracker-motif-svg .is-dot { fill: #002337; stroke: none; }
+
+.tracker-wrap {
+  position: relative;
+  padding-top: 10px;
+  width: 100%;
+  max-width: 1000px;
+  z-index: 2;
+}
+.tracker-hub {
+  width: 10px; height: 10px;
+  background: #0084B4; /* Le hub en bleu vif */
+  border-radius: 50%;
+  margin: 0 auto 20px auto;
+  box-shadow: 0 0 10px rgba(0, 132, 180, 0.4);
+}
+.tracker-svg {
+  position: absolute; top: 0; left: 0;
+  width: 100%; height: 100%;
+  overflow: visible; pointer-events: none;
+}
+.tracker-svg path.connector {
+  fill: none; stroke: #002337; stroke-width: 1; /* Ligne plus fine */
+  stroke-dasharray: 4 6; opacity: 0.4;
+}
+.tracker-svg path.connector-signal { fill: #0084B4; opacity: 1; } /* Pac-Man bleu */
+
+.tracker {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 22px;
+  margin-top: 40px;
+}
+
+.tracker-item:nth-child(1) { margin-top: 4px; }
+.tracker-item:nth-child(2) { margin-top: 74px; }
+.tracker-item:nth-child(3) { margin-top: 140px; }
+.tracker-item:nth-child(4) { margin-top: 140px; }
+.tracker-item:nth-child(5) { margin-top: 4px; }
+
+/* --- LES BOUTONS (contours affinés) --- */
+.tracker-item {
+  position: relative;
+  display: flex; align-items: center; gap: 9px;
+  padding: 12px 20px;
+  border: 1px solid #002337; /* Contour fin (1px au lieu de 2px) */
+  border-radius: 6px; /* Coins arrondis mais pas trop */
+  background: #ffffff; color: #002337;
+  text-decoration: none;
+  font-weight: 500; font-size: 0.92rem;
+  transition: all 0.2s ease;
+}
+.tracker-item::before {
+  content: ''; position: absolute; top: -5px; left: 50%;
+  transform: translateX(-50%); width: 6px; height: 6px;
+  background: #ffffff; border: 1px solid #002337; border-radius: 50%;
+  transition: all 0.2s ease;
+}
+.tracker-item:hover {
+  background: #0084B4; 
+  border-color: #0084B4;
+  color: #ffffff; 
+  transform: translateY(-3px);
+}
+.tracker-item:hover::before { background: #0084B4; border-color: #0084B4; }
+
+/* ---- Footer ---- */
+footer {
+  background: transparent;
+  padding: 40px 0 20px 0;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #002337;
+  font-weight: 300;
+}
+.footer-content {
+  display: flex; justify-content: center; gap: 15px;
+  margin-bottom: 10px;
+}
+.footer-content a { color: #002337; text-decoration: none; transition: color 0.2s; }
+.footer-content a:hover { color: #0084B4; }
+
+::-webkit-scrollbar { display: none; }
+html { -ms-overflow-style: none; scrollbar-width: none; }
+
+@media (max-width: 768px) {
+  header { padding: 15px 20px; height: 70px; }
+  header .logo img { height: 40px; }
+  nav a { margin-left: 16px; font-size: 0.9rem; }
+  
+  .tracker { flex-direction: column; align-items: center; gap: 26px; margin-top: 30px; }
+  .tracker-item {
+    padding: 15px 20px; font-size: 0.92rem;
+    width: 85%; max-width: 340px; justify-content: center;
+  }
+  .tracker-item:nth-child(n) { margin-top: 0; }
+}
